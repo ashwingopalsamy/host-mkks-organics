@@ -17,7 +17,7 @@ Please verify and retain the specific license requirements on each Wikimedia fil
 - `assets/images/var-malgova.webp`
   - Source: [File:Malgova mango.jpg](https://commons.wikimedia.org/wiki/File:Malgova_mango.jpg)
 - `assets/images/var-sendhooram.webp`
-  - Source: [File:Sindhura-Lakshmana.jpg](https://commons.wikimedia.org/wiki/File:Sindhura-Lakshmana.jpg)
+  - Source: [File:Mango sindoora.jpg](https://commons.wikimedia.org/wiki/File:Mango_sindoora.jpg)
 - `assets/images/gallery-orchard-1.webp`
   - Source: [File:Mango Orchard in Nazra Village, Benipatti Block, Madhubani District, Bihar, India.jpg](https://commons.wikimedia.org/wiki/File:Mango_Orchard_in_Nazra_Village,_Benipatti_Block,_Madhubani_District,_Bihar,_India.jpg)
 - `assets/images/gallery-orchard-2.webp`
