@@ -12,6 +12,11 @@ A single-page, mobile-first, premium static landing page for an organic mango fa
 ```text
 host-mkks-organics/
 ├── assets/
+│   ├── icons/
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon-32.png
+│   │   ├── favicon-512.png
+│   │   └── favicon.svg
 │   └── images/
 │       ├── gallery-bloom.webp
 │       ├── gallery-branches.webp
@@ -19,6 +24,7 @@ host-mkks-organics/
 │       ├── gallery-kachcha.webp
 │       ├── gallery-orchard-1.webp
 │       ├── gallery-orchard-2.webp
+│       ├── og-thumbnail.jpg
 │       ├── hero-orchard-900.webp
 │       ├── hero-orchard-1400.webp
 │       ├── hero-orchard.webp
@@ -27,7 +33,8 @@ host-mkks-organics/
 │       ├── var-alphonso.webp
 │       ├── var-banganapalli.webp
 │       ├── var-imampasand.webp
-│       └── var-malgova.webp
+│       ├── var-malgova.webp
+│       └── var-sendhooram.webp
 ├── .gitignore
 ├── ATTRIBUTION.md
 ├── index.html
@@ -63,6 +70,8 @@ Then open `http://localhost:8080`.
 - Open Graph metadata
 - Twitter card metadata
 - JSON-LD `LocalBusiness` schema
+- Dedicated `og-thumbnail.jpg`
+- Favicon + Apple touch icon set
 
 ## Performance Notes
 - WebP used for all images.

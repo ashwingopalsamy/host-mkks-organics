@@ -16,6 +16,8 @@ Please verify and retain the specific license requirements on each Wikimedia fil
   - Source: [File:Mango ImamPasand Asit ftg.jpg](https://commons.wikimedia.org/wiki/File:Mango_ImamPasand_Asit_ftg.jpg)
 - `assets/images/var-malgova.webp`
   - Source: [File:Malgova mango.jpg](https://commons.wikimedia.org/wiki/File:Malgova_mango.jpg)
+- `assets/images/var-sendhooram.webp`
+  - Source: [File:Sindhura-Lakshmana.jpg](https://commons.wikimedia.org/wiki/File:Sindhura-Lakshmana.jpg)
 - `assets/images/gallery-orchard-1.webp`
   - Source: [File:Mango Orchard in Nazra Village, Benipatti Block, Madhubani District, Bihar, India.jpg](https://commons.wikimedia.org/wiki/File:Mango_Orchard_in_Nazra_Village,_Benipatti_Block,_Madhubani_District,_Bihar,_India.jpg)
 - `assets/images/gallery-orchard-2.webp`
@@ -28,3 +30,9 @@ Please verify and retain the specific license requirements on each Wikimedia fil
   - Source: [File:Kachcha mango.jpg](https://commons.wikimedia.org/wiki/File:Kachcha_mango.jpg)
 - `assets/images/gallery-canopy.webp`
   - Source: [File:മാവ് 2zcx 04.jpg](https://commons.wikimedia.org/wiki/File:%E0%B4%AE%E0%B4%BE%E0%B4%B5%E0%B5%8D_2zcx_04.jpg)
+
+Derived assets created in this project:
+- `assets/images/og-thumbnail.jpg`
+  - Derived from the local hero orchard image with custom overlay/text treatment.
+- `assets/icons/favicon.svg`, `assets/icons/favicon-*.png`, `assets/icons/apple-touch-icon.png`
+  - Custom-generated brand icons.
