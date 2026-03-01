@@ -91,7 +91,19 @@
           <span class="brand-copy">Organics</span>
         </a>
 
-        <nav class="topnav" aria-label="Primary">
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="topnav" id="primary-nav" aria-label="Primary">
           <a href="#varieties">Varieties</a>
           <a href="#philosophy">Method</a>
           <a href="#contact">Contact</a>
@@ -138,7 +150,23 @@
               <span class="season">2026 Harvest Window: Mar - July</span>
             </div>
 
-            <div class="availability-rail" data-season-start="3" data-season-end="7" data-season-peak="5">
+            <button
+              class="season-toggle"
+              id="season-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="availability-rail-panel"
+            >
+              View seasonal timeline
+            </button>
+
+            <div
+              class="availability-rail"
+              id="availability-rail-panel"
+              data-season-start="3"
+              data-season-end="7"
+              data-season-peak="5"
+            >
               <p class="availability-title">Seasonality</p>
               <ol class="season-rail" id="season-rail" aria-label="Seasonal availability timeline">
                 <li data-month="3">Mar</li>

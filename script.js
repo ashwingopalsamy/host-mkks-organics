@@ -3,10 +3,72 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 // Keep the footer date current without manual edits.
 document.getElementById("year").textContent = new Date().getFullYear();
 
+// Mobile navigation toggle.
+const topbarInner = document.querySelector(".topbar-inner");
+const navToggle = document.querySelector(".nav-toggle");
+const primaryNav = document.getElementById("primary-nav");
+
+if (topbarInner && navToggle && primaryNav) {
+  const closeNav = () => {
+    topbarInner.classList.remove("is-nav-open");
+    navToggle.setAttribute("aria-expanded", "false");
+  };
+
+  navToggle.addEventListener("click", () => {
+    const isOpen = topbarInner.classList.toggle("is-nav-open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  primaryNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeNav);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!topbarInner.contains(event.target)) {
+      closeNav();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeNav();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      closeNav();
+    }
+  });
+}
+
 // Seasonal timeline cue in the hero panel.
 const availabilityRail = document.querySelector(".availability-rail");
 const seasonRail = document.getElementById("season-rail");
 const seasonStatus = document.getElementById("season-status");
+const seasonToggle = document.getElementById("season-toggle");
+
+if (availabilityRail && seasonToggle) {
+  const setSeasonOpenState = (open) => {
+    availabilityRail.classList.toggle("is-open", open);
+    seasonToggle.classList.toggle("is-active", open);
+    seasonToggle.setAttribute("aria-expanded", String(open));
+    seasonToggle.textContent = open ? "Hide seasonal timeline" : "View seasonal timeline";
+  };
+
+  seasonToggle.addEventListener("click", () => {
+    const open = !availabilityRail.classList.contains("is-open");
+    setSeasonOpenState(open);
+  });
+
+  const syncSeasonForViewport = () => {
+    const isDesktop = window.matchMedia("(min-width: 48rem)").matches;
+    setSeasonOpenState(isDesktop);
+  };
+
+  window.addEventListener("resize", syncSeasonForViewport, { passive: true });
+  syncSeasonForViewport();
+}
 
 if (availabilityRail && seasonRail && seasonStatus) {
   const timelineYear = new Date().getFullYear();

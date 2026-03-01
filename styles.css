@@ -265,9 +265,9 @@ main,
 
 .brand-copy {
   white-space: nowrap;
-  font-size: 1.02rem;
+  font-size: 1.12rem;
   font-weight: 650;
-  color: #243526;
+  color: #141814;
 }
 
 .topnav {
@@ -279,10 +279,10 @@ main,
 .topnav a {
   padding: 0.42rem 0.66rem;
   border-radius: 999px;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  color: #2f4432;
+  color: #121712;
   transition:
     background-color 280ms var(--ease-standard),
     color 280ms var(--ease-standard),
@@ -295,6 +295,35 @@ main,
   background: rgba(255, 255, 255, 0.64);
   transform: translateY(-1px);
   outline: none;
+}
+
+.nav-toggle {
+  display: none;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid rgba(20, 25, 20, 0.2);
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.72);
+  color: #101410;
+  padding: 0.56rem 0.48rem;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.nav-toggle span + span {
+  margin-top: 0.33rem;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid rgba(18, 23, 18, 0.62);
+  outline-offset: 2px;
 }
 
 .hero {
@@ -372,6 +401,8 @@ main,
   border-radius: var(--radius-xl);
   padding: clamp(1.25rem, 3.8vw, 2.45rem);
   color: #f8f7f2;
+  display: grid;
+  gap: var(--space-sm);
 }
 
 .hero-panel h1 {
@@ -387,7 +418,7 @@ main,
 }
 
 .hero-meta {
-  margin-top: var(--space-md);
+  margin-top: 0.1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.54rem;
@@ -425,13 +456,45 @@ main,
 }
 
 .availability-rail {
-  margin-top: var(--space-md);
+  margin-top: 0.1rem;
   padding: 0.82rem 0.88rem;
   border-radius: var(--radius-md);
   background: rgba(19, 33, 21, 0.28);
   border: 1px solid rgba(255, 255, 255, 0.2);
   display: grid;
   gap: 0.6rem;
+}
+
+.season-toggle {
+  display: none;
+  width: fit-content;
+  padding: 0.4rem 0.74rem;
+  border-radius: 0.76rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 248, 236, 0.95);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    background-color 260ms var(--ease-standard),
+    transform 260ms var(--ease-standard),
+    border-color 260ms var(--ease-standard);
+}
+
+.season-toggle:hover,
+.season-toggle:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.season-toggle.is-active {
+  background: rgba(220, 155, 47, 0.3);
+  border-color: rgba(255, 220, 145, 0.72);
 }
 
 .availability-title {
@@ -568,14 +631,14 @@ main,
 }
 
 .btn-secondary {
-  color: #faf8f0;
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.46);
+  color: #fdfaf2;
+  background: rgba(24, 30, 24, 0.34);
+  border-color: rgba(255, 255, 255, 0.56);
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus-visible {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(24, 30, 24, 0.48);
 }
 
 .btn .ripple {
@@ -1050,9 +1113,157 @@ main,
     display: none;
   }
 
+  .topbar-inner {
+    border-radius: 1.35rem;
+    padding-inline: 0.5rem;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .topbar {
+    top: 0.42rem;
+    padding-block: 0.42rem;
+  }
+
+  .topbar-inner {
+    position: relative;
+    border-radius: 1.5rem;
+    padding: 0.52rem 0.58rem;
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+  }
+
+  .brand-copy {
+    font-size: 1.28rem;
+    color: #111511;
+  }
+
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  .topnav {
+    position: absolute;
+    top: calc(100% + 0.42rem);
+    right: 0;
+    min-width: 10.5rem;
+    padding: 0.46rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.8));
+    box-shadow: 0 14px 26px rgba(18, 29, 18, 0.14);
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+  }
+
+  .topbar-inner.is-nav-open .topnav {
+    display: flex;
+  }
+
   .topnav a {
-    padding: 0.34rem 0.45rem;
-    font-size: 0.68rem;
+    border-radius: 0.7rem;
+    font-size: 0.98rem;
+    color: #101410;
+    padding: 0.6rem 0.72rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 7rem;
+    padding-bottom: 1.6rem;
+    align-items: start;
+  }
+
+  .hero-content {
+    padding-bottom: 0.3rem;
+  }
+
+  .hero-panel {
+    border-radius: 1.7rem;
+    padding: 1.22rem 1rem 1.06rem;
+    background: linear-gradient(165deg, rgba(92, 103, 85, 0.78), rgba(70, 84, 70, 0.62));
+    border-color: rgba(255, 255, 255, 0.5);
+    gap: 0.84rem;
+  }
+
+  .hero-panel .eyebrow {
+    order: 1;
+    margin-bottom: 0;
+    font-size: 0.72rem;
+  }
+
+  .hero-panel h1 {
+    order: 2;
+    font-size: clamp(1.9rem, 10.2vw, 3rem);
+    line-height: 1.03;
+    text-wrap: pretty;
+  }
+
+  .hero-intro {
+    order: 3;
+    margin-top: 0;
+    font-size: 0.98rem;
+    line-height: 1.54;
+  }
+
+  .hero-cta {
+    order: 4;
+    margin-top: 0.1rem;
+    gap: 0.5rem;
+  }
+
+  .btn {
+    min-height: 3.05rem;
+    border-radius: 1.05rem;
+    font-size: 1.06rem;
+  }
+
+  .hero-meta {
+    order: 5;
+    margin-top: 0;
+    gap: 0.45rem;
+  }
+
+  .pill,
+  .season {
+    font-size: 0.76rem;
+    border-radius: 0.92rem;
+    padding: 0.35rem 0.66rem;
+  }
+
+  .season-toggle {
+    order: 6;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0.06rem;
+  }
+
+  .availability-rail {
+    order: 7;
+    margin-top: 0;
+    display: none;
+    border-radius: 1.12rem;
+    padding: 0.72rem 0.74rem;
+  }
+
+  .availability-rail.is-open {
+    display: grid;
+  }
+
+  .season-rail {
+    gap: 0.34rem;
+  }
+
+  .season-rail li {
+    min-height: 1.9rem;
+    border-radius: 0.62rem;
+    font-size: 0.8rem;
+  }
+
+  .season-status {
+    font-size: 0.82rem;
   }
 }
 
@@ -1068,12 +1279,16 @@ main,
 }
 
 @media (min-width: 48rem) {
+  .nav-toggle {
+    display: none;
+  }
+
   .topbar-inner {
     padding: 0.5rem 0.76rem;
   }
 
   .topnav a {
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     padding: 0.46rem 0.74rem;
   }
 
