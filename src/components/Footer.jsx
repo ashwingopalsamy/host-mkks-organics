@@ -20,7 +20,8 @@ export default function Footer() {
               <span className="brand-copy">Organics</span>
             </a>
             <p>
-              Premium, fertilizer-free organic mangoes handcrafted in the Anaimalai foothills of Marappagoundenpudhur. A 10-year legacy of absolute purity.
+              Clean-grown organic mangoes from Marappagoundenpudhur, ripened naturally for deep
+              sweetness, bright aroma, and a truly satisfying bite.
             </p>
             <span className="footer-chip">Season 2026 · Mar – Jun</span>
           </div>

@@ -28,11 +28,11 @@ export default function Varieties() {
     <section className="section section-varieties" id="varieties">
       <div className="container">
         <SectionReveal as="header" className="section-head">
-          <h2>From Our Orchard, by Season</h2>
+          <h2>Pick Your Favourite Bite, by Season</h2>
           <p className="eyebrow">The Collection</p>
           <p className="section-intro">
-            Each variety has its own window. We harvest only when the tree decides the fruit is
-            ready — never before, never forced.
+            Every variety has a distinct flavour profile and a short window. We harvest only at
+            natural maturity so sweetness, aroma, and texture land exactly right.
           </p>
         </SectionReveal>
 

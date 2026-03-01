@@ -31,7 +31,10 @@ export default function Benefits() {
         <SectionReveal as="header" className="section-head">
           <p className="eyebrow">The Premium Standard</p>
           <h2>What Sets Us Apart</h2>
-          <p className="section-intro">A 10-year promise of absolute purity and meticulous care.</p>
+          <p className="section-intro">
+            Built to protect the moment that matters most: the first slice, the first aroma, the
+            first bite.
+          </p>
         </SectionReveal>
 
         <motion.div

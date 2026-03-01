@@ -3,28 +3,28 @@ export const varieties = [
     name: 'Imam Pasand',
     image: '/assets/images/var-imampasand.webp',
     alt: 'Imam Pasand mangoes',
-    description: 'Unmistakable floral aroma. Buttery flesh that dissolves on the tongue with a delicate, lingering finish.',
+    description: 'Floral perfume up front, then silky sweetness that melts fast. The kind of mango that makes people pause after the first bite.',
     season: 'Apr – Jun',
   },
   {
     name: 'Banganapalli',
     image: '/assets/images/var-banganapalli.webp',
     alt: 'Banganapalli mangoes',
-    description: 'Clean, bright sweetness with a mild citrus undertone. Smooth, fiberless flesh. The everyday favourite.',
+    description: 'Clean honeyed sweetness with a gentle citrus lift. Smooth, fiberless flesh that keeps you reaching for one more slice.',
     season: 'Mar – Jun',
   },
   {
     name: 'Alphonso Reserve',
     image: '/assets/images/var-alphonso.webp',
     alt: 'Alphonso mangoes',
-    description: 'Saffron-hued, creamy texture with gentle acidity. Intense aroma that fills the room before the first bite.',
+    description: 'Deep saffron flesh, creamy body, balanced tang. Open the box and the aroma announces dessert before serving.',
     season: 'Mar – Jun',
   },
   {
     name: 'Sendhooram',
     image: '/assets/images/var-sendhooram.webp',
     alt: 'Sendhooram mangoes',
-    description: 'Lively sweet-tang balance with bright, aromatic flesh. The vibrant one — always the first to go.',
+    description: 'Bright sweet-tang pop with juicy aromatic flesh. A lively crowd-pleaser that disappears first at family tables.',
     season: 'Mar – Jun',
   },
 ];
@@ -32,7 +32,7 @@ export const varieties = [
 export const philosophySteps = [
   {
     title: 'Decade-Long Soil Stewardship',
-    description: 'For over 10 years, our soil in Marappagoundenpudhur has never seen a synthetic fertilizer. Deep root health is maintained through pure organic compost and strict soil-rest cycles.',
+    description: 'For over 10 years, our soil in Marappagoundenpudhur has never seen synthetic fertilizer. Organic compost and strict soil-rest cycles build healthier roots and better natural flavour.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M3 17c3.5 0 5-2.5 9-2.5S17.5 17 21 17" />
@@ -42,7 +42,7 @@ export const philosophySteps = [
   },
   {
     title: 'Absolute Tree Ripening',
-    description: 'A masterpiece cannot be rushed. Every mango remains on the branch until natural maturity, completely free from calcium carbide or ethylene gas. Only absolute patience.',
+    description: 'A great mango cannot be rushed. Every fruit stays on the branch until natural maturity, free from calcium carbide and ethylene gas, so sugars and aroma develop fully.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M12 4c4.5 0 8 3.3 8 7.5S16.5 19 12 19s-8-3.3-8-7.5S7.5 4 12 4Z" />
@@ -52,7 +52,7 @@ export const philosophySteps = [
   },
   {
     title: 'Meticulous Hand Harvest',
-    description: 'Each fruit is individually hand-harvested with the stem intact by our trained generational farmers. This painstaking, small-batch approach preserves our premium quality.',
+    description: 'Each fruit is hand-harvested with stem intact by trained farm hands. This careful small-batch process minimizes bruising and protects texture at the table.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M6 12c0-2.5 2-4.5 4.5-4.5h3C16 7.5 18 9.5 18 12s-2 4.5-4.5 4.5h-3C8 16.5 6 14.5 6 12Z" />
@@ -62,7 +62,7 @@ export const philosophySteps = [
   },
   {
     title: 'Pristine Direct Dispatch',
-    description: 'From our Anaimalai foothills directly to your home. Harvested, immaculately packed, and shipped within hours to deliver absolute luxury without warehousing degradation.',
+    description: 'Harvested, packed, and dispatched within hours from our orchard to your city, so each mango reaches you fragrant, fresh, and ready to impress.',
     icon: (
       <svg viewBox="0 0 24 24">
         <rect x="3.5" y="7" width="17" height="10" rx="2" />
@@ -75,7 +75,7 @@ export const philosophySteps = [
 export const benefits = [
   {
     title: 'Farm-Direct',
-    description: 'From our 10-acre estate directly to your door. No middlemen, ensuring the luxury and cleanliness of our harvest is preserved.',
+    description: 'From our 10-acre estate directly to your door. No middlemen, less delay, and fruit that tastes alive instead of tired.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M4 12.5 9.5 18 20 7.5" />
@@ -84,7 +84,7 @@ export const benefits = [
   },
   {
     title: 'Seasonal Only',
-    description: 'True luxury cannot be rushed. Available exclusively during the natural harvest window, exactly as nature intended.',
+    description: 'Available only in the natural harvest window. The wait pays off in sweeter fruit, fuller aroma, and better bite.',
     icon: (
       <svg viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="8" />
@@ -94,7 +94,7 @@ export const benefits = [
   },
   {
     title: 'Fully Transparent',
-    description: 'Our 10-year organic legacy is an open book. From soil amendments to dispatch, we maintain absolute cleanliness and zero fertilizer use.',
+    description: 'Our process is open from soil inputs to dispatch. You know exactly how your mangoes were grown, ripened, and handled.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M6 12.5h12M6 8.5h12M6 16.5h8" />
@@ -103,7 +103,7 @@ export const benefits = [
   },
   {
     title: 'Careful Packing',
-    description: 'Premium fruit deserves premium care. Each mango is cushioned individually in small batches, preserving its flawless condition.',
+    description: 'Each mango is cushioned and packed in small batches, protecting skin and softness so it arrives ready for a perfect slice.',
     icon: (
       <svg viewBox="0 0 24 24">
         <rect x="3.5" y="7" width="17" height="10" rx="2" />

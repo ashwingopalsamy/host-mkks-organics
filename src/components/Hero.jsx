@@ -42,26 +42,11 @@ export default function Hero() {
           }}
         >
           <p className="eyebrow">MKKS Organics · Marappagoundenpudhur</p>
-          <h1>Meticulously Crafted in the Anaimalai Foothills.</h1>
+          <h1>The Mangoes People Ask for Seconds Of.</h1>
           <p className="hero-intro">
-            A decade of uncompromising purity. Zero fertilizers, zero chemicals.
-            Hand-harvested from our 10-acre estate to deliver a truly premium organic luxury.
+            Naturally ripened on the tree for fuller sweetness, richer aroma, and that soft first
+            bite. Clean-grown, hand-harvested, and dispatched from our orchard at peak flavour.
           </p>
-
-          <div className="hero-meta">
-            <span className="pill">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 21s-6.5-5.3-6.5-11a6.5 6.5 0 1 1 13 0c0 5.7-6.5 11-6.5 11Z"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                />
-                <circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" strokeWidth="1.6" />
-              </svg>
-              Anaimalai Foothills, Pollachi
-            </span>
-          </div>
 
           <motion.div
             className="hero-cta"

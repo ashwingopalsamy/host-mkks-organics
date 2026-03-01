@@ -6,16 +6,15 @@ export default function Story() {
       <div className="container split-layout">
         <SectionReveal as="article" className="story-copy" direction="left" delay={0.1}>
           <p className="eyebrow">The Legacy</p>
-          <h2>10 Years of Uncompromising Purity.</h2>
+          <h2>Ten Years of Growing Mangoes Worth Remembering.</h2>
           <p>
-            Pioneered by Mr. Chandraprabhu Sundaramoorthy over a decade ago, our 10-acre estate in 
-            Marappagoundenpudhur rests in the mist-touched Anaimalai foothills. What began as a 
-            personal mission has become the gold standard for premium, fertilizer-free agriculture.
+            Started by Mr. Chandraprabhu Sundaramoorthy, our 10-acre estate in
+            Marappagoundenpudhur was built around one idea: mangoes should taste as memorable as they
+            look. Every season, we grow for flavour first, not speed.
           </p>
           <p>
-            We believe true luxury is crafted by nature and guarded by strict discipline. 
-            Zero synthetic chemicals. Zero artificial ripening. Absolutely no shortcuts. 
-            Just impeccably clean, organic mangoes matured exactly as we would serve at our own table.
+            Zero synthetic chemicals. Zero artificial ripening. No shortcuts. Just clean, organic
+            fruit left on the tree until the sweetness deepens and the aroma opens up naturally.
           </p>
         </SectionReveal>
 

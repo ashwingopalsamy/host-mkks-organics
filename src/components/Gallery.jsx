@@ -20,9 +20,10 @@ export default function Gallery() {
       <div className="container">
         <SectionReveal as="header" className="section-head">
           <p className="eyebrow">From the Orchard</p>
-          <h2>Seasons in the Anaimalai Foothills</h2>
+          <h2>Where Flavour Begins</h2>
           <p className="section-intro">
-            Bloom, growth, ripening, and canopy — an unfiltered view of the cycle that shapes every fruit.
+            Bloom to ripening, this is the cycle behind the sweetness, fragrance, and soft texture
+            you taste at home.
           </p>
         </SectionReveal>
 
