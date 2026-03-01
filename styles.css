@@ -678,19 +678,14 @@ main, .topbar, .footer, .whatsapp-float {
 }
 
 .variety-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--line-soft);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 252, 244, 0.78));
   box-shadow: var(--shadow-subtle);
-}
-
-.featured-card {
-  border-color: rgba(200, 170, 100, 0.3);
-}
-
-.featured-card .variety-content {
-  background: linear-gradient(180deg, rgba(255, 252, 244, 0.7), rgba(255, 245, 220, 0.45));
 }
 
 .variety-card img {
@@ -700,6 +695,10 @@ main, .topbar, .footer, .whatsapp-float {
 }
 
 .variety-content {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  flex: 1;
   padding: var(--space-5) var(--space-5) var(--space-6);
 }
 
@@ -714,8 +713,12 @@ main, .topbar, .footer, .whatsapp-float {
   line-height: 1.6;
 }
 
+.variety-content > p:not(.season-window) {
+  min-height: calc(1.6em * 3);
+}
+
 .season-window {
-  margin-top: var(--space-3);
+  margin-top: auto;
   display: inline-flex;
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-full);
@@ -1240,13 +1243,8 @@ main, .topbar, .footer, .whatsapp-float {
   }
 
   .variety-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-5);
-  }
-
-  .featured-card {
-    grid-column: span 2;
-    grid-row: span 1;
   }
 
   .timeline-track {
@@ -1268,16 +1266,6 @@ main, .topbar, .footer, .whatsapp-float {
 
   .map-wrap iframe {
     height: 16rem;
-  }
-}
-
-@media (min-width: 90rem) {
-  .variety-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .featured-card {
-    grid-column: span 2;
   }
 }
 
