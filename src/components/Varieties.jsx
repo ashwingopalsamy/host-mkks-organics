@@ -28,8 +28,8 @@ export default function Varieties() {
     <section className="section section-varieties" id="varieties">
       <div className="container">
         <SectionReveal as="header" className="section-head">
-          <p className="eyebrow">Mango Varieties</p>
           <h2>From Our Orchard, by Season</h2>
+          <p className="eyebrow">The Collection</p>
           <p className="section-intro">
             Each variety has its own window. We harvest only when the tree decides the fruit is
             ready — never before, never forced.

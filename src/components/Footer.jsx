@@ -20,8 +20,7 @@ export default function Footer() {
               <span className="brand-copy">Organics</span>
             </a>
             <p>
-              Organic mangoes grown in the Anaimalai foothills, near Pollachi. Tree-ripened,
-              chemical-free, farm-direct.
+              Premium, fertilizer-free organic mangoes handcrafted in the Anaimalai foothills of Marappagoundenpudhur. A 10-year legacy of absolute purity.
             </p>
             <span className="footer-chip">Season 2026 · Mar – Jun</span>
           </div>

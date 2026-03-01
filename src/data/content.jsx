@@ -31,8 +31,8 @@ export const varieties = [
 
 export const philosophySteps = [
   {
-    title: 'Soil Stewardship',
-    description: 'Organic compost, seasonal mulching, and soil-rest cycles keep root systems deep and healthy. No synthetic fertilizers touch this ground.',
+    title: 'Decade-Long Soil Stewardship',
+    description: 'For over 10 years, our soil in Marappagoundenpudhur has never seen a synthetic fertilizer. Deep root health is maintained through pure organic compost and strict soil-rest cycles.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M3 17c3.5 0 5-2.5 9-2.5S17.5 17 21 17" />
@@ -41,8 +41,8 @@ export const philosophySteps = [
     ),
   },
   {
-    title: 'Tree Ripening Only',
-    description: 'Fruit stays on the branch until natural maturity — until the tree releases it. No calcium carbide. No ethylene gas. Just patience.',
+    title: 'Absolute Tree Ripening',
+    description: 'A masterpiece cannot be rushed. Every mango remains on the branch until natural maturity, completely free from calcium carbide or ethylene gas. Only absolute patience.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M12 4c4.5 0 8 3.3 8 7.5S16.5 19 12 19s-8-3.3-8-7.5S7.5 4 12 4Z" />
@@ -51,8 +51,8 @@ export const philosophySteps = [
     ),
   },
   {
-    title: 'Hand Harvest',
-    description: 'Each mango is picked by hand with stem intact to minimise bruising and preserve shelf life. Small batches, not bulk clearing.',
+    title: 'Meticulous Hand Harvest',
+    description: 'Each fruit is individually hand-harvested with the stem intact by our trained generational farmers. This painstaking, small-batch approach preserves our premium quality.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M6 12c0-2.5 2-4.5 4.5-4.5h3C16 7.5 18 9.5 18 12s-2 4.5-4.5 4.5h-3C8 16.5 6 14.5 6 12Z" />
@@ -61,8 +61,8 @@ export const philosophySteps = [
     ),
   },
   {
-    title: 'Direct Dispatch',
-    description: 'Harvest to shipment within hours, not days. Clean packing, careful layering, and direct dispatch to your city. No cold storage, no warehousing.',
+    title: 'Pristine Direct Dispatch',
+    description: 'From our Anaimalai foothills directly to your home. Harvested, immaculately packed, and shipped within hours to deliver absolute luxury without warehousing degradation.',
     icon: (
       <svg viewBox="0 0 24 24">
         <rect x="3.5" y="7" width="17" height="10" rx="2" />

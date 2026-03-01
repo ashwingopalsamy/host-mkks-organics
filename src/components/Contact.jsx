@@ -14,11 +14,10 @@ export default function Contact() {
     <section className="section section-contact" id="contact">
       <div className="container">
         <SectionReveal as="article" className="contact-card spotlight-card" delay={0.1}>
-          <p className="eyebrow">Reserve</p>
-          <h2>Reserve Your Season</h2>
+          <p className="eyebrow">Secure Your Harvest</p>
+          <h2>Reserve Your Premium Experience</h2>
           <p>
-            Share your requirement and delivery city. We will confirm availability, pricing, and
-            dispatch schedule for the current harvest window.
+            Our meticulously crafted, fertilizer-free yields are highly limited. Secure your dispatch of this season’s absolute finest organic mangoes from the Anaimalai foothills.
           </p>
 
           <div className="contact-actions">
