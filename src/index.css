@@ -369,7 +369,8 @@ main, .topbar, .footer, .whatsapp-float {
 .topbar {
   position: fixed;
   inset-inline: 0;
-  width: var(--container);
+  width: calc(100% - var(--space-8));
+  max-width: var(--container);
   margin-inline: auto;
   top: var(--space-4);
   z-index: 70;
@@ -576,7 +577,7 @@ main, .topbar, .footer, .whatsapp-float {
 
 .hero-panel {
   width: 100%;
-  max-width: var(--panel-max);
+  max-width: 100%;
   border-radius: var(--radius-3xl);
   padding: clamp(1.75rem, 4.5vw, 3rem);
   color: #f6f4ee;
