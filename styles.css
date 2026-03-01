@@ -58,7 +58,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -268,6 +268,28 @@ main,
   min-width: 0;
 }
 
+.topbar .brand {
+  gap: 0.56rem;
+}
+
+.brand-logo {
+  width: 2.08rem;
+  height: 2.08rem;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  box-shadow: 0 6px 14px rgba(16, 22, 16, 0.18);
+}
+
+.brand-word {
+  white-space: nowrap;
+  font-size: 1.16rem;
+  font-weight: 700;
+  color: #101510;
+  letter-spacing: 0.01em;
+}
+
 .brand-mark {
   width: 2.1rem;
   height: 2.1rem;
@@ -316,7 +338,6 @@ main,
   color: #000;
   border-color: rgba(255, 255, 255, 0.62);
   background: rgba(255, 255, 255, 0.24);
-  transform: translateY(-1px);
   outline: none;
 }
 
@@ -663,7 +684,6 @@ main,
 
 .btn:hover,
 .btn:focus-visible {
-  transform: translateY(-2px);
   outline: none;
 }
 
@@ -673,7 +693,7 @@ main,
 }
 
 .btn:active {
-  transform: translateY(0);
+  transform: none;
 }
 
 .btn-primary {
@@ -761,8 +781,8 @@ main,
 }
 
 .story-image:hover img {
-  transform: scale(1.04);
-  filter: saturate(1.04);
+  transform: none;
+  filter: none;
 }
 
 .variety-grid {
@@ -785,7 +805,6 @@ main,
 
 .variety-card:hover,
 .variety-card:focus-within {
-  transform: translateY(-4px);
   border-color: rgba(155, 185, 147, 0.62);
   box-shadow: var(--shadow-card);
 }
@@ -917,8 +936,8 @@ main,
 }
 
 .gallery-item:hover img {
-  transform: scale(1.05);
-  filter: saturate(1.08);
+  transform: none;
+  filter: none;
 }
 
 .benefit-grid {
@@ -1097,7 +1116,6 @@ main,
 .footer-links a:hover,
 .footer-links a:focus-visible {
   color: #173a21;
-  transform: translateX(2px);
   outline: none;
 }
 
@@ -1133,7 +1151,6 @@ main,
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0) scale(1);
-  animation: breathe 2600ms var(--ease-standard) infinite alternate;
 }
 
 .whatsapp-float svg {
@@ -1166,8 +1183,17 @@ main,
   transform: none;
 }
 
+/* Keep all interactions instant; no animated lag on hover/scroll/click. */
+*,
+*::before,
+*::after {
+  animation: none !important;
+  transition: none !important;
+}
+
 @media (max-width: 22rem) {
-  .brand-copy {
+  .brand-copy,
+  .brand-word {
     display: none;
   }
 
@@ -1284,7 +1310,7 @@ main,
 
   .btn {
     min-height: 3.05rem;
-    border-radius: 1.05rem;
+    border-radius: 999px;
     font-size: 1.06rem;
   }
 
