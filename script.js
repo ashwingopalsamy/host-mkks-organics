@@ -3,12 +3,82 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 // Keep the footer date current without manual edits.
 document.getElementById("year").textContent = new Date().getFullYear();
 
+// Seasonal timeline cue in the hero panel.
+const availabilityRail = document.querySelector(".availability-rail");
+const seasonRail = document.getElementById("season-rail");
+const seasonStatus = document.getElementById("season-status");
+
+if (availabilityRail && seasonRail && seasonStatus) {
+  const timelineYear = new Date().getFullYear();
+  const startMonth = Number(availabilityRail.dataset.seasonStart) || 3;
+  const endMonth = Number(availabilityRail.dataset.seasonEnd) || 7;
+  const peakMonth = Number(availabilityRail.dataset.seasonPeak) || 5;
+  const nowMonth = new Date().getMonth() + 1;
+  const monthName = new Intl.DateTimeFormat("en", { month: "long" });
+
+  [...seasonRail.querySelectorAll("li")].forEach((item) => {
+    const month = Number(item.dataset.month);
+    const monthDate = new Date(timelineYear, Math.max(0, month - 1), 1);
+
+    if (month < nowMonth) {
+      item.classList.add("is-past");
+    }
+
+    if (month >= startMonth && month <= endMonth) {
+      item.classList.add("is-open");
+    }
+
+    if (month === peakMonth) {
+      item.classList.add("is-peak");
+    }
+
+    if (month === nowMonth) {
+      item.classList.add("is-now");
+      item.setAttribute("aria-current", "date");
+    }
+
+    item.setAttribute("title", monthName.format(monthDate));
+  });
+
+  const startDate = new Date(timelineYear, Math.max(0, startMonth - 1), 1);
+  const endDate = new Date(timelineYear, Math.max(0, endMonth - 1), 1);
+  const peakDate = new Date(timelineYear, Math.max(0, peakMonth - 1), 1);
+  const nowDate = new Date(timelineYear, Math.max(0, nowMonth - 1), 1);
+  const startLabel = monthName.format(startDate);
+  const endLabel = monthName.format(endDate);
+  const peakLabel = monthName.format(peakDate);
+
+  if (nowMonth < startMonth) {
+    seasonStatus.textContent = `Pre-season now. Harvest opens in ${startLabel} and peaks in ${peakLabel}.`;
+  } else if (nowMonth > endMonth) {
+    seasonStatus.textContent = `Season closed. Next window starts in ${startLabel}; peak lots usually move in ${peakLabel}.`;
+  } else {
+    seasonStatus.textContent = `${monthName.format(nowDate)} is inside the live window. Peak dispatch usually lands in ${peakLabel}.`;
+  }
+
+  seasonStatus.setAttribute(
+    "aria-label",
+    `Season starts in ${startLabel}, peaks in ${peakLabel}, and ends in ${endLabel}.`
+  );
+}
+
 const revealElements = [...document.querySelectorAll(".reveal")];
 
 if (!prefersReducedMotion && "IntersectionObserver" in window) {
-  revealElements.forEach((element, index) => {
+  revealElements.forEach((element) => {
     if (!element.classList.contains("visible")) {
-      element.style.transitionDelay = `${Math.min((index % 4) * 60, 180)}ms`;
+      const sectionRoot = element.closest("section, footer, header") || document.body;
+      const localSequence = [...sectionRoot.querySelectorAll(".reveal")];
+      const position = Math.max(localSequence.indexOf(element), 0);
+
+      let baseDelay = 40;
+      if (element.matches(".section-head, .story-copy, .contact-card, .footer-card")) {
+        baseDelay = 0;
+      } else if (element.matches(".featured-card, .story-image")) {
+        baseDelay = 70;
+      }
+
+      element.style.transitionDelay = `${Math.min(baseDelay + position * 60, 280)}ms`;
     }
   });
 
