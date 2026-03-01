@@ -61,13 +61,7 @@ if (availabilityRail && seasonToggle) {
     setSeasonOpenState(open);
   });
 
-  const syncSeasonForViewport = () => {
-    const isDesktop = window.matchMedia("(min-width: 48rem)").matches;
-    setSeasonOpenState(isDesktop);
-  };
-
-  window.addEventListener("resize", syncSeasonForViewport, { passive: true });
-  syncSeasonForViewport();
+  setSeasonOpenState(false);
 }
 
 if (availabilityRail && seasonRail && seasonStatus) {
