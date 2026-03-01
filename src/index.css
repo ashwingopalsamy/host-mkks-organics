@@ -1163,8 +1163,13 @@ main, .topbar, .footer, .whatsapp-float {
 .contact-actions {
   margin-top: var(--space-8);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
   gap: var(--space-3);
+}
+
+.contact-actions .btn {
+  min-height: 3rem;
 }
 
 .contact-actions .btn-secondary {
@@ -1467,6 +1472,10 @@ main, .topbar, .footer, .whatsapp-float {
     min-height: 2.9rem;
     border-radius: var(--radius-full);
     font-size: 0.94rem;
+  }
+
+  .contact-actions .btn {
+    min-height: 2.9rem;
   }
 
   .pill {
