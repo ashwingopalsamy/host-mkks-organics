@@ -55,6 +55,7 @@
   --section-pad: clamp(4.5rem, 10vw, 7.5rem);
   --gutter: clamp(1.25rem, 4vw, 2rem);
   --container: min(1120px, calc(100% - (var(--gutter) * 2)));
+  --panel-max: min(46rem, 100%);
 
   /* Border Radius */
   --radius-xs: 0.5rem;
@@ -281,11 +282,6 @@ main, .topbar, .footer, .whatsapp-float {
   font-weight: 650;
   letter-spacing: 0.01em;
   cursor: pointer;
-  transition:
-    transform var(--duration-normal) var(--ease-out),
-    box-shadow var(--duration-normal) var(--ease-out),
-    background-color var(--duration-normal) var(--ease-out),
-    border-color var(--duration-normal) var(--ease-out);
 }
 
 .btn::before {
@@ -295,7 +291,6 @@ main, .topbar, .footer, .whatsapp-float {
   z-index: -1;
   background: linear-gradient(105deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
   opacity: 0;
-  transition: opacity var(--duration-fast) var(--ease-out);
 }
 
 .btn:hover, .btn:focus-visible {
@@ -307,7 +302,7 @@ main, .topbar, .footer, .whatsapp-float {
 }
 
 .btn:active {
-  transform: scale(0.98);
+  transform: none;
 }
 
 .btn-primary {
@@ -318,8 +313,7 @@ main, .topbar, .footer, .whatsapp-float {
 }
 
 .btn-primary:hover, .btn-primary:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 28px rgba(200, 135, 32, 0.36), 0 4px 10px rgba(200, 135, 32, 0.16);
+  box-shadow: 0 10px 24px rgba(200, 135, 32, 0.32), 0 3px 8px rgba(200, 135, 32, 0.14);
 }
 
 .btn-secondary {
@@ -333,7 +327,6 @@ main, .topbar, .footer, .whatsapp-float {
 .btn-secondary:hover, .btn-secondary:focus-visible {
   background: rgba(24, 34, 26, 0.44);
   border-color: rgba(255, 255, 255, 0.55);
-  transform: translateY(-1px);
 }
 
 /* Ripple */
@@ -393,7 +386,7 @@ main, .topbar, .footer, .whatsapp-float {
   inset-inline: 0;
   top: 0;
   z-index: 70;
-  padding: env(safe-area-inset-top, 0) 0 var(--space-2);
+  padding: 0;
 }
 
 .topbar-inner {
@@ -489,10 +482,6 @@ main, .topbar, .footer, .whatsapp-float {
   font-weight: 620;
   letter-spacing: 0.01em;
   color: var(--text-strong);
-  transition:
-    border-color var(--duration-normal) var(--ease-out),
-    background-color var(--duration-normal) var(--ease-out),
-    color var(--duration-normal) var(--ease-out);
 }
 
 .topnav a:hover, .topnav a:focus-visible {
@@ -571,7 +560,8 @@ main, .topbar, .footer, .whatsapp-float {
 }
 
 .hero-panel {
-  max-width: min(44rem, 100%);
+  width: 100%;
+  max-width: var(--panel-max);
   border-radius: var(--radius-2xl);
   padding: clamp(1.5rem, 4vw, 2.75rem);
   color: #f6f4ee;
@@ -639,9 +629,12 @@ main, .topbar, .footer, .whatsapp-float {
 .split-layout {
   display: grid;
   gap: var(--space-6);
+  justify-items: center;
 }
 
 .story-copy {
+  width: 100%;
+  max-width: var(--panel-max);
   border-radius: var(--radius-xl);
   padding: clamp(1.5rem, 4vw, 2.25rem);
   background: var(--glass-light-bg);
@@ -662,6 +655,8 @@ main, .topbar, .footer, .whatsapp-float {
 }
 
 .story-image {
+  width: 100%;
+  max-width: var(--panel-max);
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.6);
@@ -672,11 +667,6 @@ main, .topbar, .footer, .whatsapp-float {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 800ms var(--ease-out);
-}
-
-.story-image:hover img {
-  transform: scale(1.02);
 }
 
 /* ── 8. Varieties ─────────────────────────────────────────────── */
@@ -693,16 +683,6 @@ main, .topbar, .footer, .whatsapp-float {
   border: 1px solid var(--line-soft);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 252, 244, 0.78));
   box-shadow: var(--shadow-subtle);
-  transition:
-    transform var(--duration-slow) var(--ease-out),
-    box-shadow var(--duration-slow) var(--ease-out),
-    border-color var(--duration-slow) var(--ease-out);
-}
-
-.variety-card:hover, .variety-card:focus-within {
-  border-color: rgba(155, 185, 147, 0.42);
-  box-shadow: var(--shadow-card);
-  transform: translateY(-3px);
 }
 
 .featured-card {
@@ -783,14 +763,6 @@ main, .topbar, .footer, .whatsapp-float {
   border: 1px solid var(--line-soft);
   background: linear-gradient(175deg, rgba(255, 255, 255, 0.75), rgba(252, 255, 249, 0.55));
   box-shadow: var(--shadow-subtle);
-  transition:
-    box-shadow var(--duration-slow) var(--ease-out),
-    transform var(--duration-slow) var(--ease-out);
-}
-
-.timeline-step:hover {
-  box-shadow: var(--shadow-card);
-  transform: translateY(-2px);
 }
 
 .timeline-step .icon {
@@ -839,24 +811,11 @@ main, .topbar, .footer, .whatsapp-float {
   border: 1px solid rgba(255, 255, 255, 0.65);
   box-shadow: var(--shadow-subtle);
   background: #fff;
-  transition:
-    box-shadow var(--duration-slow) var(--ease-out),
-    transform var(--duration-slow) var(--ease-out);
-}
-
-.gallery-item:hover {
-  box-shadow: var(--shadow-card);
-  transform: translateY(-2px);
 }
 
 .gallery-item img {
   width: 100%;
   height: auto;
-  transition: transform 600ms var(--ease-out);
-}
-
-.gallery-item:hover img {
-  transform: scale(1.03);
 }
 
 /* ── 11. Benefits ─────────────────────────────────────────────── */
@@ -873,14 +832,6 @@ main, .topbar, .footer, .whatsapp-float {
   border: 1px solid var(--line-soft);
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.78), rgba(248, 253, 247, 0.55));
   box-shadow: var(--shadow-subtle);
-  transition:
-    box-shadow var(--duration-slow) var(--ease-out),
-    transform var(--duration-slow) var(--ease-out);
-}
-
-.benefit-card:hover {
-  box-shadow: var(--shadow-card);
-  transform: translateY(-2px);
 }
 
 .benefit-icon {
@@ -953,7 +904,6 @@ main, .topbar, .footer, .whatsapp-float {
 .contact-actions .btn-secondary:hover,
 .contact-actions .btn-secondary:focus-visible {
   background: rgba(45, 107, 61, 0.12);
-  transform: translateY(-1px);
 }
 
 .contact-actions a:last-child {
@@ -1048,7 +998,6 @@ main, .topbar, .footer, .whatsapp-float {
   width: fit-content;
   color: var(--text);
   font-size: 0.9rem;
-  transition: color var(--duration-normal) var(--ease-out);
 }
 
 .footer-links a:hover, .footer-links a:focus-visible {
@@ -1079,23 +1028,11 @@ main, .topbar, .footer, .whatsapp-float {
   box-shadow: 0 8px 20px rgba(24, 113, 36, 0.28), 0 2px 6px rgba(24, 113, 36, 0.12);
   opacity: 0;
   pointer-events: none;
-  transform: translateY(8px) scale(0.96);
-  transition:
-    opacity var(--duration-slow) var(--ease-out),
-    transform var(--duration-slow) var(--ease-out),
-    box-shadow var(--duration-normal) var(--ease-out);
 }
 
 .whatsapp-float.is-visible {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0) scale(1);
-  animation: breathe 3s var(--ease-standard) infinite alternate 1.5s;
-}
-
-.whatsapp-float:hover {
-  box-shadow: 0 12px 28px rgba(24, 113, 36, 0.36), 0 4px 10px rgba(24, 113, 36, 0.16);
-  transform: translateY(-2px) scale(1.04);
 }
 
 .whatsapp-float svg {
@@ -1103,50 +1040,9 @@ main, .topbar, .footer, .whatsapp-float {
   height: 1.65rem;
 }
 
-@keyframes breathe {
-  from {
-    transform: translateY(0) scale(1);
-    box-shadow: 0 8px 20px rgba(24, 113, 36, 0.28), 0 2px 6px rgba(24, 113, 36, 0.12);
-  }
-  to {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 12px 24px rgba(24, 113, 36, 0.34), 0 4px 10px rgba(24, 113, 36, 0.15);
-  }
-}
-
-/* ── 15. Scroll Reveal ────────────────────────────────────────── */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity var(--duration-reveal) var(--ease-entrance),
-    transform var(--duration-reveal) var(--ease-entrance);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* Stagger children when parent is revealed */
-.variety-grid .reveal:nth-child(2) { transition-delay: 60ms; }
-.variety-grid .reveal:nth-child(3) { transition-delay: 120ms; }
-.variety-grid .reveal:nth-child(4) { transition-delay: 180ms; }
-
-.benefit-grid .reveal:nth-child(2) { transition-delay: 60ms; }
-.benefit-grid .reveal:nth-child(3) { transition-delay: 120ms; }
-.benefit-grid .reveal:nth-child(4) { transition-delay: 180ms; }
-
-.gallery-grid .reveal:nth-child(2) { transition-delay: 50ms; }
-.gallery-grid .reveal:nth-child(3) { transition-delay: 100ms; }
-.gallery-grid .reveal:nth-child(4) { transition-delay: 150ms; }
-.gallery-grid .reveal:nth-child(5) { transition-delay: 200ms; }
-.gallery-grid .reveal:nth-child(6) { transition-delay: 250ms; }
-
-.timeline-track .reveal:nth-child(2) { transition-delay: 80ms; }
-.timeline-track .reveal:nth-child(3) { transition-delay: 160ms; }
-.timeline-track .reveal:nth-child(4) { transition-delay: 240ms; }
+/* ── 15. Instant Visibility ───────────────────────────────────── */
+/* All content visible immediately — no scroll-reveal, no stagger.
+   GenZ users swipe fast. Don't make them wait. */
 
 /* ── 16. Responsive — Small ───────────────────────────────────── */
 
@@ -1164,7 +1060,7 @@ main, .topbar, .footer, .whatsapp-float {
 @media (max-width: 47.99rem) {
   .topbar {
     top: 0;
-    padding-block: env(safe-area-inset-top, 0) 0.3rem;
+    padding: 0;
   }
 
   .topbar-inner {
@@ -1227,6 +1123,14 @@ main, .topbar, .footer, .whatsapp-float {
     border-radius: var(--radius-2xl);
     padding: var(--space-5) var(--space-4) var(--space-5);
     gap: var(--space-3);
+  }
+
+  .hero::after {
+    height: min(12vh, 5.5rem);
+  }
+
+  .section-story {
+    padding-top: clamp(2.75rem, 9vw, 3.5rem);
   }
 
   .hero-panel .eyebrow {
@@ -1297,6 +1201,7 @@ main, .topbar, .footer, .whatsapp-float {
 
   .split-layout {
     grid-template-columns: 1.04fr 1fr;
+    justify-items: stretch;
     align-items: stretch;
     gap: var(--space-8);
   }
@@ -1330,7 +1235,7 @@ main, .topbar, .footer, .whatsapp-float {
   }
 
   .hero-panel {
-    max-width: min(46rem, 100%);
+    max-width: var(--panel-max);
     padding: var(--space-12);
   }
 
