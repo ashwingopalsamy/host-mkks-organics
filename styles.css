@@ -9,9 +9,9 @@
   --surface-soft: #fff9ef;
   --surface-strong: #f7f0df;
 
-  --text-strong: #1f2a1f;
-  --text: #314134;
-  --text-muted: #5d6d60;
+  --text-strong: #182418;
+  --text: #243427;
+  --text-muted: #435545;
 
   --accent-mango: #dc9b2f;
   --accent-mango-strong: #b97b19;
@@ -65,7 +65,7 @@ body {
   margin: 0;
   color: var(--text);
   font-family: var(--font-body);
-  line-height: 1.65;
+  line-height: 1.62;
   overflow-x: hidden;
   background:
     radial-gradient(circle at 12% 0%, #fff6dc 0%, rgba(255, 246, 220, 0) 44%),
@@ -110,23 +110,23 @@ h3 {
   margin: 0;
   font-family: var(--font-display);
   color: var(--text-strong);
-  line-height: 1.04;
-  letter-spacing: 0.01em;
+  line-height: 1.05;
+  letter-spacing: 0.006em;
 }
 
 h1 {
   font-size: clamp(2.35rem, 7vw, 5.5rem);
-  font-weight: 640;
+  font-weight: 650;
 }
 
 h2 {
   font-size: clamp(2rem, 4.8vw, 3.6rem);
-  font-weight: 580;
+  font-weight: 600;
 }
 
 h3 {
   font-size: clamp(1.35rem, 2vw, 1.95rem);
-  font-weight: 560;
+  font-weight: 580;
 }
 
 address {
@@ -159,9 +159,9 @@ main,
   align-items: center;
   gap: var(--space-2xs);
   margin-bottom: var(--space-xs);
-  color: var(--accent-leaf);
+  color: #205f36;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 760;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -187,8 +187,8 @@ main,
 }
 
 .section-intro {
-  color: var(--text-muted);
-  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  color: #3d4f3f;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
 }
 
 .section-story {
@@ -284,9 +284,9 @@ main,
 
 .brand-word {
   white-space: nowrap;
-  font-size: 1.16rem;
-  font-weight: 700;
-  color: #101510;
+  font-size: 1.18rem;
+  font-weight: 760;
+  color: #0c120d;
   letter-spacing: 0.01em;
 }
 
@@ -322,10 +322,10 @@ main,
   padding: 0.42rem 0.76rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0);
-  font-size: 0.94rem;
-  font-weight: 700;
+  font-size: 0.97rem;
+  font-weight: 740;
   letter-spacing: 0.01em;
-  color: #101410;
+  color: #0a0f0a;
   transition:
     border-color 280ms var(--ease-standard),
     background-color 280ms var(--ease-standard),
@@ -335,7 +335,7 @@ main,
 
 .topnav a:hover,
 .topnav a:focus-visible {
-  color: #000;
+  color: #050805;
   border-color: rgba(255, 255, 255, 0.62);
   background: rgba(255, 255, 255, 0.24);
   outline: none;
@@ -447,20 +447,22 @@ main,
 
 .hero-panel .eyebrow {
   margin-bottom: 0;
-  color: rgba(252, 241, 210, 0.92);
+  color: rgba(248, 226, 173, 0.98);
 }
 
 .hero-panel h1 {
   max-width: 14.8ch;
-  color: #fff8ec;
+  color: #fffaef;
   text-wrap: balance;
   font-size: clamp(2.2rem, 5.1vw, 4.75rem);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .hero-intro {
   margin-top: 0.08rem;
-  color: rgba(255, 252, 244, 0.92);
+  color: rgba(255, 251, 242, 0.97);
   font-size: clamp(1rem, 2vw, 1.18rem);
+  line-height: 1.58;
   max-width: 58ch;
 }
 
@@ -485,7 +487,7 @@ main,
 }
 
 .pill {
-  color: #f6f3ea;
+  color: #fbf7ed;
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
@@ -497,7 +499,7 @@ main,
 }
 
 .season {
-  color: #fff8df;
+  color: #fff5d1;
   background: rgba(220, 155, 47, 0.28);
   border: 1px solid rgba(255, 230, 170, 0.6);
 }
@@ -801,10 +803,11 @@ main,
 
 .variety-content h3 {
   margin-bottom: 0.24rem;
+  color: #1b291e;
 }
 
 .variety-content p {
-  color: #475748;
+  color: #364739;
   font-size: 0.94rem;
 }
 
@@ -813,7 +816,7 @@ main,
   display: inline-flex;
   padding: 0.26rem 0.62rem;
   border-radius: 999px;
-  color: #1f5931;
+  color: #174a28;
   background: rgba(144, 186, 133, 0.2);
   border: 1px solid rgba(133, 175, 121, 0.44);
   font-size: 0.8rem;
@@ -882,7 +885,7 @@ main,
 }
 
 .timeline-step p {
-  color: #4a5a4c;
+  color: #3a4a3d;
   font-size: 0.92rem;
 }
 
@@ -952,7 +955,7 @@ main,
 }
 
 .benefit-card p {
-  color: #495948;
+  color: #3c4c3e;
   font-size: 0.92rem;
 }
 
@@ -971,7 +974,7 @@ main,
 }
 
 .contact-card > p {
-  color: #3f4f40;
+  color: #304033;
 }
 
 .contact-actions {
@@ -999,7 +1002,7 @@ main,
   margin-top: 1rem;
   font-style: normal;
   font-weight: 600;
-  color: #2f4b33;
+  color: #273e2b;
 }
 
 .map-wrap {
@@ -1044,7 +1047,7 @@ main,
 }
 
 .footer-brand-block p {
-  color: #395039;
+  color: #2d4330;
   font-size: 0.92rem;
 }
 
@@ -1078,7 +1081,7 @@ main,
 
 .footer-links a {
   width: fit-content;
-  color: #365138;
+  color: #29422e;
   font-size: 0.92rem;
   transition:
     color 260ms var(--ease-standard),
@@ -1093,7 +1096,7 @@ main,
 
 .footer-note {
   margin: 0.88rem 0 0;
-  color: #5e6d5d;
+  color: #4a5b4a;
   font-size: 0.84rem;
 }
 
@@ -1199,7 +1202,7 @@ main,
 
   .brand-copy {
     font-size: 1.12rem;
-    color: #0f130f;
+    color: #0c100c;
   }
 
   .topnav {
@@ -1217,8 +1220,8 @@ main,
 
   .topnav a {
     border-radius: 999px;
-    font-size: 0.88rem;
-    color: #101410;
+    font-size: 0.9rem;
+    color: #0a0f0a;
     padding: 0.4rem 0.56rem;
     border: 0;
   }
@@ -1250,6 +1253,7 @@ main,
   .hero-panel .eyebrow {
     margin-bottom: 0;
     font-size: 0.72rem;
+    color: rgba(248, 226, 173, 0.98);
   }
 
   .hero-panel h1 {
@@ -1260,7 +1264,7 @@ main,
 
   .hero-intro {
     margin-top: 0;
-    font-size: 0.98rem;
+    font-size: 1rem;
     line-height: 1.54;
   }
 
