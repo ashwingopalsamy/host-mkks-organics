@@ -4,28 +4,24 @@ export const varieties = [
     image: '/assets/images/var-imampasand.webp',
     alt: 'Imam Pasand mangoes',
     description: 'Floral perfume up front, then silky sweetness that melts fast. The kind of mango that makes people pause after the first bite.',
-    season: 'Apr – Jun',
   },
   {
     name: 'Banganapalli',
     image: '/assets/images/var-banganapalli.webp',
     alt: 'Banganapalli mangoes',
     description: 'Clean honeyed sweetness with a gentle citrus lift. Smooth, fiberless flesh that keeps you reaching for one more slice.',
-    season: 'Mar – Jun',
   },
   {
     name: 'Alphonso Reserve',
     image: '/assets/images/var-alphonso.webp',
     alt: 'Alphonso mangoes',
     description: 'Deep saffron flesh, creamy body, balanced tang. Open the box and the aroma announces dessert before serving.',
-    season: 'Mar – Jun',
   },
   {
     name: 'Sendhooram',
     image: '/assets/images/var-sendhooram.webp',
     alt: 'Sendhooram mangoes',
     description: 'Bright sweet-tang pop with juicy aromatic flesh. A lively crowd-pleaser that disappears first at family tables.',
-    season: 'Mar – Jun',
   },
 ];
 
