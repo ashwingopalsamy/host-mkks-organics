@@ -41,11 +41,10 @@ export default function Hero() {
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          <p className="eyebrow">MKKS Organics · Marappagoundenpudhur</p>
-          <h1>The Mangoes People Ask for Seconds Of.</h1>
-          <p className="hero-intro">
-            Naturally ripened on the tree for fuller sweetness, richer aroma, and that soft first
-            bite. Clean-grown, hand-harvested, and dispatched from our orchard at peak flavour.
+          <p className="eyebrow">MKKS Organics · Pollachi</p>
+          <h1>Delicious Mangoes from the Anaimalai Foothills.</h1>
+          <p className="hero-intro"> A decade of uncompromising purity. Zero fertilizers, zero chemicals.
+            <br/> Hand-harvested from our 10-acre estate to deliver a truly premium organic luxury
           </p>
 
           <motion.div

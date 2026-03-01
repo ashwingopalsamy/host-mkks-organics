@@ -1,18 +1,5 @@
-import { motion } from 'framer-motion';
 import SectionReveal from './SectionReveal.jsx';
 import { galleryImages } from '../data/content.jsx';
-
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.96 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.55,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
 
 export default function Gallery() {
   return (
@@ -28,16 +15,8 @@ export default function Gallery() {
         </SectionReveal>
 
         <div className="gallery-grid">
-          {galleryImages.map((img, i) => (
-            <motion.figure
-              key={img.src}
-              className="gallery-item"
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ delay: i * 0.06 }}
-            >
+          {galleryImages.map((img) => (
+            <figure key={img.src} className="gallery-item">
               <img
                 src={img.src}
                 width={img.w}
@@ -46,7 +25,7 @@ export default function Gallery() {
                 loading="lazy"
                 decoding="async"
               />
-            </motion.figure>
+            </figure>
           ))}
         </div>
       </div>

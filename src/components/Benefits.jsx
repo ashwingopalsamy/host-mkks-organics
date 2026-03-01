@@ -1,28 +1,5 @@
-import { motion } from 'framer-motion';
 import SectionReveal from './SectionReveal.jsx';
 import { benefits } from '../data/content.jsx';
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
 
 export default function Benefits() {
   return (
@@ -37,27 +14,17 @@ export default function Benefits() {
           </p>
         </SectionReveal>
 
-        <motion.div
-          className="benefit-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-        >
+        <div className="benefit-grid">
           {benefits.map((b) => (
-            <motion.article
-              key={b.title}
-              className="benefit-card"
-              variants={cardVariants}
-            >
+            <article key={b.title} className="benefit-card">
               <span className="benefit-icon" aria-hidden="true">
                 {b.icon}
               </span>
               <h3>{b.title}</h3>
               <p>{b.description}</p>
-            </motion.article>
+            </article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
