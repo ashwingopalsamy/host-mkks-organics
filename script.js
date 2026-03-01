@@ -88,6 +88,38 @@ if (hero && !prefersReducedMotion) {
   updateParallax();
 }
 
+// Keep floating WhatsApp CTA out of the initial hero focus zone.
+const floatingWhatsApp = document.querySelector(".whatsapp-float");
+if (floatingWhatsApp) {
+  const toggleFloatingCTA = () => {
+    const showAfter = Math.max(window.innerHeight * 0.45, 240);
+    floatingWhatsApp.classList.toggle("is-visible", window.scrollY > showAfter);
+  };
+
+  if (prefersReducedMotion) {
+    floatingWhatsApp.classList.add("is-visible");
+  } else {
+    let floatingTicking = false;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!floatingTicking) {
+          window.requestAnimationFrame(() => {
+            toggleFloatingCTA();
+            floatingTicking = false;
+          });
+          floatingTicking = true;
+        }
+      },
+      { passive: true }
+    );
+
+    window.addEventListener("resize", toggleFloatingCTA, { passive: true });
+    toggleFloatingCTA();
+  }
+}
+
 // Subtle liquid ripple for button interactions.
 document.querySelectorAll(".btn").forEach((button) => {
   button.addEventListener("pointerdown", (event) => {
