@@ -798,10 +798,6 @@ main, .topbar, .footer, .whatsapp-float {
 
 /* ── 9. Philosophy / Timeline ─────────────────────────────────── */
 
-.section-philosophy .container {
-  overflow-x: clip;
-}
-
 .timeline-track {
   list-style: none;
   margin: 0;
@@ -1139,7 +1135,7 @@ main, .topbar, .footer, .whatsapp-float {
 
 @media (max-width: 47.99rem) {
   .topbar {
-    top: var(--space-3);
+    top: calc(env(safe-area-inset-top, 0px) + var(--space-3));
     padding: 0;
     width: calc(100% - var(--space-10));
   }
@@ -1309,7 +1305,7 @@ main, .topbar, .footer, .whatsapp-float {
   }
 
   .hero-panel {
-    max-width: var(--panel-max);
+    max-width: 100%;
     padding: var(--space-12);
   }
 
