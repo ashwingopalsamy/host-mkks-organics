@@ -44,8 +44,8 @@ export default function Hero() {
           <p className="eyebrow">MKKS Organics · Pollachi</p>
           <h1>Mangoes from the Anaimalai Foothills.</h1>
           <p className="hero-intro">
-            Tree-ripened. Chemical-free. Hand-harvested at natural maturity and dispatched
-            directly from our orchard near Marappagoundenpudhur.
+            Tree-ripened. Chemical-free. Hand-harvested at natural maturity & dispatched
+            directly from our orchard in Marappagoundenpudhur.
           </p>
 
           <div className="hero-meta">

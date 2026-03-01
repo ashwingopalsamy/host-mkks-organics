@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 function getInitialTheme() {
   if (typeof window === 'undefined') return 'light';
-  return document.documentElement.getAttribute('data-theme') || 'light';
+  return document.documentElement.getAttribute('data-theme') || 'dark';
 }
 
 export default function ThemeToggle() {

@@ -130,15 +130,15 @@
   --shadow-elevated: 0 4px 14px rgba(0, 0, 0, 0.2), 0 24px 52px rgba(0, 0, 0, 0.22);
   --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.22), 0 32px 60px rgba(0, 0, 0, 0.28);
 
-  /* Glass — dark visionOS */
-  --glass-light-bg: linear-gradient(145deg, rgba(30, 50, 35, 0.55), rgba(20, 35, 22, 0.35));
-  --glass-light-border: rgba(120, 160, 120, 0.18);
+  /* Glass — dark visionOS (uniform frosted material, no gradient split) */
+  --glass-light-bg: rgba(22, 34, 24, 0.62);
+  --glass-light-border: rgba(255, 255, 255, 0.08);
 
-  --glass-medium-bg: linear-gradient(145deg, rgba(30, 50, 35, 0.42), rgba(20, 35, 22, 0.22));
-  --glass-medium-border: rgba(120, 160, 120, 0.12);
+  --glass-medium-bg: rgba(22, 34, 24, 0.48);
+  --glass-medium-border: rgba(255, 255, 255, 0.06);
 
-  --glass-frosted-bg: linear-gradient(160deg, rgba(18, 30, 20, 0.75), rgba(22, 38, 25, 0.55));
-  --glass-frosted-border: rgba(200, 180, 130, 0.18);
+  --glass-frosted-bg: rgba(12, 20, 14, 0.72);
+  --glass-frosted-border: rgba(200, 180, 130, 0.14);
 
   color-scheme: dark;
 }
@@ -1208,11 +1208,30 @@ main, .topbar, .footer, .whatsapp-float {
   .topbar {
     top: calc(env(safe-area-inset-top, 0px) + var(--space-3));
     padding: 0;
-    width: calc(100% - var(--space-10));
+    width: calc(100% - var(--space-8));
   }
 
   .topbar-inner {
-    padding: 0.42rem 0.6rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.18rem;
+    padding: 0.42rem 0.5rem 0.42rem 0.44rem;
+  }
+
+  .topbar .brand {
+    justify-self: start;
+    transform: translateX(-0.18rem);
+    gap: 0.42rem;
+  }
+
+  .brand-logo {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .brand-word {
+    font-size: 1rem;
   }
 
   .brand-copy {
@@ -1230,6 +1249,7 @@ main, .topbar, .footer, .whatsapp-float {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+    justify-self: center;
     gap: 0.12rem;
   }
 
@@ -1237,8 +1257,14 @@ main, .topbar, .footer, .whatsapp-float {
     border-radius: var(--radius-full);
     font-size: 0.85rem;
     color: var(--text-strong);
-    padding: 0.38rem 0.5rem;
+    padding: 0.38rem 0.44rem;
     border: 0;
+  }
+
+  .theme-toggle {
+    justify-self: end;
+    width: 1.9rem;
+    height: 1.9rem;
   }
 
   /* Hero mobile */
@@ -1455,6 +1481,20 @@ main, .topbar, .footer, .whatsapp-float {
   background:
     radial-gradient(circle at 80% 19%, rgba(180, 130, 40, 0.08), rgba(180, 130, 40, 0) 47%),
     linear-gradient(180deg, rgba(18, 30, 20, 0.35), rgba(14, 22, 16, 0.15));
+}
+
+/* Topbar — dark visionOS material */
+[data-theme="dark"] .topbar {
+  backdrop-filter: blur(40px) saturate(160%);
+  -webkit-backdrop-filter: blur(40px) saturate(160%);
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.06),
+    var(--shadow-float);
+}
+
+[data-theme="dark"] .topbar::before {
+  /* Suppress the white specular highlight — invisible on dark glass */
+  opacity: 0;
 }
 
 /* Hero — dark */

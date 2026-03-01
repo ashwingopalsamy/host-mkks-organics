@@ -10,7 +10,13 @@ export default function Footer() {
         <SectionReveal className="footer-card" delay={0.1}>
           <div className="footer-brand-block">
             <a className="brand footer-brand-link" href="#top" aria-label="MKKS Organics Home">
-              <span className="brand-mark">MKKS</span>
+              <img
+                className="brand-logo"
+                src="/assets/images/mkks-organics-logo.png"
+                width="32"
+                height="32"
+                alt="MKKS Organics logo"
+              />
               <span className="brand-copy">Organics</span>
             </a>
             <p>

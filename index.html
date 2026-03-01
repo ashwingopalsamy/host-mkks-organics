@@ -33,7 +33,7 @@
       content="Organic mangoes from Pollachi. Tree-ripened, hand-harvested, direct dispatch."
     />
     <meta name="twitter:image" content="assets/images/og-thumbnail.jpg" />
-    <meta name="theme-color" content="#f6f1e8" />
+    <meta name="theme-color" content="#0f1610" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,9 +41,8 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png" />
-    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="icon" href="/assets/images/mkks-organics-logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/assets/images/mkks-organics-logo.png" />
 
     <script type="application/ld+json">
       {
@@ -51,7 +50,7 @@
         "@type": "LocalBusiness",
         "name": "MKKS Organics",
         "description": "Tree-ripened organic mangoes from the Anaimalai foothills, Pollachi, Tamil Nadu.",
-        "image": "assets/images/hero-orchard-1400.webp",
+        "image": "assets/images/mkks-organics-logo.png",
         "telephone": "+91-98437-15599",
         "address": {
           "@type": "PostalAddress",
@@ -73,8 +72,8 @@
     <script>
       // Anti-FOUC: apply saved theme before first paint
       (function() {
-        var t = 'light';
-        try { t = localStorage.getItem('theme') || 'light'; } catch(e) {}
+        var t = 'dark';
+        try { t = localStorage.getItem('theme') || 'dark'; } catch(e) {}
         document.documentElement.setAttribute('data-theme', t);
         var m = document.querySelector('meta[name="theme-color"]');
         if (m) m.content = t === 'dark' ? '#0f1610' : '#f6f1e8';
