@@ -5,6 +5,8 @@ import {
   whatsappReserveLink,
   mapsLink,
   mapEmbed,
+  instagramLink,
+  instagramHandle,
 } from '../data/content.jsx';
 
 export default function Contact() {
@@ -44,6 +46,23 @@ export default function Contact() {
           <address>
             MKKS Organics · Marappagoundenpudhur · Pollachi Taluk · Coimbatore District · Tamil Nadu
           </address>
+
+          <a
+            className="contact-instagram"
+            href={instagramLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Follow MKKS Organics on Instagram (${instagramHandle})`}
+          >
+            <span className="contact-instagram-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                <circle cx="12" cy="12" r="3.8" />
+                <circle cx="17.2" cy="6.8" r="0.95" fill="currentColor" stroke="none" />
+              </svg>
+            </span>
+            <span>Instagram · {instagramHandle}</span>
+          </a>
 
           <div className="map-wrap" aria-label="Map location for Pollachi">
             <iframe

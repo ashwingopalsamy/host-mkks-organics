@@ -29,9 +29,9 @@ export default function Benefits() {
     <section className="section section-benefits" id="why-us">
       <div className="container">
         <SectionReveal as="header" className="section-head">
-          <p className="eyebrow">Why This is Different</p>
-          <h2>What Sets This Apart</h2>
-          <p className="section-intro">Not claims. Just the way we work.</p>
+          <p className="eyebrow">The Premium Standard</p>
+          <h2>What Sets Us Apart</h2>
+          <p className="section-intro">A 10-year promise of absolute purity and meticulous care.</p>
         </SectionReveal>
 
         <motion.div

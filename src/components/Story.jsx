@@ -5,17 +5,17 @@ export default function Story() {
     <section className="section section-story" id="story">
       <div className="container split-layout">
         <SectionReveal as="article" className="story-copy" direction="left" delay={0.1}>
-          <p className="eyebrow">Our Origin</p>
-          <h2>Where the Western Ghats Shape the Climate.</h2>
+          <p className="eyebrow">The Legacy</p>
+          <h2>10 Years of Uncompromising Purity.</h2>
           <p>
-            Our orchard sits in Marappagoundenpudhur, in the mist-touched foothills of the
-            Anaimalai Hills near Pollachi. The Western Ghats regulate temperature, rainfall, and
-            soil moisture — conditions that cannot be replicated elsewhere.
+            Pioneered by Mr. Chandraprabhu Sundaramoorthy over a decade ago, our 10-acre estate in 
+            Marappagoundenpudhur rests in the mist-touched Anaimalai foothills. What began as a 
+            personal mission has become the gold standard for premium, fertilizer-free agriculture.
           </p>
           <p>
-            We are a family stewardship, not a commercial operation. Every season is guided by one
-            discipline: grow only what we would serve at our own table. No chemicals. No artificial
-            ripening. No shortcuts.
+            We believe true luxury is crafted by nature and guarded by strict discipline. 
+            Zero synthetic chemicals. Zero artificial ripening. Absolutely no shortcuts. 
+            Just impeccably clean, organic mangoes matured exactly as we would serve at our own table.
           </p>
         </SectionReveal>
 

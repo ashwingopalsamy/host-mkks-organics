@@ -75,7 +75,7 @@ export const philosophySteps = [
 export const benefits = [
   {
     title: 'Farm-Direct',
-    description: 'You speak to the grower. No middlemen, no traders, no uncertain handling between harvest and your table.',
+    description: 'From our 10-acre estate directly to your door. No middlemen, ensuring the luxury and cleanliness of our harvest is preserved.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M4 12.5 9.5 18 20 7.5" />
@@ -84,7 +84,7 @@ export const benefits = [
   },
   {
     title: 'Seasonal Only',
-    description: 'Available only during the natural harvest window. When the season ends, we stop. No off-season forcing.',
+    description: 'True luxury cannot be rushed. Available exclusively during the natural harvest window, exactly as nature intended.',
     icon: (
       <svg viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="8" />
@@ -94,7 +94,7 @@ export const benefits = [
   },
   {
     title: 'Fully Transparent',
-    description: 'From soil amendments to dispatch tracking — we share every step openly. Ask us anything about the process.',
+    description: 'Our 10-year organic legacy is an open book. From soil amendments to dispatch, we maintain absolute cleanliness and zero fertilizer use.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M6 12.5h12M6 8.5h12M6 16.5h8" />
@@ -103,7 +103,7 @@ export const benefits = [
   },
   {
     title: 'Careful Packing',
-    description: 'Small-batch, hand-layered packaging. Each fruit is cushioned individually to arrive without bruising or stress.',
+    description: 'Premium fruit deserves premium care. Each mango is cushioned individually in small batches, preserving its flawless condition.',
     icon: (
       <svg viewBox="0 0 24 24">
         <rect x="3.5" y="7" width="17" height="10" rx="2" />
@@ -129,3 +129,5 @@ export const phoneNumber = '+919843715599';
 export const phoneDisplay = '+91 98437 15599';
 export const mapsLink = 'https://maps.app.goo.gl/TH8UJBpJFkpxY5is5';
 export const mapEmbed = 'https://www.google.com/maps?q=10.6014675,76.8596599&output=embed';
+export const instagramHandle = '@mkks_organics';
+export const instagramLink = 'https://www.instagram.com/mkks_organics/';
