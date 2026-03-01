@@ -546,6 +546,7 @@ main, .topbar, .footer, .whatsapp-float {
 }
 
 .topnav a {
+  position: relative;
   padding: 0.42rem 0.75rem;
   border-radius: var(--radius-full);
   border: 1px solid transparent;
@@ -555,13 +556,21 @@ main, .topbar, .footer, .whatsapp-float {
   color: var(--text-strong);
   transition:
     background var(--duration-fast) var(--ease-out),
-    border-color var(--duration-fast) var(--ease-out);
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
 }
 
 .topnav a:hover, .topnav a:focus-visible {
   border-color: rgba(255, 255, 255, 0.50);
   background: rgba(255, 255, 255, 0.22);
   outline: none;
+}
+
+.topnav a.is-active,
+.topnav a[aria-current="location"] {
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.18));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 
 .nav-text {
@@ -1495,6 +1504,19 @@ main, .topbar, .footer, .whatsapp-float {
 [data-theme="dark"] .topbar::before {
   /* Suppress the white specular highlight — invisible on dark glass */
   opacity: 0;
+}
+
+[data-theme="dark"] .topnav a:hover,
+[data-theme="dark"] .topnav a:focus-visible {
+  border-color: rgba(124, 166, 123, 0.36);
+  background: rgba(124, 166, 123, 0.14);
+}
+
+[data-theme="dark"] .topnav a.is-active,
+[data-theme="dark"] .topnav a[aria-current="location"] {
+  border: 1px solid rgba(146, 188, 141, 0.52);
+  background: linear-gradient(160deg, rgba(122, 164, 121, 0.2), rgba(92, 134, 95, 0.12));
+  box-shadow: inset 0 0 0 1px rgba(166, 206, 159, 0.18);
 }
 
 /* Hero — dark */
