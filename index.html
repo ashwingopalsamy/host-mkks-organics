@@ -70,6 +70,16 @@
     </script>
   </head>
   <body>
+    <script>
+      // Anti-FOUC: apply saved theme before first paint
+      (function() {
+        var t = 'light';
+        try { t = localStorage.getItem('theme') || 'light'; } catch(e) {}
+        document.documentElement.setAttribute('data-theme', t);
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.content = t === 'dark' ? '#0f1610' : '#f6f1e8';
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

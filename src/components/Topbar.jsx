@@ -1,5 +1,6 @@
 import { useRef, useCallback } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import ThemeToggle from './ThemeToggle.jsx';
 
 export default function Topbar() {
   const { scrollY } = useScroll();
@@ -71,6 +72,7 @@ export default function Topbar() {
             </a>
           ))}
         </nav>
+        <ThemeToggle />
       </div>
     </motion.header>
   );
