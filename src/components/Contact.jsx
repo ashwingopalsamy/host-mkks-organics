@@ -24,7 +24,7 @@ export default function Contact() {
 
           <div className="contact-actions">
             <a className="btn btn-primary" href={`tel:${phoneNumber}`}>
-              Call {phoneDisplay}
+              Call
             </a>
             <a
               className="btn btn-secondary"
@@ -32,7 +32,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              WhatsApp Enquiry
+              WhatsApp
             </a>
             <a
               className="btn btn-secondary contact-instagram"
@@ -48,7 +48,7 @@ export default function Contact() {
                   <circle cx="17.2" cy="6.8" r="0.95" fill="currentColor" stroke="none" />
                 </svg>
               </span>
-              Instagram @{instagramHandle.replace('@', '')}
+              Instagram
             </a>
             <a
               className="btn btn-secondary"
@@ -56,7 +56,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Visit on Maps
+              Google Maps
             </a>
           </div>
 

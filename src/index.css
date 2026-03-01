@@ -218,6 +218,7 @@ a {
 p {
   margin: 0;
   max-width: 62ch;
+  text-align: left;
 }
 
 h1, h2, h3, h4 {
@@ -287,6 +288,8 @@ main, .topbar, .footer, .whatsapp-float {
   display: grid;
   gap: var(--space-3);
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  justify-items: center;
+  text-align: center;
 }
 
 .section-head::after {
@@ -678,7 +681,8 @@ main, .topbar, .footer, .whatsapp-float {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  text-align: left;
+  text-align: center;
+  justify-items: center;
   background: var(--glass-frosted-bg);
   border: 1px solid var(--glass-frosted-border);
   box-shadow: var(--shadow-float);
@@ -710,6 +714,7 @@ main, .topbar, .footer, .whatsapp-float {
   text-wrap: balance;
   font-size: clamp(2rem, 4.8vw, 3.8rem);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+  margin-inline: auto;
 }
 
 .hero-intro {
@@ -718,6 +723,7 @@ main, .topbar, .footer, .whatsapp-float {
   font-size: clamp(0.95rem, 1.6vw, 1.08rem);
   line-height: 1.68;
   max-width: 52ch;
+  margin-inline: auto;
 }
 
 .hero-cta {
@@ -746,6 +752,8 @@ main, .topbar, .footer, .whatsapp-float {
   -webkit-backdrop-filter: blur(12px);
   display: grid;
   gap: var(--space-5);
+  justify-items: center;
+  text-align: center;
 }
 
 .story-copy h2 {
@@ -794,6 +802,7 @@ main, .topbar, .footer, .whatsapp-float {
   border: 1px solid var(--line-soft);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 252, 244, 0.78));
   box-shadow: var(--shadow-subtle);
+  text-align: center;
   transition:
     transform 0.45s var(--ease-out),
     box-shadow 0.45s var(--ease-out);
@@ -830,6 +839,7 @@ main, .topbar, .footer, .whatsapp-float {
 .variety-content {
   display: grid;
   align-content: start;
+  justify-items: center;
   gap: var(--space-2);
   padding: var(--space-5) var(--space-5) var(--space-6);
   transition: padding 0.4s var(--ease-out);
@@ -868,6 +878,7 @@ main, .topbar, .footer, .whatsapp-float {
   border: 1px solid rgba(133, 175, 121, 0.25);
   font-size: 0.78rem;
   font-weight: 660;
+  text-align: center;
 }
 
 /* ── 9. Philosophy / Timeline ─────────────────────────────────── */
@@ -891,6 +902,7 @@ main, .topbar, .footer, .whatsapp-float {
   border: 1px solid var(--line-soft);
   background: linear-gradient(175deg, rgba(255, 255, 255, 0.72), rgba(252, 255, 249, 0.5));
   box-shadow: var(--shadow-subtle);
+  text-align: center;
   transition:
     transform var(--duration-normal) var(--ease-out),
     box-shadow var(--duration-normal) var(--ease-out);
@@ -974,6 +986,7 @@ main, .topbar, .footer, .whatsapp-float {
   border: 1px solid var(--line-soft);
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.75), rgba(248, 253, 247, 0.5));
   box-shadow: var(--shadow-subtle);
+  text-align: center;
   transition:
     transform var(--duration-normal) var(--ease-out),
     box-shadow var(--duration-normal) var(--ease-out);
@@ -1027,6 +1040,7 @@ main, .topbar, .footer, .whatsapp-float {
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  text-align: center;
 }
 
 .contact-card h2 {
@@ -1061,10 +1075,13 @@ main, .topbar, .footer, .whatsapp-float {
 
 .contact-card address {
   margin-top: var(--space-6);
+  margin-inline: auto;
   font-style: normal;
   font-weight: 580;
   color: var(--text-muted);
   font-size: 0.92rem;
+  max-width: 62ch;
+  text-align: left;
 }
 
 .contact-actions .contact-instagram {
@@ -1082,6 +1099,7 @@ main, .topbar, .footer, .whatsapp-float {
 
 .map-wrap {
   margin-top: var(--space-6);
+  margin-inline: auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.65);
@@ -1118,6 +1136,8 @@ main, .topbar, .footer, .whatsapp-float {
 .footer-brand-block {
   display: grid;
   gap: var(--space-3);
+  justify-items: center;
+  text-align: center;
 }
 
 .footer-brand-link {
@@ -1147,6 +1167,8 @@ main, .topbar, .footer, .whatsapp-float {
   display: grid;
   gap: var(--space-3);
   align-content: start;
+  justify-items: center;
+  text-align: center;
 }
 
 .footer-title {
