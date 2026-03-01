@@ -17,7 +17,7 @@ export default function Footer() {
                 height="32"
                 alt="MKKS Organics logo"
               />
-              <span className="brand-copy">Organics</span>
+              <span className="brand-copy">MKKS Organics</span>
             </a>
             <p>
               Clean-grown organic mangoes from Marappagoundenpudhur, ripened naturally for deep
@@ -29,8 +29,8 @@ export default function Footer() {
           <div className="footer-links">
             <p className="footer-title">Explore</p>
             <a href="#story">Our Origin</a>
-            <a href="#varieties">Varieties</a>
-            <a href="#philosophy">The Method</a>
+            <a href="#varieties">Mango Collection</a>
+            <a href="#philosophy">Growing Method</a>
             <a href="#contact">Reserve</a>
           </div>
 
