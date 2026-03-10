@@ -6,14 +6,14 @@ export default function Maintenance() {
     {
       id: 'traps',
       title: 'Strategic Insect Trapping',
-      desc: 'Our commitment to zero synthetic pesticides is upheld by using harmless, species-specific insect traps. These careful interventions protect the harvest while allowing beneficial pollinators to continue their vital work uninterrupted.',
+      desc: 'Colour-tuned sticky panels and light traps are placed at canopy height to intercept leaf-miners and stem borers before they reach the fruit. Every trap is positioned to avoid contact with pollinating bees and butterflies.',
       media: '/assets/maintenance/care-process-4.webp',
       type: 'image',
     },
     {
       id: 'eco-control',
-      title: 'Eco-Friendly Pheromones',
-      desc: 'Instead of harmful chemical sprays, we deploy strategic, non-toxic pheromone traps across the orchard. This targeted approach safely draws away fruit flies without affecting the mangoes or the surrounding ecosystem.',
+      title: 'Targeted Pheromone Lures',
+      desc: 'Species-specific pheromone capsules mimic fruit-fly mating signals, drawing males into sealed collectors before they can damage a single mango. The lure is biological, residue-free, and invisible to every other orchard visitor.',
       media: '/assets/maintenance/care-process-2-opt.mp4',
       poster: '/assets/maintenance/care-process-2-poster.webp',
       type: 'video',

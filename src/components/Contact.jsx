@@ -17,9 +17,9 @@ export default function Contact() {
           <p className="eyebrow">Taste This Season</p>
           <h2>Reserve Before the Best Lots Are Gone</h2>
           <p>
-            Our clean-grown seasonal harvest is limited. Reserve now if you want the sweetest lots
-            with rich aroma, buttery texture, and a finish that keeps everyone reaching for one
-            more slice.
+            Our seasonal harvest is limited and lots sell out early each year.
+            Reserve now to lock in your preferred varieties and quantities before
+            the best picks are spoken for.
           </p>
 
           <div className="contact-actions">

@@ -1,5 +1,5 @@
 import SectionReveal from './SectionReveal.jsx';
-import { phoneNumber, phoneDisplay, mapsLink, emailAddress } from '../data/content.jsx';
+import { phoneNumber, phoneDisplay, mapsLink, emailAddress, whatsappFloatLink } from '../data/content.jsx';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -20,8 +20,7 @@ export default function Footer() {
               <span className="brand-copy">MKKS Organics</span>
             </a>
             <p>
-              Clean-grown organic mangoes from the Anaimalai foothills, ripened naturally for deep
-              sweetness, bright aroma, and a truly satisfying bite.
+              Organic mangoes from Pollachi — grown without compromise, delivered without delay.
             </p>
             <span className="footer-chip">Season 2026 · Mar – Jun</span>
           </div>
@@ -39,7 +38,7 @@ export default function Footer() {
             <a href={`tel:${phoneNumber}`}>{phoneDisplay}</a>
             <a href={`mailto:${emailAddress}`}>{emailAddress}</a>
             <a
-              href="https://wa.me/919976759956"
+              href={whatsappFloatLink}
               target="_blank"
               rel="noopener noreferrer"
             >

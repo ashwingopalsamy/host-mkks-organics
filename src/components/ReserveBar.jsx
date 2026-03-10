@@ -1,7 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { varieties } from '../data/content.jsx';
-
-const PHONE = '919976759956';
+import { varieties, phoneNumber as PHONE } from '../data/content.jsx';
 
 function buildWhatsAppUrl(quantities) {
   const lines = varieties
@@ -16,7 +14,7 @@ function buildWhatsAppUrl(quantities) {
     'Please confirm availability and pricing.',
   ].join('\n');
 
-  return `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
+  return `https://wa.me/${PHONE.replace(/\D/g, '')}?text=${encodeURIComponent(text)}`;
 }
 
 export default function ReserveBar({ quantities }) {
