@@ -7,7 +7,7 @@ export const varieties = [
   },
   {
     name: 'Banganapalli',
-    image: '/assets/images/var-banganapalli.webp',
+    image: '/assets/images/var-banganapalli.jpg',
     alt: 'Banganapalli mangoes',
     description: 'Clean honeyed sweetness with a gentle citrus lift. Smooth, fiberless flesh that keeps you reaching for one more slice.',
   },
@@ -19,7 +19,7 @@ export const varieties = [
   },
   {
     name: 'Sendhooram',
-    image: '/assets/images/var-sendhooram.webp',
+    image: '/assets/images/var-sendhooram.jpg',
     alt: 'Sendhooram mangoes',
     description: 'Bright sweet-tang pop with juicy aromatic flesh. A lively crowd-pleaser that disappears first at family tables.',
   },
@@ -28,7 +28,7 @@ export const varieties = [
 export const philosophySteps = [
   {
     title: 'Decade-Long Soil Stewardship',
-    description: 'For over 10 years, our soil in Marappagoundenpudhur has never seen synthetic fertilizer. Organic compost and strict soil-rest cycles build healthier roots and better natural flavour.',
+    description: 'For over 10 years, our soil in the Anaimalai foothills has never seen synthetic fertilizer. Organic compost and strict soil-rest cycles build healthier roots and better natural flavour.',
     icon: (
       <svg viewBox="0 0 24 24">
         <path d="M3 17c3.5 0 5-2.5 9-2.5S17.5 17 21 17" />
@@ -118,12 +118,13 @@ export const galleryImages = [
   { src: '/assets/images/gallery-canopy.webp', alt: 'Dense mango tree canopy', w: 1200, h: 904 },
 ];
 
-export const whatsappLink = 'https://wa.me/919843715599?text=Hello%20MKKS%20Organics%2C%20I%20would%20like%20to%20enquire%20about%20your%20mango%20harvest.';
-export const whatsappReserveLink = 'https://wa.me/919843715599?text=Hello%20MKKS%20Organics%2C%20please%20share%20availability%20and%20pricing%20for%20this%20season.';
-export const whatsappFloatLink = 'https://wa.me/919843715599?text=Hello%20MKKS%20Organics%2C%20I%20want%20to%20book%20this%20season%E2%80%99s%20mangoes.';
-export const phoneNumber = '+919843715599';
-export const phoneDisplay = '+91 98437 15599';
+export const whatsappLink = 'https://wa.me/919976759956?text=Hello%20MKKS%20Organics%2C%20I%20would%20like%20to%20enquire%20about%20your%20mango%20harvest.';
+export const whatsappReserveLink = 'https://wa.me/919976759956?text=Hello%20MKKS%20Organics%2C%20please%20share%20availability%20and%20pricing%20for%20this%20season.';
+export const whatsappFloatLink = 'https://wa.me/919976759956?text=Hello%20MKKS%20Organics%2C%20I%20want%20to%20book%20this%20season%E2%80%99s%20mangoes.';
+export const phoneNumber = '+919976759956';
+export const phoneDisplay = '+91 99767 59956';
 export const mapsLink = 'https://maps.app.goo.gl/TH8UJBpJFkpxY5is5';
 export const mapEmbed = 'https://www.google.com/maps?q=10.6014675,76.8596599&output=embed';
-export const instagramHandle = '@mkks_organics';
-export const instagramLink = 'https://www.instagram.com/mkks_organics/';
+export const emailAddress = 'mkks.organics@gmail.com';
+export const instagramHandle = '@mkks.organics';
+export const instagramLink = 'https://www.instagram.com/mkks.organics/';

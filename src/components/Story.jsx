@@ -9,7 +9,7 @@ export default function Story() {
           <h2>Ten Years of Growing Mangoes Worth Remembering.</h2>
           <p>
             Started by Mr. Chandraprabhu Sundaramoorthy, our 10-acre estate in
-            Marappagoundenpudhur was built around one idea: mangoes should taste as memorable as they
+            the Anaimalai foothills was built around one idea: mangoes should taste as memorable as they
             look. Every season, we grow for flavour first, not speed.
           </p>
           <p>
@@ -19,15 +19,14 @@ export default function Story() {
         </SectionReveal>
 
         <SectionReveal as="figure" className="story-image" direction="right" delay={0.2}>
-          <img
-            src="/assets/images/story-farm-1000.webp"
-            srcSet="/assets/images/story-farm-1000.webp 1000w, /assets/images/story-farm.webp 1500w"
-            sizes="(max-width: 820px) 92vw, 42vw"
-            width="1500"
-            height="1125"
-            alt="Organic mango farm landscape in Pollachi"
-            loading="lazy"
-            decoding="async"
+          <video
+            src="/assets/videos/story-legacy.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
+            aria-label="Organic mango farm landscape in Pollachi"
           />
         </SectionReveal>
       </div>

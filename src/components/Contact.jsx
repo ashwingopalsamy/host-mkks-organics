@@ -3,10 +3,10 @@ import {
   phoneNumber,
   phoneDisplay,
   whatsappReserveLink,
-  mapsLink,
   mapEmbed,
   instagramLink,
   instagramHandle,
+  emailAddress,
 } from '../data/content.jsx';
 
 export default function Contact() {
@@ -62,22 +62,20 @@ export default function Contact() {
             </a>
             <a
               className="btn btn-secondary"
-              href={mapsLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${emailAddress}`}
             >
               <span className="btn-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s7-5.73 7-12a7 7 0 1 0-14 0c0 6.27 7 12 7 12Z" />
-                  <circle cx="12" cy="10" r="2.5" />
+                  <rect x="2" y="4" width="20" height="16" rx="3" />
+                  <polyline points="22,4 12,13 2,4" />
                 </svg>
               </span>
-              Google Maps
+              Email
             </a>
           </div>
 
           <address>
-            MKKS Organics · Marappagoundenpudhur · Pollachi Taluk · Coimbatore District · Tamil Nadu
+            MKKS Organics · Anaimalai Foothills · Pollachi Taluk · Coimbatore District · Tamil Nadu
           </address>
 
           <div className="map-wrap" aria-label="Map location for Pollachi">

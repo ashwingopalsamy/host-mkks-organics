@@ -16,12 +16,8 @@ export default function Hero() {
     <section className="hero" id="home" aria-label="Hero" ref={sectionRef}>
       <div className="hero-media" aria-hidden="true">
         <motion.img
-          src="/assets/images/hero-orchard-1400.webp"
-          srcSet="/assets/images/hero-orchard-900.webp 900w, /assets/images/hero-orchard-1400.webp 1400w, /assets/images/hero-orchard.webp 2200w"
-          sizes="100vw"
-          width="2200"
-          height="1236"
-          alt="Mango orchard canopy in Pollachi"
+          src="/assets/images/hero-primary-optimized.jpg"
+          alt="Mango orchard in the Anaimalai foothills, Pollachi"
           fetchPriority="high"
           style={{
             y: imageY,
@@ -109,10 +105,8 @@ export default function Hero() {
 
             <figure className="hero-aside-media">
               <img
-                src="/assets/images/gallery-canopy.webp"
-                width="1200"
-                height="904"
-                alt="Mango tree canopy at MKKS Organics"
+                src="/main-primary-image.jpeg"
+                alt="MKKS Organics estate in the Anaimalai foothills"
                 loading="lazy"
                 decoding="async"
               />

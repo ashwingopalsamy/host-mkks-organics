@@ -1,5 +1,5 @@
 import SectionReveal from './SectionReveal.jsx';
-import { phoneNumber, phoneDisplay, mapsLink } from '../data/content.jsx';
+import { phoneNumber, phoneDisplay, mapsLink, emailAddress } from '../data/content.jsx';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -20,7 +20,7 @@ export default function Footer() {
               <span className="brand-copy">MKKS Organics</span>
             </a>
             <p>
-              Clean-grown organic mangoes from Marappagoundenpudhur, ripened naturally for deep
+              Clean-grown organic mangoes from the Anaimalai foothills, ripened naturally for deep
               sweetness, bright aroma, and a truly satisfying bite.
             </p>
             <span className="footer-chip">Season 2026 · Mar – Jun</span>
@@ -37,8 +37,9 @@ export default function Footer() {
           <div className="footer-links">
             <p className="footer-title">Connect</p>
             <a href={`tel:${phoneNumber}`}>{phoneDisplay}</a>
+            <a href={`mailto:${emailAddress}`}>{emailAddress}</a>
             <a
-              href="https://wa.me/919843715599"
+              href="https://wa.me/919976759956"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -51,7 +52,7 @@ export default function Footer() {
         </SectionReveal>
 
         <p className="footer-note">
-          © {year} MKKS Organics · Marappagoundenpudhur, Pollachi · Tamil Nadu, India
+          © {year} MKKS Organics · Anaimalai Foothills, Pollachi · Tamil Nadu, India
         </p>
       </div>
     </footer>
