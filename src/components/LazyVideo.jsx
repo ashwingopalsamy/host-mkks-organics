@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 /**
  * LazyVideo — loads and plays a video only when it enters the viewport.
@@ -12,21 +12,33 @@ export default function LazyVideo({ src, poster, className, ariaLabel, style }) 
     const video = videoRef.current;
     if (!video) return;
 
+    // Try to play the video, with a touch-based fallback for iOS Chrome
+    const tryPlay = () => {
+      const p = video.play();
+      if (p && p.catch) {
+        p.catch(() => {
+          // Autoplay was blocked — set up a one-time user interaction fallback
+          const resumeOnTouch = () => {
+            video.play().catch(() => {});
+            document.removeEventListener('touchstart', resumeOnTouch, true);
+            document.removeEventListener('click', resumeOnTouch, true);
+          };
+          document.addEventListener('touchstart', resumeOnTouch, { once: true, capture: true });
+          document.addEventListener('click', resumeOnTouch, { once: true, capture: true });
+        });
+      }
+    };
+
     // Use IntersectionObserver to play/pause the video purely based on visibility
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Play the video. The browser will begin downloading the buffer automatically
-          // since preload is set to "none" initially.
-          video.play().catch((err) => {
-            console.warn('Video autoplay blocked or failed:', err);
-          });
+          tryPlay();
         } else {
-          // Pause to save battery and battery when out of view
           video.pause();
         }
       },
-      { rootMargin: '100px 0px' } // Pre-trigger slightly before it enters the viewport
+      { rootMargin: '100px 0px' }
     );
 
     observer.observe(video);
@@ -39,12 +51,15 @@ export default function LazyVideo({ src, poster, className, ariaLabel, style }) 
       src={src}
       poster={poster}
       className={className}
+      autoPlay
       muted
       loop
       playsInline
+      webkit-playsinline=""
       preload="none"
       aria-label={ariaLabel}
       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', ...style }}
     />
   );
 }
+
