@@ -1,7 +1,7 @@
 export const varieties = [
   {
     name: 'Imam Pasand',
-    image: '/assets/images/var-imampasand.webp',
+    image: '/assets/images/var-imampasand.jpg',
     alt: 'Imam Pasand mangoes',
     description: 'Floral perfume up front, then silky sweetness that melts fast. The kind of mango that makes people pause after the first bite.',
   },
@@ -13,7 +13,7 @@ export const varieties = [
   },
   {
     name: 'Alphonso Reserve',
-    image: '/assets/images/var-alphonso.webp',
+    image: '/assets/images/var-alphonso.jpg',
     alt: 'Alphonso mangoes',
     description: 'Deep saffron flesh, creamy body, balanced tang. Open the box and the aroma announces dessert before serving.',
   },
@@ -110,12 +110,12 @@ export const benefits = [
 ];
 
 export const galleryImages = [
-  { src: '/assets/images/gallery-orchard-1.webp', alt: 'Mango orchard rows', w: 1200, h: 902 },
-  { src: '/assets/images/gallery-branches.webp', alt: 'Raw mangoes on a branch', w: 1200, h: 902 },
-  { src: '/assets/images/gallery-kachcha.webp', alt: 'Close-up of young mango fruit', w: 1200, h: 677 },
-  { src: '/assets/images/gallery-orchard-2.webp', alt: 'Mango orchard field view', w: 1200, h: 900 },
-  { src: '/assets/images/gallery-bloom.webp', alt: 'Mango bloom during early season', w: 1000, h: 600 },
-  { src: '/assets/images/gallery-canopy.webp', alt: 'Dense mango tree canopy', w: 1200, h: 904 },
+  { src: '/assets/images/gallery-orchard-new-1.png', alt: 'Orchard detail', w: 900, h: 1600 },
+  { src: '/assets/images/gallery-orchard-new-2.jpg', alt: 'Mango cluster', w: 1200, h: 1600 },
+  { src: '/assets/images/gallery-orchard-new-3.jpg', alt: 'Dense orchard canopy', w: 1600, h: 900 },
+  { src: '/assets/images/gallery-orchard-new-4.jpg', alt: 'Low angle orchard view', w: 1200, h: 1600 },
+  { src: '/assets/images/gallery-orchard-new-5.jpg', alt: 'Mango processing', w: 1600, h: 1200 },
+  { src: '/assets/images/gallery-orchard-new-6.jpg', alt: 'Mango farm worker', w: 1600, h: 1200 },
 ];
 
 export const whatsappLink = 'https://wa.me/919976759956?text=Hello%20MKKS%20Organics%2C%20I%20would%20like%20to%20enquire%20about%20your%20mango%20harvest.';

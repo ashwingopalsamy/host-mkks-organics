@@ -3,20 +3,11 @@ import SectionReveal from './SectionReveal.jsx';
 export default function Maintenance() {
   const careSteps = [
     {
-      id: 'bagging',
-      title: 'Protective Fruit Bagging',
-      desc: 'As the mangoes reach peak maturity, we meticulously cover them with high-quality protective paper bags. This crucial step naturally shields the fruit from fruit flies, squirrels, and insects, ensuring the skin remains pristine and unblemished.',
-      media: '/assets/maintenance/care-process-1.mp4',
-      type: 'video',
-      span: 'tall',
-    },
-    {
       id: 'traps',
       title: 'Strategic Insect Trapping',
       desc: 'Our commitment to zero synthetic pesticides is upheld by using harmless, species-specific insect traps. These careful interventions protect the harvest while allowing beneficial pollinators to continue their vital work uninterrupted.',
       media: '/assets/maintenance/care-process-4.jpg',
       type: 'image',
-      span: 'wide',
     },
     {
       id: 'eco-control',
