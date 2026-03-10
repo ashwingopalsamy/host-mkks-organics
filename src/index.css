@@ -1596,6 +1596,7 @@ main, .topbar, .footer, .whatsapp-float {
 
 .reserve-btn {
   flex-shrink: 0;
+  width: auto;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
