@@ -6,59 +6,45 @@ import { useRef, useEffect, useState } from 'react';
  * Pauses when scrolled away to save CPU / battery on mobile.
  */
 export default function LazyVideo({ src, poster, className, ariaLabel, style }) {
-  const containerRef = useRef(null);
   const videoRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin: '200px 0px' } // start loading 200px before entering viewport
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (isVisible) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [isVisible]);
+    // Use IntersectionObserver to play/pause the video purely based on visibility
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Play the video. The browser will begin downloading the buffer automatically
+          // since preload is set to "none" initially.
+          video.play().catch((err) => {
+            console.warn('Video autoplay blocked or failed:', err);
+          });
+        } else {
+          // Pause to save battery and battery when out of view
+          video.pause();
+        }
+      },
+      { rootMargin: '100px 0px' } // Pre-trigger slightly before it enters the viewport
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div ref={containerRef} className={className} style={style}>
-      {isVisible ? (
-        <video
-          ref={videoRef}
-          src={src}
-          poster={poster}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label={ariaLabel}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-        />
-      ) : (
-        <img
-          src={poster}
-          alt={ariaLabel || ''}
-          loading="lazy"
-          decoding="async"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-        />
-      )}
-    </div>
+    <video
+      ref={videoRef}
+      src={src}
+      poster={poster}
+      className={className}
+      muted
+      loop
+      playsInline
+      preload="none"
+      aria-label={ariaLabel}
+      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', ...style }}
+    />
   );
 }
