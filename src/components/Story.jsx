@@ -1,4 +1,5 @@
 import SectionReveal from './SectionReveal.jsx';
+import LazyVideo from './LazyVideo.jsx';
 
 export default function Story() {
   return (
@@ -19,14 +20,11 @@ export default function Story() {
         </SectionReveal>
 
         <SectionReveal as="figure" className="story-image" direction="right" delay={0.2}>
-          <video
-            src="/assets/videos/story-legacy.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{ width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
-            aria-label="Organic mango farm landscape in Pollachi"
+          <LazyVideo
+            src="/assets/videos/story-legacy-720.mp4"
+            poster="/assets/videos/story-legacy-poster.webp"
+            ariaLabel="Organic mango farm landscape in Pollachi"
+            style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
           />
         </SectionReveal>
       </div>

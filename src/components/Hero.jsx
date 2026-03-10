@@ -15,15 +15,27 @@ export default function Hero() {
   return (
     <section className="hero" id="home" aria-label="Hero" ref={sectionRef}>
       <div className="hero-media" aria-hidden="true">
-        <motion.img
-          src="/assets/images/hero-primary-optimized.jpg"
-          alt="Mango orchard in the Anaimalai foothills, Pollachi"
-          fetchPriority="high"
+        <motion.picture
           style={{
             y: imageY,
             scale: imageScale,
+            display: 'block',
+            width: '100%',
+            height: '100%',
           }}
-        />
+        >
+          <source
+            type="image/webp"
+            srcSet="/assets/images/hero-primary-600.webp 600w, /assets/images/hero-primary-900.webp 900w, /assets/images/hero-primary-1400.webp 1400w"
+            sizes="100vw"
+          />
+          <img
+            src="/assets/images/hero-primary-optimized.jpg"
+            alt="Mango orchard in the Anaimalai foothills, Pollachi"
+            fetchPriority="high"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </motion.picture>
       </div>
 
       <div className="container hero-content">
@@ -105,7 +117,7 @@ export default function Hero() {
 
             <figure className="hero-aside-media">
               <img
-                src="/main-primary-image.jpeg"
+                src="/assets/images/aside-primary.webp"
                 alt="MKKS Organics estate in the Anaimalai foothills"
                 loading="lazy"
                 decoding="async"

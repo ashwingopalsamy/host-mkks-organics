@@ -1,25 +1,25 @@
 export const varieties = [
   {
     name: 'Imam Pasand',
-    image: '/assets/images/var-imampasand.jpg',
+    image: '/assets/images/var-imampasand-opt.webp',
     alt: 'Imam Pasand mangoes',
     description: 'Floral perfume up front, then silky sweetness that melts fast. The kind of mango that makes people pause after the first bite.',
   },
   {
     name: 'Banganapalli',
-    image: '/assets/images/var-banganapalli.jpg',
+    image: '/assets/images/var-banganapalli-opt.webp',
     alt: 'Banganapalli mangoes',
     description: 'Clean honeyed sweetness with a gentle citrus lift. Smooth, fiberless flesh that keeps you reaching for one more slice.',
   },
   {
     name: 'Alphonso Reserve',
-    image: '/assets/images/var-alphonso.jpg',
+    image: '/assets/images/var-alphonso-opt.webp',
     alt: 'Alphonso mangoes',
     description: 'Deep saffron flesh, creamy body, balanced tang. Open the box and the aroma announces dessert before serving.',
   },
   {
     name: 'Sendhooram',
-    image: '/assets/images/var-sendhooram.jpg',
+    image: '/assets/images/var-sendhooram-opt.webp',
     alt: 'Sendhooram mangoes',
     description: 'Bright sweet-tang pop with juicy aromatic flesh. A lively crowd-pleaser that disappears first at family tables.',
   },
@@ -110,12 +110,12 @@ export const benefits = [
 ];
 
 export const galleryImages = [
-  { src: '/assets/images/gallery-orchard-new-1.png', alt: 'Orchard detail', w: 900, h: 1600 },
-  { src: '/assets/images/gallery-orchard-new-2.jpg', alt: 'Mango cluster', w: 1200, h: 1600 },
-  { src: '/assets/images/gallery-orchard-new-3.jpg', alt: 'Dense orchard canopy', w: 1600, h: 900 },
-  { src: '/assets/images/gallery-orchard-new-4.jpg', alt: 'Low angle orchard view', w: 1200, h: 1600 },
-  { src: '/assets/images/gallery-orchard-new-5.jpg', alt: 'Mango processing', w: 1600, h: 1200 },
-  { src: '/assets/images/gallery-orchard-new-6.jpg', alt: 'Mango farm worker', w: 1600, h: 1200 },
+  { src: '/assets/images/gallery-orchard-new-1.webp', alt: 'Orchard detail', w: 900, h: 1600 },
+  { src: '/assets/images/gallery-orchard-new-2.webp', alt: 'Mango cluster', w: 1200, h: 1600 },
+  { src: '/assets/images/gallery-orchard-new-3.webp', alt: 'Dense orchard canopy', w: 1600, h: 900 },
+  { src: '/assets/images/gallery-orchard-new-4.webp', alt: 'Low angle orchard view', w: 1200, h: 1600 },
+  { src: '/assets/images/gallery-orchard-new-5.webp', alt: 'Mango processing', w: 1600, h: 1200 },
+  { src: '/assets/images/gallery-orchard-new-6.webp', alt: 'Mango farm worker', w: 1600, h: 1200 },
 ];
 
 export const whatsappLink = 'https://wa.me/919976759956?text=Hello%20MKKS%20Organics%2C%20I%20would%20like%20to%20enquire%20about%20your%20mango%20harvest.';
