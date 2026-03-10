@@ -3,6 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 function getInitialTheme() {
   if (typeof window === 'undefined') return 'light';
+  try {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') {
+      return saved;
+    }
+  } catch (e) {
+    console.error('Failed to access localStorage', e);
+  }
   return document.documentElement.getAttribute('data-theme') || 'dark';
 }
 
@@ -13,7 +21,11 @@ export default function ThemeToggle() {
     setTheme((prev) => {
       const next = prev === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch {}
+      try { 
+        localStorage.setItem('theme', next); 
+      } catch (e) {
+        console.error('Failed to set localStorage', e);
+      }
       // Update meta theme-color for mobile browsers
       const meta = document.querySelector('meta[name="theme-color"]');
       if (meta) meta.content = next === 'dark' ? '#0f1610' : '#f6f1e8';

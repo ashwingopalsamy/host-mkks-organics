@@ -74,7 +74,12 @@
       // Anti-FOUC: apply saved theme before first paint
       (function() {
         var t = 'dark';
-        try { t = localStorage.getItem('theme') || 'dark'; } catch(e) {}
+        try { 
+          var saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            t = saved;
+          }
+        } catch(e) {}
         document.documentElement.setAttribute('data-theme', t);
         var m = document.querySelector('meta[name="theme-color"]');
         if (m) m.content = t === 'dark' ? '#0f1610' : '#f6f1e8';

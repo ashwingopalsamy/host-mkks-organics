@@ -118,13 +118,15 @@ export const galleryImages = [
   { src: '/assets/images/gallery-orchard-new-6.webp', alt: 'Mango farm worker', w: 1600, h: 1200 },
 ];
 
-export const whatsappLink = 'https://wa.me/919976759956?text=Hello%20MKKS%20Organics%2C%20I%20would%20like%20to%20enquire%20about%20your%20mango%20harvest.';
-export const whatsappReserveLink = 'https://wa.me/919976759956?text=Hello%20MKKS%20Organics%2C%20please%20share%20availability%20and%20pricing%20for%20this%20season.';
-export const whatsappFloatLink = 'https://wa.me/919976759956?text=Hello%20MKKS%20Organics%2C%20I%20want%20to%20book%20this%20season%E2%80%99s%20mangoes.';
-export const phoneNumber = '+919976759956';
-export const phoneDisplay = '+91 99767 59956';
+const decode = (str) => typeof window !== 'undefined' ? atob(str) : '';
+
+export const whatsappLink = decode('aHR0cHM6Ly93YS5tZS85MTk5NzY3NTk5NTY/dGV4dD1IZWxsbyUyME1LS1MlMjBPcmdhbmljcyUyQyUyMEklMjB3b3VsZCUyMGxpa2UlMjB0byUyMGVucXVpcmUlMjBhYm91dCUyMHlvdXIlMjBtYW5nbyUyMGhhcnZlc3Qu');
+export const whatsappReserveLink = decode('aHR0cHM6Ly93YS5tZS85MTk5NzY3NTk5NTY/dGV4dD1IZWxsbyUyME1LS1MlMjBPcmdhbmljcyUyQyUyMHBsZWFzZSUyMHNoYXJlJTIwYXZhaWxhYmlsaXR5JTIwYW5kJTIwcHJpY2luZyUyMGZvciUyMHRoaXMlMjBzZWFzb24u');
+export const whatsappFloatLink = decode('aHR0cHM6Ly93YS5tZS85MTk5NzY3NTk5NTY/dGV4dD1IZWxsbyUyME1LS1MlMjBPcmdhbmljcyUyQyUyMEklMjB3YW50JTIwdG8lMjBib29rJTIwdGhpcyUyMHNlYXNvbiVFMiU4MCU5OXMlMjBtYW5nb2VzLg==');
+export const phoneNumber = decode('KzkxOTk3Njc1OTk1Ng==');
+export const phoneDisplay = decode('KzkxIDk5NzY3IDU5OTU2');
 export const mapsLink = 'https://maps.app.goo.gl/TH8UJBpJFkpxY5is5';
 export const mapEmbed = 'https://www.google.com/maps?q=10.6014675,76.8596599&output=embed';
-export const emailAddress = 'mkks.organics@gmail.com';
+export const emailAddress = decode('bWtrcy5vcmdhbmljc0BnbWFpbC5jb20=');
 export const instagramHandle = '@mkks.organics';
 export const instagramLink = 'https://www.instagram.com/mkks.organics/';
