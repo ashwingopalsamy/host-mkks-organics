@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import Topbar from './components/Topbar.jsx';
 import Hero from './components/Hero.jsx';
 import Story from './components/Story.jsx';
@@ -9,8 +10,15 @@ import Benefits from './components/Benefits.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 import WhatsAppFloat from './components/WhatsAppFloat.jsx';
+import ReserveBar from './components/ReserveBar.jsx';
 
 export default function App() {
+  const [quantities, setQuantities] = useState({});
+
+  const handleQuantityChange = useCallback((name, value) => {
+    setQuantities((prev) => ({ ...prev, [name]: value }));
+  }, []);
+
   return (
     <>
       {/* Subtle grain texture overlay */}
@@ -21,7 +29,7 @@ export default function App() {
       <main>
         <Hero />
         <Story />
-        <Varieties />
+        <Varieties quantities={quantities} onQuantityChange={handleQuantityChange} />
         <Philosophy />
         <Maintenance />
         <Gallery />
@@ -30,7 +38,9 @@ export default function App() {
       </main>
 
       <Footer />
+      <ReserveBar quantities={quantities} />
       <WhatsAppFloat />
     </>
   );
 }
+
