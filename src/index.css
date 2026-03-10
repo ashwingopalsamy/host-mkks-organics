@@ -1564,7 +1564,7 @@ main, .topbar, .footer, .whatsapp-float {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
+  gap: var(--space-5);
 }
 
 .reserve-summary {
@@ -1572,7 +1572,8 @@ main, .topbar, .footer, .whatsapp-float {
   flex-direction: column;
   gap: 0.15rem;
   min-width: 0;
-  flex: 1;
+  flex: 1 1 0%;
+  overflow: hidden;
 }
 
 .reserve-summary-label {
