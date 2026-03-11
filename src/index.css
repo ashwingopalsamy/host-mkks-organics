@@ -467,9 +467,6 @@ main, .topbar, .footer, .whatsapp-float {
   font-size: 0.74rem;
   font-weight: 600;
   line-height: 1.35;
-}
-
-.pill {
   color: rgba(250, 245, 230, 0.9);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.22);
@@ -549,21 +546,7 @@ main, .topbar, .footer, .whatsapp-float {
   letter-spacing: 0.005em;
 }
 
-/* Footer brand */
-.brand-mark {
-  width: 2rem;
-  height: 2rem;
-  border-radius: var(--radius-full);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  background: linear-gradient(135deg, var(--accent-mango), #e8b85e);
-  color: #3d2a10;
-  font-family: var(--font-body);
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
+/* (brand-mark removed — unused) */
 
 .brand-copy {
   white-space: nowrap;
@@ -921,6 +904,30 @@ main, .topbar, .footer, .whatsapp-float {
 
 /* ── 8. Varieties ─────────────────────────────────────────────── */
 
+/* Minimum-order notice */
+.min-order-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space-6);
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 580;
+  color: var(--text-muted);
+  background: linear-gradient(162deg, rgba(255, 255, 255, 0.72), rgba(248, 253, 247, 0.55));
+  border: 1px solid var(--line-soft);
+  box-shadow: var(--shadow-subtle);
+}
+
+.min-order-icon {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--accent-leaf);
+}
+
 .variety-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -938,7 +945,8 @@ main, .topbar, .footer, .whatsapp-float {
   text-align: center;
   transition:
     transform 0.45s var(--ease-out),
-    box-shadow 0.45s var(--ease-out);
+    box-shadow 0.45s var(--ease-out),
+    border-color 0.3s var(--ease-out);
 }
 
 .variety-card:hover {
@@ -946,16 +954,18 @@ main, .topbar, .footer, .whatsapp-float {
   box-shadow: var(--shadow-elevated);
 }
 
-/* Image wrapper — expands on hover */
+/* Image wrapper — comfortable height for mobile touch */
 .variety-img-wrap {
   position: relative;
   overflow: hidden;
-  height: 12rem;
+  height: 16rem;
   transition: height 0.5s var(--ease-out);
 }
 
-.variety-card:hover .variety-img-wrap {
-  height: 22rem;
+@media (hover: hover) {
+  .variety-card:hover .variety-img-wrap {
+    height: 22rem;
+  }
 }
 
 .variety-img-wrap img {
@@ -993,25 +1003,26 @@ main, .topbar, .footer, .whatsapp-float {
   line-height: 1.62;
 }
 
-/* Quantity stepper */
-.variety-qty {
-  margin-top: var(--space-3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
+/* Price-tier selector row */
+.price-tier-row {
+  margin-top: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+  width: 100%;
 }
 
-.qty-btn {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: var(--radius-full);
+.price-tier-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.65rem 0.4rem;
+  min-height: 2.75rem;
+  border-radius: var(--radius-md);
   border: 1.5px solid var(--line-soft);
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.85), rgba(248, 253, 247, 0.65));
-  color: var(--text-strong);
   cursor: pointer;
-  display: grid;
-  place-items: center;
   transition:
     background var(--duration-fast) var(--ease-out),
     border-color var(--duration-fast) var(--ease-out),
@@ -1019,54 +1030,44 @@ main, .topbar, .footer, .whatsapp-float {
     box-shadow var(--duration-fast) var(--ease-out);
 }
 
-.qty-btn svg {
-  width: 0.9rem;
-  height: 0.9rem;
+.price-tier-btn:hover {
+  border-color: rgba(45, 107, 61, 0.35);
+  background: linear-gradient(165deg, rgba(172, 209, 150, 0.18), rgba(134, 179, 117, 0.08));
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(45, 107, 61, 0.10);
 }
 
-.qty-btn:hover:not(:disabled) {
+.price-tier-btn:active {
+  transform: scale(0.97);
+}
+
+.price-tier-btn.is-active {
   border-color: var(--accent-leaf);
-  background: linear-gradient(165deg, rgba(172, 209, 150, 0.25), rgba(134, 179, 117, 0.12));
-  transform: scale(1.08);
-  box-shadow: 0 2px 8px rgba(45, 107, 61, 0.12);
+  background: linear-gradient(165deg, rgba(45, 107, 61, 0.14), rgba(45, 107, 61, 0.06));
+  box-shadow:
+    0 0 0 2px rgba(45, 107, 61, 0.10),
+    0 2px 8px rgba(45, 107, 61, 0.12);
 }
 
-.qty-btn:active:not(:disabled) {
-  transform: scale(0.95);
-}
-
-.qty-btn:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.qty-btn-plus {
-  border-color: rgba(45, 107, 61, 0.28);
-  background: linear-gradient(165deg, rgba(45, 107, 61, 0.10), rgba(45, 107, 61, 0.04));
-  color: var(--accent-leaf);
-}
-
-.qty-btn-plus:hover:not(:disabled) {
-  background: linear-gradient(165deg, rgba(45, 107, 61, 0.18), rgba(45, 107, 61, 0.08));
-  border-color: var(--accent-leaf);
-}
-
-.qty-value {
-  min-width: 3.2rem;
-  text-align: center;
+.tier-weight {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 0.82rem;
   font-weight: 640;
   color: var(--text-strong);
   letter-spacing: -0.01em;
-  line-height: 1;
 }
 
-.qty-unit {
-  font-size: 0.75rem;
-  font-weight: 580;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
+.tier-price {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-leaf);
+  letter-spacing: -0.02em;
+}
+
+.price-tier-btn.is-active .tier-weight,
+.price-tier-btn.is-active .tier-price {
+  color: var(--accent-leaf);
 }
 
 /* Selected highlight */
@@ -1559,20 +1560,28 @@ main, .topbar, .footer, .whatsapp-float {
 }
 
 .reserve-bar-inner {
-  max-width: var(--wrapper);
+  max-width: var(--container);
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
+  gap: var(--space-4);
+}
+
+.reserve-info {
+  min-width: 0;
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow: hidden;
 }
 
 .reserve-summary {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
   min-width: 0;
-  flex: 1 1 0%;
   overflow: hidden;
 }
 
@@ -1585,13 +1594,42 @@ main, .topbar, .footer, .whatsapp-float {
 }
 
 .reserve-summary-items {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 580;
   color: var(--text-strong);
   line-height: 1.35;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.reserve-total {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.reserve-total-amount {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  letter-spacing: -0.02em;
+}
+
+.reserve-min-warn {
+  font-size: 0.72rem;
+  font-weight: 620;
+  color: #c97300;
+  background: rgba(201, 115, 0, 0.08);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.reserve-total.is-below-min .reserve-total-amount {
+  color: #c97300;
 }
 
 .reserve-btn {
@@ -1643,16 +1681,32 @@ main, .topbar, .footer, .whatsapp-float {
   .reserve-bar-inner {
     flex-direction: column;
     align-items: stretch;
-    gap: 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .reserve-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
   }
 
   .reserve-summary {
-    text-align: center;
+    min-width: 0;
+    flex: 1 1 0%;
   }
 
   .reserve-summary-items {
     white-space: normal;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+  }
+
+  .reserve-total {
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
   }
 
   .reserve-btn {
@@ -2109,23 +2163,43 @@ main, .topbar, .footer, .whatsapp-float {
     var(--shadow-elevated);
 }
 
-[data-theme="dark"] .qty-btn {
-  border-color: rgba(100, 140, 100, 0.22);
-  background: linear-gradient(165deg, rgba(26, 40, 28, 0.7), rgba(22, 34, 24, 0.5));
-  color: var(--text-strong);
+/* Minimum order notice — dark */
+[data-theme="dark"] .min-order-notice {
+  background: linear-gradient(162deg, rgba(26, 40, 28, 0.65), rgba(22, 34, 24, 0.45));
+  border-color: rgba(100, 140, 100, 0.15);
+  color: var(--text-muted);
 }
 
-[data-theme="dark"] .qty-btn:hover:not(:disabled) {
+[data-theme="dark"] .min-order-icon {
+  color: #8aca9a;
+}
+
+/* Price tier buttons — dark */
+[data-theme="dark"] .price-tier-btn {
+  border-color: rgba(100, 140, 100, 0.22);
+  background: linear-gradient(165deg, rgba(26, 40, 28, 0.7), rgba(22, 34, 24, 0.5));
+}
+
+[data-theme="dark"] .price-tier-btn:hover {
   border-color: rgba(92, 184, 112, 0.5);
   background: linear-gradient(165deg, rgba(92, 184, 112, 0.18), rgba(92, 184, 112, 0.08));
 }
 
-[data-theme="dark"] .qty-btn-plus {
-  border-color: rgba(92, 184, 112, 0.28);
-  background: linear-gradient(165deg, rgba(92, 184, 112, 0.12), rgba(92, 184, 112, 0.04));
+[data-theme="dark"] .price-tier-btn.is-active {
+  border-color: rgba(92, 184, 112, 0.55);
+  background: linear-gradient(165deg, rgba(92, 184, 112, 0.16), rgba(92, 184, 112, 0.06));
+}
+
+[data-theme="dark"] .tier-price {
   color: #8aca9a;
 }
 
+[data-theme="dark"] .price-tier-btn.is-active .tier-weight,
+[data-theme="dark"] .price-tier-btn.is-active .tier-price {
+  color: #8aca9a;
+}
+
+/* Reserve bar — dark */
 [data-theme="dark"] .reserve-bar {
   background: linear-gradient(162deg, rgba(18, 30, 20, 0.88), rgba(14, 24, 16, 0.82));
   border-top-color: rgba(100, 140, 100, 0.15);
@@ -2140,6 +2214,19 @@ main, .topbar, .footer, .whatsapp-float {
 
 [data-theme="dark"] .reserve-summary-items {
   color: var(--text-strong);
+}
+
+[data-theme="dark"] .reserve-total-amount {
+  color: var(--text-strong);
+}
+
+[data-theme="dark"] .reserve-min-warn {
+  color: #e8a93a;
+  background: rgba(232, 169, 58, 0.10);
+}
+
+[data-theme="dark"] .reserve-total.is-below-min .reserve-total-amount {
+  color: #e8a93a;
 }
 
 /* Timeline steps — dark */
@@ -2263,7 +2350,220 @@ main, .topbar, .footer, .whatsapp-float {
   stroke-linejoin: round;
 }
 
-/* ── 18. Accessibility ────────────────────────────────────────── */
+/* ── 18. Quantity Selector ─────────────────────────────────────── */
+
+.qty-selector {
+  margin-top: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--accent-leaf);
+  overflow: hidden;
+  background: linear-gradient(165deg, rgba(45, 107, 61, 0.06), rgba(45, 107, 61, 0.02));
+}
+
+.qty-btn {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background: transparent;
+  color: var(--accent-leaf);
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background: rgba(45, 107, 61, 0.10);
+}
+
+.qty-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.qty-value {
+  min-width: 2rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .qty-selector {
+  border-color: rgba(92, 184, 112, 0.45);
+  background: linear-gradient(165deg, rgba(92, 184, 112, 0.08), rgba(92, 184, 112, 0.03));
+}
+
+[data-theme="dark"] .qty-btn {
+  color: #8aca9a;
+}
+
+[data-theme="dark"] .qty-btn:hover:not(:disabled) {
+  background: rgba(92, 184, 112, 0.12);
+}
+
+/* ── 19. Season Badge ─────────────────────────────────────────── */
+
+.season-badge {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 4.2rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 660;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: var(--shadow-subtle);
+  pointer-events: none;
+}
+
+.season-badge--active {
+  color: #1a5c2a;
+  background: linear-gradient(160deg, rgba(172, 222, 150, 0.82), rgba(134, 200, 117, 0.72));
+  border: 1px solid rgba(100, 180, 80, 0.45);
+}
+
+.season-badge--upcoming {
+  color: #6d4e10;
+  background: linear-gradient(160deg, rgba(255, 230, 170, 0.82), rgba(240, 210, 140, 0.72));
+  border: 1px solid rgba(220, 175, 80, 0.45);
+}
+
+.season-badge--ended {
+  color: var(--text-muted);
+  background: linear-gradient(160deg, rgba(200, 200, 200, 0.52), rgba(180, 180, 180, 0.42));
+  border: 1px solid rgba(160, 160, 160, 0.35);
+}
+
+.season-badge-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.season-badge--active .season-badge-dot {
+  background: #2a8c3a;
+  box-shadow: 0 0 6px rgba(42, 140, 58, 0.5);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.season-badge--upcoming .season-badge-dot {
+  background: #c89228;
+}
+
+.season-badge--ended .season-badge-dot {
+  background: var(--text-caption);
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+[data-theme="dark"] .season-badge--active {
+  color: #b4f0c0;
+  background: linear-gradient(160deg, rgba(30, 60, 35, 0.78), rgba(24, 48, 28, 0.68));
+  border-color: rgba(92, 184, 112, 0.35);
+}
+
+[data-theme="dark"] .season-badge--upcoming {
+  color: #f0d080;
+  background: linear-gradient(160deg, rgba(60, 44, 16, 0.78), rgba(48, 36, 12, 0.68));
+  border-color: rgba(200, 160, 60, 0.35);
+}
+
+[data-theme="dark"] .season-badge--ended {
+  color: var(--text-caption);
+  background: linear-gradient(160deg, rgba(40, 40, 40, 0.62), rgba(30, 30, 30, 0.52));
+  border-color: rgba(100, 100, 100, 0.25);
+}
+
+@media (max-width: 47.99rem) {
+  .season-badge {
+    top: calc(env(safe-area-inset-top, 0px) + 3.8rem);
+    font-size: 0.68rem;
+    padding: 0.28rem 0.7rem;
+  }
+}
+
+/* ── 20. Topbar Reserve CTA ───────────────────────────────────── */
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.topbar-reserve-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 680;
+  letter-spacing: 0.01em;
+  color: #3a2810;
+  background: linear-gradient(138deg, #daa54a, #c89228);
+  border: 1px solid rgba(255, 215, 140, 0.45);
+  box-shadow: 0 2px 8px rgba(200, 135, 32, 0.18);
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+  transition:
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out);
+}
+
+.topbar-reserve-cta.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.topbar-reserve-cta:hover {
+  box-shadow: 0 4px 14px rgba(200, 135, 32, 0.28);
+}
+
+[data-theme="dark"] .topbar-reserve-cta {
+  color: #fff6dc;
+  background: linear-gradient(138deg, #c89228, #a87218);
+  border-color: rgba(220, 175, 80, 0.35);
+}
+
+/* ── 21. Contact Button Hierarchy ─────────────────────────────── */
+
+@media (min-width: 30rem) {
+  .contact-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Make Instagram & Email share second row */
+  .contact-actions .contact-instagram,
+  .contact-actions .btn-secondary:last-child {
+    font-size: 0.85rem;
+    min-height: 2.6rem;
+  }
+}
+
+/* ── 22. Accessibility ────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   html {

@@ -41,6 +41,7 @@ const NAV_ITEMS = [
 export default function Topbar() {
   const topbarRef = useRef(null);
   const [activeHref, setActiveHref] = useState(NAV_ITEMS[0].href);
+  const [pastHero, setPastHero] = useState(false);
 
   const handleNavClick = useCallback((e, href) => {
     e.preventDefault();
@@ -75,14 +76,32 @@ export default function Topbar() {
       }
 
       setActiveHref((prev) => (prev === currentHref ? prev : currentHref));
+
+      // Show reserve CTA after scrolling past hero
+      const hero = document.getElementById('home');
+      if (hero) {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        setPastHero(heroBottom < 0);
+      }
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     updateActiveSection();
-    window.addEventListener('scroll', updateActiveSection, { passive: true });
-    window.addEventListener('resize', updateActiveSection);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
-      window.removeEventListener('scroll', updateActiveSection);
-      window.removeEventListener('resize', updateActiveSection);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
   }, []);
 
@@ -127,8 +146,19 @@ export default function Topbar() {
             </a>
           ))}
         </nav>
-        <ThemeToggle />
+
+        <div className="topbar-actions">
+          <a
+            className={`topbar-reserve-cta${pastHero ? ' is-visible' : ''}`}
+            href="#varieties"
+            onClick={(e) => handleNavClick(e, '#varieties')}
+          >
+            Reserve
+          </a>
+          <ThemeToggle />
+        </div>
       </div>
     </motion.header>
   );
 }
+

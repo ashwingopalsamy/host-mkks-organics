@@ -22,6 +22,8 @@ export default function Story() {
           <img
             src="/assets/images/gallery-orchard-new-1.webp"
             alt="Organic mango orchard in the Anaimalai foothills, Pollachi"
+            width="900"
+            height="1600"
             loading="lazy"
             decoding="async"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}

@@ -4,26 +4,48 @@ export const varieties = [
     image: '/assets/images/var-imampasand-opt.webp',
     alt: 'Imam Pasand mangoes',
     description: 'Floral perfume up front, then silky sweetness that melts fast. The kind of mango that makes people pause after the first bite.',
+    pricing: [
+      { weight: '1 kg', price: 250 },
+      { weight: '2 kg', price: 500 },
+      { weight: '5 kg', price: 1000 },
+    ],
   },
   {
     name: 'Banganapalli',
     image: '/assets/images/var-banganapalli-opt.webp',
     alt: 'Banganapalli mangoes',
     description: 'Clean honeyed sweetness with a gentle citrus lift. Smooth, fiberless flesh that keeps you reaching for one more slice.',
+    pricing: [
+      { weight: '1 kg', price: 120 },
+      { weight: '2 kg', price: 240 },
+      { weight: '5 kg', price: 500 },
+    ],
   },
   {
     name: 'Alphonso Reserve',
     image: '/assets/images/var-alphonso-opt.webp',
     alt: 'Alphonso mangoes',
     description: 'Deep saffron flesh, creamy body, balanced tang. Open the box and the aroma announces dessert before serving.',
+    pricing: [
+      { weight: '1 kg', price: 150 },
+      { weight: '2 kg', price: 300 },
+      { weight: '5 kg', price: 650 },
+    ],
   },
   {
     name: 'Sendhooram',
     image: '/assets/images/var-sendhooram-opt.webp',
     alt: 'Sendhooram mangoes',
     description: 'Bright sweet-tang pop with juicy aromatic flesh. A lively crowd-pleaser that disappears first at family tables.',
+    pricing: [
+      { weight: '1 kg', price: 100 },
+      { weight: '2 kg', price: 200 },
+      { weight: '5 kg', price: 400 },
+    ],
   },
 ];
+
+export const MIN_ORDER_VALUE = 350;
 
 export const philosophySteps = [
   {
@@ -118,7 +140,7 @@ export const galleryImages = [
   { src: '/assets/images/gallery-orchard-new-6.webp', alt: 'Mango farm worker', w: 1600, h: 1200 },
 ];
 
-const decode = (str) => typeof window !== 'undefined' ? atob(str) : '';
+const decode = (str) => atob(str);
 
 export const whatsappLink = decode('aHR0cHM6Ly93YS5tZS85MTk5NzY3NTk5NTY/dGV4dD1IZWxsbyUyME1LS1MlMjBPcmdhbmljcyUyQyUyMEklMjB3b3VsZCUyMGxpa2UlMjB0byUyMGVucXVpcmUlMjBhYm91dCUyMHlvdXIlMjBtYW5nbyUyMGhhcnZlc3Qu');
 export const whatsappReserveLink = decode('aHR0cHM6Ly93YS5tZS85MTk5NzY3NTk5NTY/dGV4dD1IZWxsbyUyME1LS1MlMjBPcmdhbmljcyUyQyUyMHBsZWFzZSUyMHNoYXJlJTIwYXZhaWxhYmlsaXR5JTIwYW5kJTIwcHJpY2luZyUyMGZvciUyMHRoaXMlMjBzZWFzb24u');
@@ -130,3 +152,34 @@ export const mapEmbed = 'https://www.google.com/maps?q=10.6014675,76.8596599&out
 export const emailAddress = decode('bWtrcy5vcmdhbmljc0BnbWFpbC5jb20=');
 export const instagramHandle = '@mkks.organics';
 export const instagramLink = 'https://www.instagram.com/mkks.organics/';
+
+/* Season dates (client-side indicator) */
+export const seasonStart = new Date('2026-03-15');
+export const seasonEnd = new Date('2026-06-30');
+
+/* Maintenance / Care Steps */
+export const careSteps = [
+  {
+    id: 'traps',
+    title: 'Strategic Insect Trapping',
+    desc: 'Colour-tuned sticky panels and light traps are placed at canopy height to intercept leaf-miners and stem borers before they reach the fruit. Every trap is positioned to avoid contact with pollinating bees and butterflies.',
+    media: '/assets/maintenance/care-process-4.webp',
+    type: 'image',
+  },
+  {
+    id: 'eco-control',
+    title: 'Targeted Pheromone Lures',
+    desc: 'Species-specific pheromone capsules mimic fruit-fly mating signals, drawing males into sealed collectors before they can damage a single mango. The lure is biological, residue-free, and invisible to every other orchard visitor.',
+    media: '/assets/maintenance/care-process-2-opt.mp4',
+    poster: '/assets/maintenance/care-process-2-poster.webp',
+    type: 'video',
+  },
+  {
+    id: 'floor-management',
+    title: 'Orchard Floor Management',
+    desc: "We carefully prune and clear the grass and fallen leaves directly beneath each tree's canopy. This thoughtful process prevents competitive weed growth and eliminates hiding spots for unwanted insects, keeping the soil healthy.",
+    media: '/assets/maintenance/care-process-3-opt.mp4',
+    poster: '/assets/maintenance/care-process-3-poster.webp',
+    type: 'video',
+  },
+];

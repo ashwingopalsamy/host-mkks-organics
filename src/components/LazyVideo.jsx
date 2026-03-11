@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 /**
  * LazyVideo — loads and plays a video only when it enters the viewport.
@@ -7,6 +7,7 @@ import { useRef, useEffect } from 'react';
  */
 export default function LazyVideo({ src, poster, className, ariaLabel, style }) {
   const videoRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -29,29 +30,31 @@ export default function LazyVideo({ src, poster, className, ariaLabel, style }) 
       }
     };
 
-    // Use IntersectionObserver to play/pause the video purely based on visibility
+    // Use IntersectionObserver to lazy-load src and play/pause based on visibility
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          if (!loaded) {
+            video.src = src;
+            setLoaded(true);
+          }
           tryPlay();
         } else {
           video.pause();
         }
       },
-      { rootMargin: '100px 0px' }
+      { rootMargin: '200px 0px' }
     );
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [src, loaded]);
 
   return (
     <video
       ref={videoRef}
-      src={src}
       poster={poster}
       className={className}
-      autoPlay
       muted
       loop
       playsInline
@@ -62,4 +65,3 @@ export default function LazyVideo({ src, poster, className, ariaLabel, style }) 
     />
   );
 }
-
