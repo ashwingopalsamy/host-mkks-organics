@@ -949,23 +949,22 @@ main, .topbar, .footer, .whatsapp-float {
     border-color 0.3s var(--ease-out);
 }
 
-.variety-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-elevated);
+@media (hover: hover) {
+  .variety-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+  }
 }
 
-/* Image wrapper — comfortable height for mobile touch */
+/* Image wrapper — comfortable stable height */
 .variety-img-wrap {
   position: relative;
   overflow: hidden;
-  height: 16rem;
-  transition: height 0.5s var(--ease-out);
+  height: 18rem;
 }
 
 @media (hover: hover) {
-  .variety-card:hover .variety-img-wrap {
-    height: 22rem;
-  }
+  /* Removed expanding height, image scaling, and padding shifts for stability */
 }
 
 .variety-img-wrap img {
@@ -975,10 +974,6 @@ main, .topbar, .footer, .whatsapp-float {
   transition: transform 0.6s var(--ease-standard);
 }
 
-.variety-card:hover .variety-img-wrap img {
-  transform: scale(1.04);
-}
-
 .variety-content {
   display: grid;
   align-content: start;
@@ -986,10 +981,6 @@ main, .topbar, .footer, .whatsapp-float {
   gap: var(--space-2);
   padding: var(--space-5) var(--space-5) var(--space-6);
   transition: padding 0.4s var(--ease-out);
-}
-
-.variety-card:hover .variety-content {
-  padding-block: var(--space-3) var(--space-4);
 }
 
 .variety-content h3 {
@@ -1003,9 +994,18 @@ main, .topbar, .footer, .whatsapp-float {
   line-height: 1.62;
 }
 
+/* Stable actions area */
+.variety-actions {
+  width: 100%;
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  min-height: 8rem;
+  align-content: start;
+}
+
 /* Price-tier selector row */
 .price-tier-row {
-  margin-top: var(--space-4);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.55rem;
@@ -1030,11 +1030,13 @@ main, .topbar, .footer, .whatsapp-float {
     box-shadow var(--duration-fast) var(--ease-out);
 }
 
-.price-tier-btn:hover {
-  border-color: rgba(45, 107, 61, 0.35);
-  background: linear-gradient(165deg, rgba(172, 209, 150, 0.18), rgba(134, 179, 117, 0.08));
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(45, 107, 61, 0.10);
+@media (hover: hover) {
+  .price-tier-btn:hover {
+    border-color: rgba(45, 107, 61, 0.35);
+    background: linear-gradient(165deg, rgba(172, 209, 150, 0.18), rgba(134, 179, 117, 0.08));
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(45, 107, 61, 0.10);
+  }
 }
 
 .price-tier-btn:active {
@@ -1076,7 +1078,6 @@ main, .topbar, .footer, .whatsapp-float {
   box-shadow:
     0 0 0 2px rgba(45, 107, 61, 0.10),
     var(--shadow-elevated);
-  transform: translateY(-4px);
 }
 
 /* ── 9. Philosophy / Timeline ─────────────────────────────────── */
@@ -2352,8 +2353,21 @@ main, .topbar, .footer, .whatsapp-float {
 
 /* ── 18. Quantity Selector ─────────────────────────────────────── */
 
+.qty-action-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.qty-action-row .qty-reserve-btn {
+  flex: 1;
+  min-height: 2.75rem;
+  font-size: 0.85rem;
+  padding-inline: 0.75rem;
+}
+
 .qty-selector {
-  margin-top: var(--space-3);
   display: inline-flex;
   align-items: center;
   gap: 0;
@@ -2413,11 +2427,6 @@ main, .topbar, .footer, .whatsapp-float {
 /* ── 19. Season Badge ─────────────────────────────────────────── */
 
 .season-badge {
-  position: fixed;
-  top: calc(env(safe-area-inset-top, 0px) + 4.2rem);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 60;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -2497,7 +2506,6 @@ main, .topbar, .footer, .whatsapp-float {
 
 @media (max-width: 47.99rem) {
   .season-badge {
-    top: calc(env(safe-area-inset-top, 0px) + 3.8rem);
     font-size: 0.68rem;
     padding: 0.28rem 0.7rem;
   }

@@ -46,45 +46,52 @@ export default function Varieties({ selections, onSelect, onQtyChange }) {
                   <h3>{v.name}</h3>
                   <p>{v.description}</p>
 
-                  <div className="price-tier-row">
-                    {v.pricing.map((tier) => {
-                      const isActive = sel && sel.weight === tier.weight;
-                      return (
-                        <button
-                          key={tier.weight}
-                          className={`price-tier-btn${isActive ? ' is-active' : ''}`}
-                          onClick={() => onSelect(v.name, tier.weight, tier.price)}
-                          aria-pressed={isActive}
-                          aria-label={`${tier.weight} ${v.name} for ₹${tier.price}`}
-                        >
-                          <span className="tier-weight">{tier.weight}</span>
-                          <span className="tier-price">₹{tier.price.toLocaleString('en-IN')}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {/* Quantity selector — visible when a tier is selected */}
-                  {sel && (
-                    <div className="qty-selector">
-                      <button
-                        className="qty-btn"
-                        onClick={() => onQtyChange(v.name, -1)}
-                        aria-label={`Decrease quantity of ${v.name}`}
-                        disabled={sel.qty <= 1}
-                      >
-                        −
-                      </button>
-                      <span className="qty-value" aria-live="polite">{sel.qty || 1}</span>
-                      <button
-                        className="qty-btn"
-                        onClick={() => onQtyChange(v.name, 1)}
-                        aria-label={`Increase quantity of ${v.name}`}
-                      >
-                        +
-                      </button>
+                  <div className="variety-actions">
+                    <div className="price-tier-row">
+                      {v.pricing.map((tier) => {
+                        const isActive = sel && sel.weight === tier.weight;
+                        return (
+                          <button
+                            key={tier.weight}
+                            className={`price-tier-btn${isActive ? ' is-active' : ''}`}
+                            onClick={() => onSelect(v.name, tier.weight, tier.price)}
+                            aria-pressed={isActive}
+                            aria-label={`${tier.weight} ${v.name} for ₹${tier.price}`}
+                          >
+                            <span className="tier-weight">{tier.weight}</span>
+                            <span className="tier-price">₹{tier.price.toLocaleString('en-IN')}</span>
+                          </button>
+                        );
+                      })}
                     </div>
-                  )}
+
+                    {/* Quantity selector — visible when a tier is selected */}
+                    {sel && (
+                      <div className="qty-action-row animate-in">
+                        <div className="qty-selector">
+                          <button
+                            className="qty-btn"
+                            onClick={() => onQtyChange(v.name, -1)}
+                            aria-label={`Decrease quantity of ${v.name}`}
+                            disabled={sel.qty <= 1}
+                          >
+                            −
+                          </button>
+                          <span className="qty-value" aria-live="polite">{sel.qty || 1}</span>
+                          <button
+                            className="qty-btn"
+                            onClick={() => onQtyChange(v.name, 1)}
+                            aria-label={`Increase quantity of ${v.name}`}
+                          >
+                            +
+                          </button>
+                        </div>
+                        <a href="#reserve" className="btn btn-primary qty-reserve-btn">
+                          Add Waitlist
+                        </a>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </article>
             );

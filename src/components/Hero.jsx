@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { whatsappLink } from '../data/content.jsx';
 import { WhatsAppIcon, CalendarCheckIcon } from './icons.jsx';
+import SeasonBadge from './SeasonBadge.jsx';
 
 export default function Hero() {
   const sectionRef = useRef(null);
@@ -58,6 +59,19 @@ export default function Hero() {
               ripening. Hand-harvested from our 10-acre estate for rich aroma, deep sweetness, and a
               first-class experience.
             </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.4,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}
+            >
+              <SeasonBadge />
+            </motion.div>
 
             <motion.div
               className="hero-cta"

@@ -50,7 +50,6 @@ export default function App() {
       <div className="site-shell" aria-hidden="true" />
 
       <Topbar />
-      <SeasonBadge />
 
       <main>
         <Hero />
