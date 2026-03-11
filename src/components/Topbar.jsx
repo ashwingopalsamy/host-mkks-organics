@@ -149,7 +149,7 @@ export default function Topbar({ onReserveClick }) {
         <div className="topbar-actions">
           <button
             className={`topbar-reserve-cta${pastHero ? ' is-visible' : ''}`}
-            onClick={onReserveClick}
+            onClick={(event) => onReserveClick?.(event.currentTarget)}
             type="button"
           >
             Reserve
@@ -160,4 +160,3 @@ export default function Topbar({ onReserveClick }) {
     </motion.header>
   );
 }
-

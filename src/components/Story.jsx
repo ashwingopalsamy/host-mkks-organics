@@ -20,10 +20,12 @@ export default function Story() {
 
         <SectionReveal as="figure" className="story-image" direction="right" delay={0.2}>
           <img
-            src="/assets/images/gallery-orchard-new-1.webp"
+            src="/assets/images/story-orchard-960.webp"
+            srcSet="/assets/images/story-orchard-640.webp 640w, /assets/images/story-orchard-960.webp 960w"
+            sizes="(max-width: 767px) 100vw, 50vw"
             alt="Organic mango orchard in the Anaimalai foothills, Pollachi"
-            width="900"
-            height="1600"
+            width="960"
+            height="540"
             loading="lazy"
             decoding="async"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -33,4 +35,3 @@ export default function Story() {
     </section>
   );
 }
-

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import Topbar from './components/Topbar.jsx';
 import Hero from './components/Hero.jsx';
 import Story from './components/Story.jsx';
@@ -14,17 +14,32 @@ import ReservationForm from './components/ReservationForm.jsx';
 
 export default function App() {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
+  const lastTriggerRef = useRef(null);
+
+  const handleReserveOpen = useCallback((trigger) => {
+    if (trigger?.focus) {
+      lastTriggerRef.current = trigger;
+    }
+    setIsReservationOpen(true);
+  }, []);
+
+  const handleReserveClose = useCallback(() => {
+    setIsReservationOpen(false);
+    requestAnimationFrame(() => {
+      lastTriggerRef.current?.focus?.();
+    });
+  }, []);
 
   return (
     <>
       <div className="site-shell" aria-hidden="true" />
 
-      <Topbar onReserveClick={() => setIsReservationOpen(true)} />
+      <Topbar onReserveClick={handleReserveOpen} />
 
       <main>
-        <Hero onReserveClick={() => setIsReservationOpen(true)} />
+        <Hero onReserveClick={handleReserveOpen} />
         <Story />
-        <Varieties onReserveClick={() => setIsReservationOpen(true)} />
+        <Varieties onReserveClick={handleReserveOpen} />
         <Philosophy />
         <Maintenance />
         <Gallery />
@@ -40,7 +55,7 @@ export default function App() {
       {/* Unified Ordering Form */}
       <ReservationForm 
         isOpen={isReservationOpen} 
-        onClose={() => setIsReservationOpen(false)} 
+        onClose={handleReserveClose} 
       />
     </>
   );

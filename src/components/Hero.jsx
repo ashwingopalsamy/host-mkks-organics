@@ -32,7 +32,7 @@ export default function Hero({ onReserveClick }) {
             sizes="100vw"
           />
           <img
-            src="/assets/images/hero-primary-optimized.jpg"
+            src="/assets/images/hero-primary-900.webp"
             alt="Mango orchard in the Anaimalai foothills, Pollachi"
             fetchPriority="high"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -83,7 +83,7 @@ export default function Hero({ onReserveClick }) {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <button className="btn btn-primary" onClick={onReserveClick}>
+              <button className="btn btn-primary" onClick={(event) => onReserveClick?.(event.currentTarget)}>
                 <span className="btn-icon" aria-hidden="true">
                   <CalendarCheckIcon />
                 </span>

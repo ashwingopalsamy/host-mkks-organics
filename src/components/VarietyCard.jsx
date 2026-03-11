@@ -1,5 +1,5 @@
 export default function VarietyCard({ variety }) {
-  const { name, description, image, alt, pricing } = variety;
+  const { name, description, image, imageSrcSet, alt, pricing } = variety;
 
   const varietyClass = `variety-${name.toLowerCase().replace(/\s+/g, '-')}`;
 
@@ -8,6 +8,8 @@ export default function VarietyCard({ variety }) {
       <div className="variety-img-wrap">
         <img
           src={image}
+          srcSet={imageSrcSet}
+          sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw"
           width="900"
           height="675"
           alt={alt}

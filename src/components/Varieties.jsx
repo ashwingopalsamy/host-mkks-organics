@@ -24,7 +24,11 @@ export default function Varieties({ onReserveClick }) {
         </div>
 
         <SectionReveal as="div" className="reserve-cta-wrapper" delay={0.2} style={{ marginTop: '3rem', textAlign: 'center' }}>
-          <button className="btn btn-primary" style={{ paddingInline: '2.5rem', minHeight: '3.5rem', fontSize: '1.05rem' }} onClick={onReserveClick}>
+          <button
+            className="btn btn-primary"
+            style={{ paddingInline: '2.5rem', minHeight: '3.5rem', fontSize: '1.05rem' }}
+            onClick={(event) => onReserveClick?.(event.currentTarget)}
+          >
             Reserve Mangoes
           </button>
           <p className="reserve-note" style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>

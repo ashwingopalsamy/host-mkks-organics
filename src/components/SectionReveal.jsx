@@ -11,6 +11,7 @@ export default function SectionReveal({
   as = 'div',
   direction = 'up',
   delay = 0,
+  ...rest
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-60px 0px' });
@@ -24,6 +25,7 @@ export default function SectionReveal({
     <Component
       ref={ref}
       className={className}
+      {...rest}
       initial={{ opacity: 0, y: yStart, x: xStart }}
       animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: yStart, x: xStart }}
       transition={{

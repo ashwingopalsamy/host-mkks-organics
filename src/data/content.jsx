@@ -1,51 +1,62 @@
+/* eslint-disable react-refresh/only-export-components */
+import { siteConfig } from './siteConfig.js';
+
 export const varieties = [
   {
+    id: 'imam-pasand',
     name: 'Imam Pasand',
-    image: '/assets/images/var-imampasand-opt.webp',
+    image: '/assets/images/var-imampasand-720.webp',
+    imageSrcSet: '/assets/images/var-imampasand-480.webp 480w, /assets/images/var-imampasand-720.webp 720w',
     alt: 'Imam Pasand mangoes',
     description: 'Floral perfume up front, then silky sweetness that melts fast. The kind of mango that makes people pause after the first bite.',
     pricing: [
-      { weight: '1 kg', price: 250 },
-      { weight: '2 kg', price: 500 },
-      { weight: '5 kg', price: 1000 },
+      { id: '1kg', weight: '1 kg', price: 250 },
+      { id: '2kg', weight: '2 kg', price: 500 },
+      { id: '5kg', weight: '5 kg', price: 1000 },
     ],
   },
   {
+    id: 'banganapalli',
     name: 'Banganapalli',
-    image: '/assets/images/var-banganapalli-opt.webp',
+    image: '/assets/images/var-banganapalli-720.webp',
+    imageSrcSet: '/assets/images/var-banganapalli-480.webp 480w, /assets/images/var-banganapalli-720.webp 720w',
     alt: 'Banganapalli mangoes',
     description: 'Clean honeyed sweetness with a gentle citrus lift. Smooth, fiberless flesh that keeps you reaching for one more slice.',
     pricing: [
-      { weight: '1 kg', price: 120 },
-      { weight: '2 kg', price: 240 },
-      { weight: '5 kg', price: 500 },
+      { id: '1kg', weight: '1 kg', price: 120 },
+      { id: '2kg', weight: '2 kg', price: 240 },
+      { id: '5kg', weight: '5 kg', price: 500 },
     ],
   },
   {
+    id: 'alphonso-reserve',
     name: 'Alphonso Reserve',
-    image: '/assets/images/var-alphonso-opt.webp',
+    image: '/assets/images/var-alphonso-720.webp',
+    imageSrcSet: '/assets/images/var-alphonso-480.webp 480w, /assets/images/var-alphonso-720.webp 720w',
     alt: 'Alphonso mangoes',
     description: 'Deep saffron flesh, creamy body, balanced tang. Open the box and the aroma announces dessert before serving.',
     pricing: [
-      { weight: '1 kg', price: 150 },
-      { weight: '2 kg', price: 300 },
-      { weight: '5 kg', price: 650 },
+      { id: '1kg', weight: '1 kg', price: 150 },
+      { id: '2kg', weight: '2 kg', price: 300 },
+      { id: '5kg', weight: '5 kg', price: 650 },
     ],
   },
   {
+    id: 'sendhooram',
     name: 'Sendhooram',
-    image: '/assets/images/var-sendhooram-opt.webp',
+    image: '/assets/images/var-sendhooram-720.webp',
+    imageSrcSet: '/assets/images/var-sendhooram-480.webp 480w, /assets/images/var-sendhooram-720.webp 720w',
     alt: 'Sendhooram mangoes',
     description: 'Bright sweet-tang pop with juicy aromatic flesh. A lively crowd-pleaser that disappears first at family tables.',
     pricing: [
-      { weight: '1 kg', price: 100 },
-      { weight: '2 kg', price: 200 },
-      { weight: '5 kg', price: 400 },
+      { id: '1kg', weight: '1 kg', price: 100 },
+      { id: '2kg', weight: '2 kg', price: 200 },
+      { id: '5kg', weight: '5 kg', price: 400 },
     ],
   },
 ];
 
-export const MIN_ORDER_VALUE = 350;
+export const MIN_ORDER_VALUE = siteConfig.minimumOrderValue;
 
 export const philosophySteps = [
   {
@@ -140,22 +151,20 @@ export const galleryImages = [
   { src: '/assets/images/gallery-orchard-new-6.webp', alt: 'Mango farm worker', w: 1600, h: 1200 },
 ];
 
-const decode = (str) => atob(str);
-
-export const whatsappLink = decode('aHR0cHM6Ly93YS5tZS85MTk5NzY3NTk5NTY/dGV4dD1IZWxsbyUyME1LS1MlMjBPcmdhbmljcyUyQyUyMEklMjB3b3VsZCUyMGxpa2UlMjB0byUyMGVucXVpcmUlMjBhYm91dCUyMHlvdXIlMjBtYW5nbyUyMGhhcnZlc3Qu');
-export const whatsappReserveLink = decode('aHR0cHM6Ly93YS5tZS85MTk5NzY3NTk5NTY/dGV4dD1IZWxsbyUyME1LS1MlMjBPcmdhbmljcyUyQyUyMHBsZWFzZSUyMHNoYXJlJTIwYXZhaWxhYmlsaXR5JTIwYW5kJTIwcHJpY2luZyUyMGZvciUyMHRoaXMlMjBzZWFzb24u');
-export const whatsappFloatLink = decode('aHR0cHM6Ly93YS5tZS85MTk5NzY3NTk5NTY/dGV4dD1IZWxsbyUyME1LS1MlMjBPcmdhbmljcyUyQyUyMEklMjB3YW50JTIwdG8lMjBib29rJTIwdGhpcyUyMHNlYXNvbiVFMiU4MCU5OXMlMjBtYW5nb2VzLg==');
-export const phoneNumber = decode('KzkxOTk3Njc1OTk1Ng==');
-export const phoneDisplay = decode('KzkxIDk5NzY3IDU5OTU2');
-export const mapsLink = 'https://maps.app.goo.gl/TH8UJBpJFkpxY5is5';
+export const whatsappLink = siteConfig.inquiryWhatsAppUrl;
+export const whatsappReserveLink = `https://wa.me/${siteConfig.whatsAppNumber}?text=${encodeURIComponent('Hello MKKS Organics, please share availability and pricing for this season.')}`;
+export const whatsappFloatLink = `https://wa.me/${siteConfig.whatsAppNumber}?text=${encodeURIComponent("Hello MKKS Organics, I want to book this season's mangoes.")}`;
+export const phoneNumber = siteConfig.phoneNumberE164;
+export const phoneDisplay = siteConfig.phoneDisplay;
+export const mapsLink = siteConfig.mapsUrl;
 export const mapEmbed = 'https://www.google.com/maps?q=10.6014675,76.8596599&output=embed';
-export const emailAddress = decode('bWtrcy5vcmdhbmljc0BnbWFpbC5jb20=');
-export const instagramHandle = '@mkks.organics';
-export const instagramLink = 'https://www.instagram.com/mkks.organics/';
+export const emailAddress = siteConfig.email;
+export const instagramHandle = siteConfig.instagramHandle;
+export const instagramLink = siteConfig.instagramUrl;
 
 /* Season dates (client-side indicator) */
-export const seasonStart = new Date('2026-03-15');
-export const seasonEnd = new Date('2026-06-30');
+export const seasonStart = new Date(siteConfig.seasonStart);
+export const seasonEnd = new Date(siteConfig.seasonEnd);
 
 /* Maintenance / Care Steps */
 export const careSteps = [

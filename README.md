@@ -1,118 +1,104 @@
-# MKKS Organics Landing Page
+# MKKS Organics Web App
 
-A single-page, mobile-first, premium static landing page for an organic mango farm in Pollachi, Tamil Nadu.
+Static React/Vite storefront for MKKS Organics. The site keeps the original premium orchard presentation and uses a client-side reservation flow that builds a structured WhatsApp request.
 
 ## Stack
-- HTML5
-- CSS3
-- Minimal vanilla JavaScript
-- Local optimized WebP assets
+- React 19
+- Vite 7
+- Framer Motion
+- Static assets from `public/`
+- Vercel static hosting
+
+## Core Product Flow
+1. Browse the landing page and mango varieties.
+2. Open the reservation sheet from the hero, varieties section, or top bar.
+3. Select mango quantities by pack size.
+4. Enter delivery details.
+5. Send a structured reservation request to WhatsApp.
+
+No backend, database, authentication, or paid API is required.
 
 ## Project Structure
 ```text
-host-mkks-organics/
-├── assets/
-│   ├── icons/
-│   │   ├── apple-touch-icon.png
-│   │   ├── favicon-32.png
-│   │   ├── favicon-512.png
-│   │   └── favicon.svg
-│   └── images/
-│       ├── gallery-bloom.webp
-│       ├── gallery-branches.webp
-│       ├── gallery-canopy.webp
-│       ├── gallery-kachcha.webp
-│       ├── gallery-orchard-1.webp
-│       ├── gallery-orchard-2.webp
-│       ├── og-thumbnail.jpg
-│       ├── hero-orchard-900.webp
-│       ├── hero-orchard-1400.webp
-│       ├── hero-orchard.webp
-│       ├── story-farm-1000.webp
-│       ├── story-farm.webp
-│       ├── var-alphonso.webp
-│       ├── var-banganapalli.webp
-│       ├── var-imampasand.webp
-│       ├── var-malgova.webp
-│       └── var-sendhooram.webp
-├── .gitignore
-├── ATTRIBUTION.md
-├── index.html
-├── script.js
-└── styles.css
+src/
+  App.jsx
+  main.jsx
+  index.css
+  components/
+  data/
+  utils/
+  test/
+public/
+  assets/
+tests/
+  e2e/
+index.html
+vercel.json
+vite.config.js
+vitest.config.js
+playwright.config.js
 ```
 
-## Local Preview
-Run any static server from the project root.
+## Key Source Files
+- `src/data/content.jsx`: page content, varieties, contact links, season dates
+- `src/data/siteConfig.js`: canonical brand and contact config
+- `src/components/ReservationForm.jsx`: active reservation sheet UI
+- `src/utils/order.js`: order math and WhatsApp message helpers
+
+## Local Development
+Install dependencies:
 
 ```bash
-python3 -m http.server 8080
+npm install
 ```
 
-Then open `http://localhost:8080`.
+Start the dev server:
 
-## Sections Included
-- Immersive hero with cinematic orchard imagery and glass CTA panel
-- Story split section
-- Mango varieties glass-card grid
-- Farming philosophy timeline
-- Masonry-style gallery
-- Why buy from us icon grid
-- Contact decision section with phone, WhatsApp, and map embed
-- Floating WhatsApp CTA
+```bash
+npm run dev
+```
 
-## SEO and Metadata Included
-- Title and description
-- Keywords:
-  - `organic mango Pollachi`
-  - `premium mango Tamil Nadu`
-  - `farm direct mango South India`
-- Open Graph metadata
-- Twitter card metadata
-- JSON-LD `LocalBusiness` schema
-- Dedicated `og-thumbnail.jpg`
-- Favicon + Apple touch icon set
+Preview the production build locally:
 
-## Performance Notes
-- WebP used for all images.
-- Hero image has responsive `srcset` variants (900w, 1400w, 2200w).
-- Below-the-fold images use `loading="lazy"` and `decoding="async"`.
-- JS is lightweight (`script.js` is under 3 KB).
-- CSS is loaded with preload + non-blocking pattern.
-- Animations are lightweight and capped under 500ms for interactions.
-- `prefers-reduced-motion` support is included.
+```bash
+npm run build
+npm run preview
+```
 
-## Contact Detail Placeholders
-Update these in `index.html` before production launch:
-- Phone number (`tel:` links)
-- WhatsApp number (`wa.me` links)
-- Farm name/address text if needed
-- Domain-specific OG/Twitter image URLs (if your final domain requires absolute URLs)
+## Quality Checks
+Lint:
+
+```bash
+npm run lint
+```
+
+Unit tests:
+
+```bash
+npm run test:unit
+```
+
+End-to-end tests:
+
+```bash
+npm run test:e2e
+```
 
 ## Deployment
-
 ### Vercel
-1. Push this folder to a GitHub repository.
-2. In Vercel, click **Add New Project** and import the repo.
-3. Framework preset: **Other** (or no framework).
-4. Build command: leave empty.
-5. Output directory: `.`
-6. Deploy.
+1. Import the repository into Vercel.
+2. Framework preset: `Vite`.
+3. Build command: `npm run build`
+4. Output directory: `dist`
 
-### Netlify
-1. Push this folder to a GitHub repository.
-2. In Netlify, click **Add new site** -> **Import an existing project**.
-3. Select the repository.
-4. Build command: leave empty.
-5. Publish directory: `.`
-6. Deploy site.
+The app is designed for static hosting and WhatsApp-based ordering only.
 
-### GitHub Pages
-1. Push this folder to GitHub.
-2. Open repo **Settings** -> **Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Branch: `main`, folder: `/ (root)`.
-5. Save and wait for GitHub Pages deployment URL.
+## Content Notes
+- Canonical phone/WhatsApp number: `+91 99767 59956`
+- Minimum order value: `₹350`
+- Season dates are manually configured in `src/data/siteConfig.js`
 
-## Attribution
-Image source links are listed in `ATTRIBUTION.md`.
+## Maintenance Notes
+- Keep schema/contact details in `index.html` aligned with `src/data/siteConfig.js`
+- If varieties or pricing change, update `src/data/content.jsx`
+- If the reservation message format changes, update `src/utils/order.js` and the associated tests
