@@ -4,7 +4,7 @@ import { whatsappLink } from '../data/content.jsx';
 import { WhatsAppIcon, CalendarCheckIcon } from './icons.jsx';
 import SeasonBadge from './SeasonBadge.jsx';
 
-export default function Hero() {
+export default function Hero({ onReserveClick }) {
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -83,12 +83,12 @@ export default function Hero() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <a className="btn btn-primary" href="#contact">
+              <button className="btn btn-primary" onClick={onReserveClick}>
                 <span className="btn-icon" aria-hidden="true">
                   <CalendarCheckIcon />
                 </span>
                 Reserve Mangoes
-              </a>
+              </button>
               <a
                 className="btn btn-whatsapp"
                 href={whatsappLink}

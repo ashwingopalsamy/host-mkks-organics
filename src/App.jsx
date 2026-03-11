@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState } from 'react';
 import Topbar from './components/Topbar.jsx';
 import Hero from './components/Hero.jsx';
 import Story from './components/Story.jsx';
@@ -10,51 +10,21 @@ import Benefits from './components/Benefits.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 import WhatsAppFloat from './components/WhatsAppFloat.jsx';
-import ReserveBar from './components/ReserveBar.jsx';
-import SeasonBadge from './components/SeasonBadge.jsx';
+import ReservationForm from './components/ReservationForm.jsx';
 
 export default function App() {
-  // selections: { [varietyName]: { weight: '2 kg', price: 500, qty: 1 } | null }
-  const [selections, setSelections] = useState({});
-
-  const handleSelect = useCallback((name, weight, price) => {
-    setSelections((prev) => {
-      const current = prev[name];
-      // Toggle off if same weight tapped again
-      if (current && current.weight === weight) {
-        const next = { ...prev };
-        delete next[name];
-        return next;
-      }
-      return { ...prev, [name]: { weight, price, qty: 1 } };
-    });
-  }, []);
-
-  const handleQtyChange = useCallback((name, delta) => {
-    setSelections((prev) => {
-      const current = prev[name];
-      if (!current) return prev;
-      const newQty = Math.max(1, (current.qty || 1) + delta);
-      return { ...prev, [name]: { ...current, qty: newQty } };
-    });
-  }, []);
-
-  const hasItems = useMemo(
-    () => Object.keys(selections).length > 0,
-    [selections]
-  );
+  const [isReservationOpen, setIsReservationOpen] = useState(false);
 
   return (
     <>
-      {/* Subtle grain texture overlay */}
       <div className="site-shell" aria-hidden="true" />
 
-      <Topbar />
+      <Topbar onReserveClick={() => setIsReservationOpen(true)} />
 
       <main>
-        <Hero />
+        <Hero onReserveClick={() => setIsReservationOpen(true)} />
         <Story />
-        <Varieties selections={selections} onSelect={handleSelect} onQtyChange={handleQtyChange} />
+        <Varieties onReserveClick={() => setIsReservationOpen(true)} />
         <Philosophy />
         <Maintenance />
         <Gallery />
@@ -63,8 +33,15 @@ export default function App() {
       </main>
 
       <Footer />
-      <ReserveBar selections={selections} />
-      <WhatsAppFloat hide={hasItems} />
+      
+      {/* Global FAB for Mobile */}
+      <WhatsAppFloat hide={isReservationOpen} />
+      
+      {/* Unified Ordering Form */}
+      <ReservationForm 
+        isOpen={isReservationOpen} 
+        onClose={() => setIsReservationOpen(false)} 
+      />
     </>
   );
 }

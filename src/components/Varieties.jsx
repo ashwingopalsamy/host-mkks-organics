@@ -1,7 +1,8 @@
 import SectionReveal from './SectionReveal.jsx';
+import VarietyCard from './VarietyCard.jsx';
 import { varieties, MIN_ORDER_VALUE } from '../data/content.jsx';
 
-export default function Varieties({ selections, onSelect, onQtyChange }) {
+export default function Varieties({ onReserveClick }) {
   return (
     <section className="section section-varieties" id="varieties">
       <div className="container">
@@ -14,89 +15,22 @@ export default function Varieties({ selections, onSelect, onQtyChange }) {
           </p>
         </SectionReveal>
 
-        {/* Minimum order notice */}
-        <div className="min-order-notice">
-          <svg className="min-order-icon" viewBox="0 0 20 20" aria-hidden="true">
-            <path d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm.75 11.25h-1.5v-1.5h1.5v1.5Zm0-3h-1.5v-5h1.5v5Z" fill="currentColor" />
-          </svg>
-          <span>
-            Minimum order ₹{MIN_ORDER_VALUE} · Shipping calculated separately
-          </span>
-        </div>
-
         <div className="variety-grid">
-          {varieties.map((v) => {
-            const sel = selections[v.name];
-            return (
-              <article
-                key={v.name}
-                className={`variety-card${sel ? ' has-qty' : ''}`}
-              >
-                <div className="variety-img-wrap">
-                  <img
-                    src={v.image}
-                    width="900"
-                    height="675"
-                    alt={v.alt}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div className="variety-content">
-                  <h3>{v.name}</h3>
-                  <p>{v.description}</p>
-
-                  <div className="variety-actions">
-                    <div className="price-tier-row">
-                      {v.pricing.map((tier) => {
-                        const isActive = sel && sel.weight === tier.weight;
-                        return (
-                          <button
-                            key={tier.weight}
-                            className={`price-tier-btn${isActive ? ' is-active' : ''}`}
-                            onClick={() => onSelect(v.name, tier.weight, tier.price)}
-                            aria-pressed={isActive}
-                            aria-label={`${tier.weight} ${v.name} for ₹${tier.price}`}
-                          >
-                            <span className="tier-weight">{tier.weight}</span>
-                            <span className="tier-price">₹{tier.price.toLocaleString('en-IN')}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    {/* Quantity selector — visible when a tier is selected */}
-                    {sel && (
-                      <div className="qty-action-row animate-in">
-                        <div className="qty-selector">
-                          <button
-                            className="qty-btn"
-                            onClick={() => onQtyChange(v.name, -1)}
-                            aria-label={`Decrease quantity of ${v.name}`}
-                            disabled={sel.qty <= 1}
-                          >
-                            −
-                          </button>
-                          <span className="qty-value" aria-live="polite">{sel.qty || 1}</span>
-                          <button
-                            className="qty-btn"
-                            onClick={() => onQtyChange(v.name, 1)}
-                            aria-label={`Increase quantity of ${v.name}`}
-                          >
-                            +
-                          </button>
-                        </div>
-                        <a href="#reserve" className="btn btn-primary qty-reserve-btn">
-                          Add Waitlist
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+          {varieties.map((v) => (
+            <SectionReveal as="div" key={v.name} delay={0.1}>
+              <VarietyCard variety={v} />
+            </SectionReveal>
+          ))}
         </div>
+
+        <SectionReveal as="div" className="reserve-cta-wrapper" delay={0.2} style={{ marginTop: '3rem', textAlign: 'center' }}>
+          <button className="btn btn-primary" style={{ paddingInline: '2.5rem', minHeight: '3.5rem', fontSize: '1.05rem' }} onClick={onReserveClick}>
+            Reserve Mangoes
+          </button>
+          <p className="reserve-note" style={{ marginTop: '1rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+            Minimum order ₹{MIN_ORDER_VALUE} · Shipping calculated separately
+          </p>
+        </SectionReveal>
       </div>
     </section>
   );

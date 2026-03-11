@@ -38,7 +38,7 @@ const NAV_ITEMS = [
   },
 ];
 
-export default function Topbar() {
+export default function Topbar({ onReserveClick }) {
   const topbarRef = useRef(null);
   const [activeHref, setActiveHref] = useState(NAV_ITEMS[0].href);
   const [pastHero, setPastHero] = useState(false);
@@ -77,7 +77,6 @@ export default function Topbar() {
 
       setActiveHref((prev) => (prev === currentHref ? prev : currentHref));
 
-      // Show reserve CTA after scrolling past hero
       const hero = document.getElementById('home');
       if (hero) {
         const heroBottom = hero.getBoundingClientRect().bottom;
@@ -148,13 +147,13 @@ export default function Topbar() {
         </nav>
 
         <div className="topbar-actions">
-          <a
+          <button
             className={`topbar-reserve-cta${pastHero ? ' is-visible' : ''}`}
-            href="#varieties"
-            onClick={(e) => handleNavClick(e, '#varieties')}
+            onClick={onReserveClick}
+            type="button"
           >
             Reserve
-          </a>
+          </button>
           <ThemeToggle />
         </div>
       </div>
