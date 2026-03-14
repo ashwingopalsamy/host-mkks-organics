@@ -22,7 +22,7 @@
       property="og:description"
       content="Chemical-free, tree-ripened mangoes grown in the Western Ghats climate. Farm-direct from Pollachi."
     />
-    <meta property="og:image" content="https://mkksorganics.vercel.app/assets/images/og-thumbnail.jpg" />
+    <meta property="og:image" content="https://mkksorganics.vercel.app/images/og-thumbnail.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="MKKS Organics mango orchard in Pollachi" />
@@ -34,18 +34,18 @@
       name="twitter:description"
       content="Organic mangoes from Pollachi. Tree-ripened, hand-harvested, direct dispatch."
     />
-    <meta name="twitter:image" content="https://mkksorganics.vercel.app/assets/images/og-thumbnail.jpg" />
-    <meta name="theme-color" content="#0f1610" />
+    <meta name="twitter:image" content="https://mkksorganics.vercel.app/images/og-thumbnail.jpg" />
+    <meta name="theme-color" content="#0d100a" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Outfit:wght@100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="preload" as="image" type="image/webp" href="/assets/images/hero-primary-900.webp" imagesrcset="/assets/images/hero-primary-600.webp 600w, /assets/images/hero-primary-900.webp 900w, /assets/images/hero-primary-1400.webp 1400w" imagesizes="100vw" />
-    <link rel="icon" href="/assets/images/mkks-organics-logo.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/assets/images/mkks-organics-logo.png" />
+    <link rel="preload" as="image" type="image/webp" href="/images/hero-primary-900.webp" imagesrcset="/images/hero-primary-600.webp 600w, /images/hero-primary-900.webp 900w, /images/hero-primary-1400.webp 1400w" imagesizes="100vw" />
+    <link rel="icon" href="/images/mkks-organics-logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/images/mkks-organics-logo.png" />
 
     <script type="application/ld+json">
       {
@@ -54,7 +54,7 @@
         "url": "https://mkksorganics.vercel.app",
         "name": "MKKS Organics",
         "description": "Tree-ripened organic mangoes from the Anaimalai foothills, Pollachi, Tamil Nadu.",
-        "image": "https://mkksorganics.vercel.app/assets/images/og-thumbnail.jpg",
+        "image": "https://mkksorganics.vercel.app/images/og-thumbnail.jpg",
         "telephone": "+91 99767 59956",
         "email": "mkks.organics@gmail.com",
         "sameAs": ["https://www.instagram.com/mkks.organics/"],
@@ -75,21 +75,6 @@
     </script>
   </head>
   <body>
-    <script>
-      // Anti-FOUC: apply saved theme before first paint
-      (function() {
-        var t = 'dark';
-        try { 
-          var saved = localStorage.getItem('theme');
-          if (saved === 'light' || saved === 'dark') {
-            t = saved;
-          }
-        } catch(e) {}
-        document.documentElement.setAttribute('data-theme', t);
-        var m = document.querySelector('meta[name="theme-color"]');
-        if (m) m.content = t === 'dark' ? '#0f1610' : '#f6f1e8';
-      })();
-    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

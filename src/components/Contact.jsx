@@ -1,14 +1,14 @@
 import SectionReveal from './SectionReveal.jsx';
-import { WhatsAppIcon, PhoneIcon, InstagramIcon, EmailIcon } from './icons.jsx';
+import { WhatsAppIcon, PhoneIcon, InstagramIcon, MapPinIcon } from './icons.jsx';
 import {
   phoneNumber,
   phoneDisplay,
   whatsappReserveLink,
-  mapEmbed,
   instagramLink,
   instagramHandle,
-  emailAddress,
-} from '../data/content.jsx';
+  mapsLink,
+} from '../content.jsx';
+import { siteConfig } from '../siteConfig.js';
 
 export default function Contact() {
   return (
@@ -24,12 +24,6 @@ export default function Contact() {
           </p>
 
           <div className="contact-actions">
-            <a className="btn btn-primary" href={`tel:${phoneNumber}`}>
-              <span className="btn-icon" aria-hidden="true">
-                <PhoneIcon />
-              </span>
-              Call {phoneDisplay}
-            </a>
             <a
               className="btn btn-whatsapp"
               href={whatsappReserveLink}
@@ -40,6 +34,12 @@ export default function Contact() {
                 <WhatsAppIcon />
               </span>
               WhatsApp
+            </a>
+            <a className="btn btn-primary" href={`tel:${phoneNumber}`}>
+              <span className="btn-icon" aria-hidden="true">
+                <PhoneIcon />
+              </span>
+              Call {phoneDisplay}
             </a>
             <a
               className="btn btn-secondary contact-instagram"
@@ -55,27 +55,20 @@ export default function Contact() {
             </a>
             <a
               className="btn btn-secondary"
-              href={`mailto:${emailAddress}`}
+              href={mapsLink}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span className="btn-icon" aria-hidden="true">
-                <EmailIcon />
+                <MapPinIcon />
               </span>
-              Email
+              Google Maps
             </a>
           </div>
 
           <address>
-            MKKS Organics · Anaimalai Foothills · Pollachi Taluk · Coimbatore District · Tamil Nadu
+            {siteConfig.orchardName} - Anaimalai Foothills - Pollachi Taluk - Coimbatore District - Tamil Nadu
           </address>
-
-          <div className="map-wrap" aria-label="Map location for Pollachi">
-            <iframe
-              title="MKKS Organics Pollachi location"
-              src={mapEmbed}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
         </SectionReveal>
       </div>
     </section>

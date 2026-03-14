@@ -1,6 +1,6 @@
 import SectionReveal from './SectionReveal.jsx';
 import LazyVideo from './LazyVideo.jsx';
-import { careSteps } from '../data/content.jsx';
+import { careSteps } from '../content.jsx';
 
 export default function Maintenance() {
   return (
@@ -10,20 +10,15 @@ export default function Maintenance() {
           <p className="eyebrow">Meticulous Care</p>
           <h2>An Orchard Grown with Intention</h2>
           <p className="section-intro">
-            Great mangoes don't happen by accident. See the daily dedication, 
-            natural soil building, and careful canopy management that makes 
+            Great mangoes don't happen by accident. See the daily dedication,
+            natural soil building, and careful canopy management that makes
             our harvest exceptional.
           </p>
         </SectionReveal>
 
-        <div className="maintenance-grid">
-          {careSteps.map((step, index) => (
-            <SectionReveal
-              as="article"
-              key={step.id}
-              className={`maintenance-card ${step.span ? `span-${step.span}` : ''}`}
-              delay={0.1 + index * 0.05}
-            >
+        <SectionReveal as="div" className="carousel maintenance-carousel" delay={0.1}>
+          {careSteps.map((step) => (
+            <article key={step.id} className="maintenance-card carousel-item">
               <div className="maintenance-media">
                 {step.type === 'video' ? (
                   <LazyVideo
@@ -41,16 +36,14 @@ export default function Maintenance() {
                     decoding="async"
                   />
                 )}
-                <div className="maintenance-overlay" />
               </div>
-              
               <div className="maintenance-content">
                 <h3>{step.title}</h3>
                 <p>{step.desc}</p>
               </div>
-            </SectionReveal>
+            </article>
           ))}
-        </div>
+        </SectionReveal>
       </div>
     </section>
   );

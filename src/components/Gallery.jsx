@@ -1,5 +1,5 @@
 import SectionReveal from './SectionReveal.jsx';
-import { galleryImages } from '../data/content.jsx';
+import { galleryImages } from '../content.jsx';
 
 export default function Gallery() {
   return (
@@ -14,9 +14,9 @@ export default function Gallery() {
           </p>
         </SectionReveal>
 
-        <div className="gallery-grid">
+        <SectionReveal as="div" className="carousel gallery-carousel" delay={0.1}>
           {galleryImages.map((img) => (
-            <figure key={img.src} className="gallery-item">
+            <figure key={img.src} className="gallery-item carousel-item">
               <img
                 src={img.src}
                 width={img.w}
@@ -27,7 +27,7 @@ export default function Gallery() {
               />
             </figure>
           ))}
-        </div>
+        </SectionReveal>
       </div>
     </section>
   );

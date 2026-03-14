@@ -1,40 +1,49 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
 
 /**
- * SectionReveal — fades and slides content into view when it enters the viewport.
- * Uses Framer Motion's useInView for a lightweight, performant scroll-reveal.
+ * SectionReveal - fades and slides content into view when it enters the viewport.
+ * Uses IntersectionObserver + CSS class toggle instead of Framer Motion for performance.
  */
 export default function SectionReveal({
   children,
   className = '',
-  as = 'div',
+  as: Tag = 'div',
   direction = 'up',
   delay = 0,
   ...rest
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-60px 0px' });
+  const [isVisible, setIsVisible] = useState(false);
 
-  const yStart = direction === 'left' ? 0 : direction === 'right' ? 0 : 24;
-  const xStart = direction === 'left' ? -24 : direction === 'right' ? 24 : 0;
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
 
-  const Component = motion[as] || motion.div;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(node);
+        }
+      },
+      { rootMargin: '-60px 0px' }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const dirClass = `reveal-${direction}`;
+  const visClass = isVisible ? 'is-visible' : '';
 
   return (
-    <Component
+    <Tag
       ref={ref}
-      className={className}
+      className={`reveal ${dirClass} ${visClass} ${className}`.trim()}
+      style={delay > 0 ? { transitionDelay: `${delay}s` } : undefined}
       {...rest}
-      initial={{ opacity: 0, y: yStart, x: xStart }}
-      animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: yStart, x: xStart }}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-      }}
     >
       {children}
-    </Component>
+    </Tag>
   );
 }
