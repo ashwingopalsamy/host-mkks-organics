@@ -10,6 +10,7 @@ import Footer from './components/Footer.jsx';
 import CartBar from './components/CartBar.jsx';
 import CombinedFAB from './components/CombinedFAB.jsx';
 import ReservationForm from './components/ReservationForm.jsx';
+import { Analytics } from '@vercel/analytics/react';
 import { getCartItemCount, getCartSubtotal } from './order.js';
 import { varieties } from './content.jsx';
 
@@ -79,6 +80,7 @@ export default function App() {
         onCartChange={setCart}
         onClearCart={handleClearCart}
       />
+      <Analytics />
     </>
   );
 }
