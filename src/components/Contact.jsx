@@ -8,7 +8,11 @@ import {
   mapsLink,
 } from '../content.jsx';
 
+import { usePostHog } from '@posthog/react';
+
 export default function Contact() {
+  const posthog = usePostHog();
+  
   return (
     <section className="section section-contact" id="contact">
       <div className="container">
@@ -50,6 +54,7 @@ export default function Contact() {
               href={whatsappReserveLink}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => posthog?.capture('contact_click', { method: 'whatsapp_reserve' })}
             >
               <div className="contact-wa-left">
                 <WhatsAppIcon className="contact-wa-icon" />
@@ -70,7 +75,11 @@ export default function Contact() {
           <div className="contact-zone-find">
             <p className="contact-find-label">Find Us</p>
 
-            <a className="contact-find-row" href={`tel:${phoneNumber}`}>
+            <a 
+              className="contact-find-row" 
+              href={`tel:${phoneNumber}`}
+              onClick={() => posthog?.capture('contact_click', { method: 'phone_call' })}
+            >
               <div className="contact-find-icon call">
                 <PhoneIcon />
               </div>
@@ -86,6 +95,7 @@ export default function Contact() {
               href={mapsLink}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => posthog?.capture('contact_click', { method: 'google_maps' })}
             >
               <div className="contact-find-icon maps">
                 <MapPinIcon />
@@ -103,6 +113,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Follow on Instagram (${instagramHandle})`}
+              onClick={() => posthog?.capture('social_click', { platform: 'instagram' })}
             >
               <div className="contact-find-icon insta">
                 <InstagramIcon />

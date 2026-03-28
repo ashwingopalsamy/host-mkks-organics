@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { usePostHog } from '@posthog/react';
 import { varieties, MIN_ORDER_VALUE, outOfStockVarieties, beyondMangoProducts } from '../content.jsx';
 import { formatCurrency, getCartSubtotal } from '../order.js';
 import { siteConfig } from '../siteConfig.js';
@@ -7,11 +8,20 @@ import { triggerHaptic } from '../utils.js';
 
 function VarietyItem({ variety, isExpanded, onToggle, cart, onUpdateQuantity }) {
   const kg = cart[variety.id] ?? 0;
+  const posthog = usePostHog();
+
+  const handleToggle = () => {
+    if (!isExpanded) {
+      posthog?.capture('view_item_details', { variety_id: variety.id, variety_name: variety.name });
+    }
+    onToggle();
+  };
+
   return (
     <div className={`accordion-item${isExpanded ? ' is-expanded' : ''}${kg > 0 ? ' in-cart' : ''}`}>
       <button
         className="accordion-trigger"
-        onClick={onToggle}
+        onClick={handleToggle}
         aria-expanded={isExpanded}
         type="button"
       >
@@ -127,6 +137,7 @@ function OrderNote({ subtotal, onQuickAdd }) {
   const minimumMet = subtotal >= MIN_ORDER_VALUE;
   const prevSubtotal = useRef(subtotal);
   const [justMet, setJustMet] = useState(false);
+  const posthog = usePostHog();
 
   useEffect(() => {
     const wasBelow = prevSubtotal.current < MIN_ORDER_VALUE;
@@ -140,6 +151,7 @@ function OrderNote({ subtotal, onQuickAdd }) {
     triggerHaptic();
     setPopInfo({ id: varietyId, label: `+${label}`, key: Date.now() });
     setTimeout(() => setPopInfo(null), 640);
+    posthog?.capture('quick_add_suggested_item', { variety_id: varietyId, quantity: qty });
     onQuickAdd(varietyId, qty);
   };
 
@@ -320,6 +332,7 @@ function OrderNote({ subtotal, onQuickAdd }) {
 export default function VarietyAccordion({ cart, onCartChange }) {
   const [expandedId, setExpandedId] = useState(null);
   const subtotal = getCartSubtotal(cart, varieties);
+  const posthog = usePostHog();
 
   const handleToggle = (id) => {
     setExpandedId(prev => prev === id ? null : id);
@@ -330,6 +343,25 @@ export default function VarietyAccordion({ cart, onCartChange }) {
     onCartChange(prev => {
       const current = prev[varietyId] ?? 0;
       const next = Math.max(0, Math.min(10, current + delta));
+      const variety = varieties.find(v => v.id === varietyId);
+      
+      if (delta > 0 && next > current) {
+        posthog?.capture('add_to_cart', {
+          variety_id: varietyId,
+          variety_name: variety?.name,
+          added_quantity: delta,
+          new_total_quantity: next,
+          price_per_kg: variety?.pricePerKg
+        });
+      } else if (delta < 0 && next < current) {
+        posthog?.capture('remove_from_cart', {
+          variety_id: varietyId,
+          variety_name: variety?.name,
+          removed_quantity: Math.abs(delta),
+          new_total_quantity: next
+        });
+      }
+
       if (next === 0) {
         if (!(varietyId in prev)) return prev;
         const nextCart = { ...prev };

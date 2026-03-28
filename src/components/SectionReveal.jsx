@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
+import { usePostHog } from '@posthog/react';
 
 /**
  * SectionReveal - fades and slides content into view when it enters the viewport.
@@ -14,6 +15,7 @@ export default function SectionReveal({
 }) {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const posthog = usePostHog();
 
   useEffect(() => {
     const node = ref.current;
@@ -23,6 +25,9 @@ export default function SectionReveal({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          posthog?.capture('section_viewed', { 
+            section_id: node.id || className.split(' ')[0] || 'unknown_section'
+          });
           observer.unobserve(node);
         }
       },

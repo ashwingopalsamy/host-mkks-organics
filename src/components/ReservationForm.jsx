@@ -18,6 +18,7 @@ import {
 } from '../order.js';
 import { WhatsAppIcon, BackArrowIcon, CloseIcon, PhoneIcon, CopyIcon, PackageIcon, TrashIcon } from './icons.jsx';
 import { triggerHaptic } from '../utils.js';
+import { usePostHog } from '@posthog/react';
 
 const INITIAL_CUSTOMER = {
   name: '',
@@ -40,8 +41,17 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
   const bodyRef = useRef(null);
   const closeButtonRef = useRef(null);
   const nameInputRef = useRef(null);
+  const posthog = usePostHog();
 
   const switchTab = (tab) => {
+    if (tab === 1 && activeTab === 0) {
+      posthog?.capture('checkout_step_completed', {
+        step: 1,
+        cart_contents: Object.entries(cart).map(([id, qty]) => ({ variety_id: id, quantity: qty })),
+        total_items: totalItems,
+        cart_value: cartTotal
+      });
+    }
     setActiveTab(tab);
     bodyRef.current?.scrollTo?.(0, 0);
   };
@@ -125,12 +135,14 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
   const handleAddSampleBox = useCallback(() => {
     setTasteBoxInCart(true);
     triggerHaptic();
-  }, []);
+    posthog?.capture('add_taste_box');
+  }, [posthog]);
 
   const handleRemoveSampleBox = useCallback(() => {
     setTasteBoxInCart(false);
     triggerHaptic();
-  }, []);
+    posthog?.capture('remove_taste_box');
+  }, [posthog]);
 
   const updateCustomerField = (field, value) => {
     setCustomerDetails((prev) => ({ ...prev, [field]: value }));
@@ -158,8 +170,19 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
   const handleSendRequest = async () => {
     if (disabledReason) {
       triggerHaptic();
+      posthog?.capture('reservation_validation_error', { missing_field: disabledReason.replace('Missing ', '') });
       return;
     }
+
+    posthog?.capture('reservation_submitted', {
+      total_items: totalItems,
+      cart_value: cartTotal + tasteBoxTotal,
+      cart_contents: Object.entries(cart).map(([id, qty]) => ({ variety_id: id, quantity: qty })),
+      taste_box_included: tasteBoxInCart,
+      city: customerDetails.city,
+      state: customerDetails.state,
+      pincode: customerDetails.pin
+    });
 
     const popup = window.open(whatsAppUrl, '_blank', 'noopener,noreferrer');
     if (popup) {
@@ -586,7 +609,10 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                         <button
                           className={`rf-why-pill${showDeliveryInfo ? ' is-open' : ''}`}
                           type="button"
-                          onClick={() => setShowDeliveryInfo(p => !p)}
+                          onClick={() => {
+                            if (!showDeliveryInfo) posthog?.capture('view_delivery_info');
+                            setShowDeliveryInfo(p => !p);
+                          }}
                           aria-label="Why does delivery vary?"
                         >
                           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -678,7 +704,13 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                 </p>
                 {fallbackState.error && <p>Clipboard copy was unavailable on this device.</p>}
                 <div className="fallback-actions">
-                  <a className="btn btn-secondary fallback-btn" href={whatsAppUrl} target="_blank" rel="noopener noreferrer">
+                  <a 
+                    className="btn btn-secondary fallback-btn" 
+                    href={whatsAppUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={() => posthog?.capture('fallback_whatsapp_clicked', { action: 'open_whatsapp_link' })}
+                  >
                     <span className="btn-icon btn-icon-whatsapp" aria-hidden="true"><WhatsAppIcon /></span>
                     Open WhatsApp
                   </a>
@@ -686,6 +718,7 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                     className="btn btn-secondary fallback-btn"
                     type="button"
                     onClick={async () => {
+                      posthog?.capture('fallback_whatsapp_clicked', { action: 'copy_message' });
                       try {
                         await navigator.clipboard.writeText(whatsAppMessage);
                         setFallbackState((prev) => ({ ...prev, copied: true }));
@@ -695,7 +728,11 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                     <span className="btn-icon" aria-hidden="true"><CopyIcon /></span>
                     {fallbackState.copied ? 'Copied' : 'Copy Message'}
                   </button>
-                  <a className="btn btn-secondary fallback-btn" href={`tel:${phoneNumber}`}>
+                  <a 
+                    className="btn btn-secondary fallback-btn" 
+                    href={`tel:${phoneNumber}`}
+                    onClick={() => posthog?.capture('fallback_whatsapp_clicked', { action: 'call_phone' })}
+                  >
                     <span className="btn-icon" aria-hidden="true"><PhoneIcon /></span>
                     Call {phoneDisplay}
                   </a>
