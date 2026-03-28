@@ -119,7 +119,7 @@ export function buildWhatsAppMessage({ lines, productSubtotal, customer, brandNa
     '------------------------',
     `Subtotal: ${formatCurrency(productSubtotal)}`,
     `Packing & Delivery: _Subject to your location (confirmed after reservation)_`,
-    `*Total: ${formatCurrency(productSubtotal)} + delivery*`,
+    `*Total: ${formatCurrency(productSubtotal)} and delivery charges*`,
     '',
     '📍 *Delivery Address*',
     '------------------------',
