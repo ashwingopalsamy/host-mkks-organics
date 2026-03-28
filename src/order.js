@@ -43,7 +43,7 @@ export function getDisabledReason({ itemCount, subtotal, minimumOrderValue, cust
   }
 
   if (!customerDetails.name.trim()) {
-    return 'Enter your full name to continue.';
+    return 'Enter your name to continue.';
   }
 
   if (
@@ -58,7 +58,7 @@ export function getDisabledReason({ itemCount, subtotal, minimumOrderValue, cust
 
   // Indian PIN: exactly 6 digits, first digit 1-9
   if (!/^[1-9][0-9]{5}$/.test(customerDetails.pin.trim())) {
-    return 'Enter a valid 6-digit Indian PIN code.';
+    return 'Enter a valid 6-digit Indian Pincode.';
   }
 
   return null;
@@ -97,8 +97,15 @@ export function buildWhatsAppMessage({ lines, productSubtotal, customer, brandNa
     year: 'numeric',
   });
 
+  const area = customer.addressLine1?.trim() || '';
+  const areaLastSegment = area ? area.split(',').pop().trim() : '';
+  const locationTag = [areaLastSegment, customer.city?.trim()].filter(Boolean).join(', ');
+  const reservationHeader = locationTag
+    ? `🥭 *Mango Reservation from ${customer.name.trim()}, ${locationTag}*`
+    : `🥭 *Mango Reservation from ${customer.name.trim()}*`;
+
   const parts = [
-    `🥭 *Mango Reservation Request from ${customer.name.trim()}*`,
+    reservationHeader,
     '',
     `📅 ${dateStr}`,
     '',
@@ -119,10 +126,6 @@ export function buildWhatsAppMessage({ lines, productSubtotal, customer, brandNa
     `*${customer.name.trim()}*`,
     formatAddress(customer),
   ];
-
-  if (customer.notes?.trim()) {
-    parts.push('', '📝 *Notes*', `_${customer.notes.trim()}_`);
-  }
 
   parts.push('', '------------------------', 'Confirm availability and dispatch window.');
 

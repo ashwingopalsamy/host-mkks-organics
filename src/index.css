@@ -1670,12 +1670,13 @@ address { font-style: normal; }
   overflow: hidden;
   border: 1px solid var(--color-border);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.06);
-  margin-bottom: var(--space-4);
+  margin-bottom: 2px;
+  margin-top: 12px;
   position: relative;
 }
 .rf-taste-head {
   background: linear-gradient(135deg, var(--color-accent-subtle) 0%, #fdf5e4 100%);
-  padding: 10px 13px 9px;
+  padding: 7px 13px 7px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1721,13 +1722,13 @@ address { font-style: normal; }
 
 .rf-taste-sep { height: 1px; background: rgba(232,160,48,0.14); }
 
-.rf-taste-body { padding: 9px 13px 11px; }
+.rf-taste-body { padding: 7px 13px 9px; }
 
 .rf-taste-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 .rf-taste-item-chip {
   display: inline-flex;
@@ -1742,10 +1743,10 @@ address { font-style: normal; }
 .rf-taste-item-name { font-size: 10.5px; font-weight: 600; color: var(--color-text-secondary); }
 
 .rf-taste-desc {
-  font-size: 11.5px;
+  font-size: 11px;
   line-height: 1.55;
   color: var(--color-text-tertiary);
-  margin-bottom: 9px;
+  margin-bottom: 6px;
 }
 .rf-taste-footer {
   display: flex;
@@ -1753,7 +1754,7 @@ address { font-style: normal; }
   justify-content: space-between;
 }
 .rf-taste-price {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 900;
   color: var(--color-text-primary);
   letter-spacing: -0.025em;
@@ -1767,7 +1768,7 @@ address { font-style: normal; }
   font-weight: 800;
   color: #fff;
   background: var(--color-accent);
-  padding: 8px 16px;
+  padding: 6px 14px;
   border-radius: var(--radius-full);
   border: none;
   cursor: pointer;
@@ -1805,15 +1806,36 @@ address { font-style: normal; }
 .rf-taste-card.is-minimized .rf-taste-head {
   padding-bottom: 0;
 }
+.rf-taste-card.is-minimized .rf-taste-body {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
 
-/* ── Section label ── */
+/* ── Section label — centered ornamental divider ── */
 .rf-sec-label {
-  font-size: 10.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9.5px;
   font-weight: 700;
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  padding: var(--space-5) 0 var(--space-2);
+  letter-spacing: 0.16em;
+  padding: 0 0 var(--space-2);
+  white-space: nowrap;
+}
+.rf-sec-label::before,
+.rf-sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border) 40%,
+    var(--color-border) 60%,
+    transparent 100%
+  );
 }
 
 /* ── Variety list — Option 5 ── */
@@ -1923,7 +1945,27 @@ address { font-style: normal; }
   border-left: 1px solid var(--color-border-subtle);
 }
 
-/* Add a note toggle button */
+/* ── Tiny phone overrides (≤390px) ── */
+@media (max-width: 390px) {
+  .reservation-body { padding: 12px; }
+  .rf-fl-row {
+    height: 44px;
+    padding: 0 12px 5px;
+  }
+  .rf-fl-label { font-size: 13.5px; left: 12px; }
+  /* Keep font-size at 16px on inputs — prevents iOS Safari auto-zoom */
+  .rf-fl-input { font-size: 16px; }
+  .rf-fl-row:focus-within .rf-fl-label,
+  .rf-fl-input:not(:placeholder-shown) + .rf-fl-label {
+    transform: translateY(-13px) scale(0.72);
+    left: auto;
+    right: 12px;
+  }
+  .rf-field-card { border-radius: 10px; margin-bottom: 10px; }
+  .rf-field-row-split .rf-fl-row { padding: 0 10px 5px; }
+  .rf-field-row-split .rf-fl-label { left: 10px; }
+}
+
 .rf-add-note-btn {
   display: inline-flex;
   align-items: center;
@@ -1941,10 +1983,10 @@ address { font-style: normal; }
 /* ── Float label rows (Step 2) ── */
 .rf-fl-row {
   position: relative;
-  height: 54px;
+  height: 46px;
   display: flex;
   align-items: flex-end;
-  padding: 0 14px 8px;
+  padding: 0 14px 6px;
   border-top: 1px solid var(--color-border-subtle);
 }
 .rf-fl-row:first-child { border-top: none; }
@@ -1990,20 +2032,36 @@ address { font-style: normal; }
 }
 .rf-fl-input::placeholder { color: transparent; }
 
-/* Float up on focus or when value exists */
+/* Float up on focus or when value exists — anchors to top-right corner */
 .rf-fl-row:focus-within .rf-fl-label,
 .rf-fl-input:not(:placeholder-shown) + .rf-fl-label {
-  transform: translateY(-19px) scale(0.72);
+  transform: translateY(-15px) scale(0.72);
+  transform-origin: right center;
+  left: auto;
+  right: 14px;
   color: var(--color-text-muted);
   font-weight: 600;
   letter-spacing: 0.06em;
 }
 
-/* Active field card: amber border */
+/* Active field card: amber border with subtle pulse */
 .rf-field-card.is-active {
   border-color: var(--color-accent);
   box-shadow: 0 1px 2px rgba(0,0,0,0.04),
-              0 4px 14px rgba(232,160,48,0.08);
+              0 4px 14px rgba(232,160,48,0.12);
+  animation: rfCardPulse 3s ease-in-out infinite;
+}
+@keyframes rfCardPulse {
+  0%, 100% { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(232,160,48,0.08); border-color: var(--color-accent); }
+  50% { box-shadow: 0 1px 4px rgba(232,160,48,0.1), 0 6px 20px rgba(232,160,48,0.15); border-color: #f1c40f; }
+}
+
+/* Active row highlight — focused but subtle */
+.rf-fl-row.is-active-row {
+  background: rgba(232,160,48,0.02);
+}
+.rf-field-card.is-active .rf-fl-row.is-active-row .rf-fl-label {
+  color: var(--color-accent);
 }
 .rf-field-card.is-active .rf-fl-row:focus-within .rf-fl-label {
   color: var(--color-accent);
@@ -2277,6 +2335,17 @@ textarea.reserve-input { resize: vertical; }
 
 .rf-footer-sep { height: 1px; background: var(--color-border-subtle); margin-bottom: 12px; }
 
+/* Priority processing note — Tab 1, below billing summary */
+.rf-priority-note {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.55;
+  margin: 0 0 10px;
+  letter-spacing: -0.005em;
+}
+
 /* ── Folded receipt — collapsible items in tab 2 ── */
 .rf-order-collapse {
   overflow: hidden;
@@ -2344,6 +2413,7 @@ textarea.reserve-input { resize: vertical; }
 .rf-billing-total .rf-billing-val { font-size: 15px; font-weight: 800; color: var(--color-accent); letter-spacing: -0.02em; }
 .rf-delivery-tbd { font-style: italic; font-weight: 500; color: var(--color-text-muted); }
 .rf-plus-delivery { font-size: 11px; font-weight: 500; color: var(--color-text-muted); font-style: italic; }
+.rf-cta-green .rf-plus-delivery { color: rgba(255,255,255,0.65); }
 
 
 /* Price-in-button CTAs */
@@ -2357,31 +2427,48 @@ textarea.reserve-input { resize: vertical; }
 .rf-cta.is-disabled { opacity: 0.55; cursor: not-allowed; }
 .rf-cta-left { display: flex; align-items: center; gap: 7px; }
 .rf-cta-label { font-size: 14.5px; font-weight: 800; letter-spacing: -0.01em; display: block; }
-/* ── Guarantee chip — border breath + text shimmer ── */
-.rf-guarantee-chip {
+/* ── Trust banner — reserve + priority, merged ── */
+.rf-trust-banner {
   display: flex;
-  align-items: flex-start;
-  gap: 9px;
-  background: var(--color-green-subtle);
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3px;
+  background: rgba(74,155,90,0.07);
   border: 1px solid rgba(74,155,90,0.22);
-  padding: 9px 12px;
-  border-radius: 11px;
+  padding: 8px 11px 9px;
+  border-radius: 10px;
   margin-bottom: 10px;
-  animation: rfChipBorder 4s ease-in-out infinite;
   position: relative;
+  overflow: hidden;
 }
-@keyframes rfChipBorder {
-  0%,100% { box-shadow: 0 0 0 0 rgba(74,155,90,0); }
-  50%     { box-shadow: 0 0 0 3px rgba(74,155,90,0.1); }
+.rf-trust-banner::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.28) 50%, transparent 100%);
+  animation: rfTrustSheen 5.5s ease-in-out 1.2s infinite;
+  pointer-events: none;
 }
-.rf-guarantee-icon {
-  flex-shrink: 0;
+@keyframes rfTrustSheen {
+  0%,55% { left: -100%; }
+  100%   { left: 120%; }
+}
+.rf-trust-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+.rf-trust-icon {
   color: var(--color-green);
+  display: flex;
+  align-items: center;
 }
-.rf-guarantee-icon svg { display: block; }
-.rf-guarantee-text { flex: 1; min-width: 0; }
-.rf-guarantee-main {
-  font-size: 12px; font-weight: 700; display: block;
+.rf-trust-icon svg { display: block; }
+.rf-trust-main {
+  font-size: 12.5px; font-weight: 700; display: block;
   background: linear-gradient(90deg,
     #2d6b3a 0%, #2d6b3a 30%,
     #4fa862 44%, #6dc07d 50%, #4fa862 56%,
@@ -2397,10 +2484,14 @@ textarea.reserve-input { resize: vertical; }
   0%,40%   { background-position: 110% 0; }
   85%,100% { background-position: -10% 0; }
 }
-.rf-guarantee-sub {
-  font-size: 10.5px; font-weight: 400; color: var(--color-green);
-  display: block; margin-top: 1px; opacity: 0.75;
+.rf-trust-sub {
+  font-size: 10px; font-weight: 400; color: var(--color-green);
+  display: block; margin-top: 1px; opacity: 0.8; line-height: 1.45;
+  position: relative;
+  z-index: 1;
 }
+/* Edit icon on order toggle row */
+.rf-order-edit-icon { color: var(--color-text-muted); flex-shrink: 0; }
 .rf-cta-arrow { opacity: 0.75; }
 .rf-cta-price { font-size: 16px; font-weight: 900; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
 .rf-cta-wa-icon { display: flex; align-items: center; }
@@ -2419,6 +2510,21 @@ textarea.reserve-input { resize: vertical; }
 .rf-cta-green {
   background: var(--color-green); color: #fff;
   box-shadow: 0 4px 16px rgba(61,138,77,0.35);
+  animation: rf-cta-pulse 3s ease-in-out infinite;
+}
+.rf-cta-green .rf-cta-label {
+  font-size: 16.5px;
+}
+
+@keyframes rf-cta-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 16px rgba(61,138,77,0.35);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 6px 22px rgba(61,138,77,0.45);
+  }
 }
 
 .rf-start-over {
@@ -2634,37 +2740,118 @@ textarea.reserve-input { resize: vertical; }
 }
 
 /* ============================================================
-   OFFER CHIP — Collapsed row + RF variety row
+   OFFER CHIP — Premium micro-animations
    ============================================================ */
 .offer-chip {
   display: inline-flex;
   align-items: center;
   gap: 3px;
   font-size: 9.5px;
+  line-height: 1;
   font-weight: 700;
   color: var(--color-green);
   background: var(--color-green-subtle);
-  padding: 2px 7px 2px 5px;
+  padding: 3px 7px 3px 5px;
   border-radius: var(--radius-full);
   letter-spacing: 0.03em;
   white-space: nowrap;
-  border: 1px solid rgba(74,155,90,0.12);
+  border: 1px solid rgba(74,155,90,0.18);
   position: relative;
   overflow: hidden;
+  vertical-align: middle;
+  /* Layer 1: breathing border glow + micro bounce */
+  animation: offer-glow 4s ease-in-out infinite;
+  will-change: transform, box-shadow;
 }
-.offer-chip svg { width: 9px; height: 9px; flex-shrink: 0; }
+
+/* Layer 2: shimmer sweep */
+.offer-chip::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 55%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.55) 50%,
+    transparent 100%
+  );
+  animation: offer-shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Layer 3: inner fill pulse */
 .offer-chip::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(74,155,90,0.08);
+  background: rgba(74,155,90,0.07);
   border-radius: inherit;
-  animation: offer-pulse 3s ease-in-out infinite;
+  animation: offer-fill 4s ease-in-out infinite;
 }
-@keyframes offer-pulse {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+
+/* Tag icon: periodic jolt */
+.offer-chip svg {
+  width: 9px; height: 9px; flex-shrink: 0;
+  animation: offer-tag-jolt 4s ease-in-out infinite;
+  transform-origin: center;
 }
+
+/* Stagger per row so chips don't all fire at once */
+.rf-variety-row:nth-child(2) .offer-chip,
+.rf-variety-row:nth-child(2) .offer-chip::before,
+.rf-variety-row:nth-child(2) .offer-chip::after,
+.rf-variety-row:nth-child(2) .offer-chip svg { animation-delay: 0.9s; }
+
+.rf-variety-row:nth-child(3) .offer-chip,
+.rf-variety-row:nth-child(3) .offer-chip::before,
+.rf-variety-row:nth-child(3) .offer-chip::after,
+.rf-variety-row:nth-child(3) .offer-chip svg { animation-delay: 1.8s; }
+
+.rf-variety-row:nth-child(4) .offer-chip,
+.rf-variety-row:nth-child(4) .offer-chip::before,
+.rf-variety-row:nth-child(4) .offer-chip::after,
+.rf-variety-row:nth-child(4) .offer-chip svg { animation-delay: 2.7s; }
+
+/* Keyframes */
+@keyframes offer-glow {
+  0%,  35%, 100% {
+    box-shadow: 0 0 0 0 rgba(74,155,90,0);
+    transform: scale(1);
+  }
+  42% {
+    box-shadow: 0 0 0 2.5px rgba(74,155,90,0.22), 0 2px 8px rgba(74,155,90,0.18);
+    transform: scale(1.06);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(74,155,90,0.12), 0 1px 4px rgba(74,155,90,0.1);
+    transform: scale(1.03);
+  }
+  58% {
+    box-shadow: 0 0 0 0 rgba(74,155,90,0);
+    transform: scale(1);
+  }
+}
+
+@keyframes offer-shimmer {
+  0%, 30%  { left: -80%; opacity: 0; }
+  33%      { opacity: 1; }
+  50%      { left: 110%; opacity: 0; }
+  100%     { left: 110%; opacity: 0; }
+}
+
+@keyframes offer-fill {
+  0%, 30%, 65%, 100% { opacity: 0; }
+  42%, 55%           { opacity: 1; }
+}
+
+@keyframes offer-tag-jolt {
+  0%, 30%, 48%, 100% { transform: rotate(0deg) scale(1); }
+  36%  { transform: rotate(-18deg) scale(1.15); }
+  40%  { transform: rotate(12deg)  scale(1.1); }
+  44%  { transform: rotate(-6deg)  scale(1.05); }
+}
+
 
 /* ============================================================
    PRICE CONTEXT ROW — Expanded accordion panel

@@ -1,10 +1,10 @@
-const whatsAppNumber = '919976759956';
+const whatsAppNumber = '919843715599';
 
 export const siteConfig = {
   brandName: 'MKKS Organics',
   orchardName: 'MKKS Organics Orchard',
-  phoneNumberE164: '+919976759956',
-  phoneDisplay: '+91 99767 59956',
+  phoneNumberE164: '+919843715599',
+  phoneDisplay: '+91 98437 15599',
   whatsAppNumber,
   instagramUrl: 'https://www.instagram.com/mkks.organics/',
   instagramHandle: '@mkks.organics',
