@@ -19,6 +19,7 @@ import {
 import { WhatsAppIcon, BackArrowIcon, CloseIcon, PhoneIcon, CopyIcon, PackageIcon, TrashIcon } from './icons.jsx';
 import { triggerHaptic } from '../utils.js';
 import { usePostHog } from '@posthog/react';
+import { trackEvent, trackPageView } from '../analytics.js';
 
 const INITIAL_CUSTOMER = {
   name: '',
@@ -36,21 +37,24 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
   const [fallbackState, setFallbackState] = useState({ copied: false, blocked: false, error: false });
   const [showDeliveryInfo, setShowDeliveryInfo] = useState(false);
 
-
   const formRef = useRef(null);
   const bodyRef = useRef(null);
   const closeButtonRef = useRef(null);
   const nameInputRef = useRef(null);
+  const formOpenTimeRef = useRef(null);
+  const fieldFiredRef = useRef(new Set());
   const posthog = usePostHog();
 
   const switchTab = (tab) => {
     if (tab === 1 && activeTab === 0) {
-      posthog?.capture('checkout_step_completed', {
-        step: 1,
+      const cartProps = {
         cart_contents: Object.entries(cart).map(([id, qty]) => ({ variety_id: id, quantity: qty })),
         total_items: totalItems,
-        cart_value: cartTotal
-      });
+        cart_value: cartTotal,
+      };
+      posthog?.capture('checkout_step_completed', { step: 1, ...cartProps });
+      // Virtual page view: delivery step
+      trackPageView('/reservation/delivery', 'Reservation – Delivery Details', posthog);
     }
     setActiveTab(tab);
     bodyRef.current?.scrollTo?.(0, 0);
@@ -174,15 +178,21 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
       return;
     }
 
-    posthog?.capture('reservation_submitted', {
+    const formDurationSec = formOpenTimeRef.current
+      ? Math.round((Date.now() - formOpenTimeRef.current) / 1000)
+      : null;
+
+    const submissionProps = {
       total_items: totalItems,
       cart_value: cartTotal + tasteBoxTotal,
       cart_contents: Object.entries(cart).map(([id, qty]) => ({ variety_id: id, quantity: qty })),
       taste_box_included: tasteBoxInCart,
       city: customerDetails.city,
       state: customerDetails.state,
-      pincode: customerDetails.pin
-    });
+      pincode: customerDetails.pin,
+      form_duration_seconds: formDurationSec,
+    };
+    trackEvent('reservation_submitted', submissionProps, posthog);
 
     const popup = window.open(whatsAppUrl, '_blank', 'noopener,noreferrer');
     if (popup) {
@@ -203,6 +213,10 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     requestAnimationFrame(() => { closeButtonRef.current?.focus(); });
+    // Record form open time for completion-time measurement
+    formOpenTimeRef.current = Date.now();
+    // Fire virtual page view for the cart tab
+    trackPageView('/reservation/cart', 'Reservation – Cart', posthog);
     return () => { document.body.style.overflow = previousOverflow; };
   }, [isOpen]);
 
@@ -445,6 +459,12 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                   autoComplete="name"
                   value={customerDetails.name}
                   onChange={(e) => updateCustomerField('name', e.target.value)}
+                  onFocus={() => {
+                    if (!fieldFiredRef.current.has('name')) {
+                      fieldFiredRef.current.add('name');
+                      posthog?.capture('form_field_started', { field: 'name' });
+                    }
+                  }}
                 />
                 <label className="rf-fl-label" htmlFor="customer-name">Name</label>
               </div>
@@ -457,6 +477,12 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                   autoComplete="address-line1"
                   value={customerDetails.flat}
                   onChange={(e) => updateCustomerField('flat', e.target.value)}
+                  onFocus={() => {
+                    if (!fieldFiredRef.current.has('flat')) {
+                      fieldFiredRef.current.add('flat');
+                      posthog?.capture('form_field_started', { field: 'flat_building' });
+                    }
+                  }}
                 />
                 <label className="rf-fl-label" htmlFor="customer-flat">Flat / Building</label>
               </div>
@@ -469,6 +495,12 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                   autoComplete="address-line2"
                   value={customerDetails.addressLine1}
                   onChange={(e) => updateCustomerField('addressLine1', e.target.value)}
+                  onFocus={() => {
+                    if (!fieldFiredRef.current.has('address1')) {
+                      fieldFiredRef.current.add('address1');
+                      posthog?.capture('form_field_started', { field: 'street_area' });
+                    }
+                  }}
                 />
                 <label className="rf-fl-label" htmlFor="customer-address1">Street / Area</label>
               </div>
@@ -481,6 +513,12 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                   autoComplete="address-level3"
                   value={customerDetails.addressLine2}
                   onChange={(e) => updateCustomerField('addressLine2', e.target.value)}
+                  onFocus={() => {
+                    if (!fieldFiredRef.current.has('address2')) {
+                      fieldFiredRef.current.add('address2');
+                      posthog?.capture('form_field_started', { field: 'landmark' });
+                    }
+                  }}
                 />
                 <label className="rf-fl-label" htmlFor="customer-address2">
                   Landmark{' '}
@@ -498,6 +536,12 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                     autoComplete="address-level2"
                     value={customerDetails.city}
                     onChange={(e) => updateCustomerField('city', e.target.value)}
+                    onFocus={() => {
+                      if (!fieldFiredRef.current.has('city')) {
+                        fieldFiredRef.current.add('city');
+                        posthog?.capture('form_field_started', { field: 'city' });
+                      }
+                    }}
                   />
                   <label className="rf-fl-label" htmlFor="customer-city">City</label>
                 </div>
@@ -512,6 +556,12 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                     autoComplete="postal-code"
                     value={customerDetails.pin}
                     onChange={(e) => updateCustomerField('pin', e.target.value.replace(/\D/g, ''))}
+                    onFocus={() => {
+                      if (!fieldFiredRef.current.has('pin')) {
+                        fieldFiredRef.current.add('pin');
+                        posthog?.capture('form_field_started', { field: 'pincode' });
+                      }
+                    }}
                   />
                   <label className="rf-fl-label" htmlFor="customer-pin">Pincode</label>
                   {customerDetails.pin.length === 6 && !/^[1-9][0-9]{5}$/.test(customerDetails.pin) && (

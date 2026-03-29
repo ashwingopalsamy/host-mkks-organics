@@ -5,6 +5,7 @@ import { formatCurrency, getCartSubtotal } from '../order.js';
 import { siteConfig } from '../siteConfig.js';
 import { ChevronDownIcon } from './icons.jsx';
 import { triggerHaptic } from '../utils.js';
+import { useSectionTracker } from '../analytics.js';
 
 function VarietyItem({ variety, isExpanded, onToggle, cart, onUpdateQuantity }) {
   const kg = cart[variety.id] ?? 0;
@@ -333,6 +334,10 @@ export default function VarietyAccordion({ cart, onCartChange }) {
   const [expandedId, setExpandedId] = useState(null);
   const subtotal = getCartSubtotal(cart, varieties);
   const posthog = usePostHog();
+  const sectionRef = useRef(null);
+
+  // Virtual page view: section 'varieties' → path '/varieties'
+  useSectionTracker('varieties', sectionRef, posthog);
 
   const handleToggle = (id) => {
     setExpandedId(prev => prev === id ? null : id);
@@ -380,7 +385,7 @@ export default function VarietyAccordion({ cart, onCartChange }) {
   };
 
   return (
-    <section className="section section-varieties" id="varieties">
+    <section className="section section-varieties" id="varieties" ref={sectionRef}>
       <div className="container">
         <header className="section-head">
           <p className="eyebrow">The Collection</p>

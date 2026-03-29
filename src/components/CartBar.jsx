@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { usePostHog } from '@posthog/react';
 import { varieties, MIN_ORDER_VALUE } from '../content.jsx';
 import {
   formatCurrency,
@@ -7,8 +8,10 @@ import {
   getCartDescription,
 } from '../order.js';
 import { TrashIcon } from './icons.jsx';
+import { trackEvent } from '../analytics.js';
 
 export default function CartBar({ cart, onReserveClick, onClearCart }) {
+  const posthog = usePostHog();
   const itemCount = useMemo(() => getCartItemCount(cart), [cart]);
   const subtotal = useMemo(() => getCartSubtotal(cart, varieties), [cart]);
   const description = useMemo(() => getCartDescription(cart, varieties), [cart]);
@@ -35,7 +38,10 @@ export default function CartBar({ cart, onReserveClick, onClearCart }) {
         {/* Clear */}
         <button
           className="cart-bar-clear"
-          onClick={onClearCart}
+          onClick={() => {
+            trackEvent('cart_bar_clear', { item_count: itemCount, subtotal }, posthog);
+            onClearCart?.();
+          }}
           aria-label="Clear cart"
           type="button"
         >
@@ -45,7 +51,10 @@ export default function CartBar({ cart, onReserveClick, onClearCart }) {
         {/* View Cart pill */}
         <button
           className="cart-bar-open"
-          onClick={(event) => onReserveClick?.(event.currentTarget)}
+          onClick={(event) => {
+            trackEvent('cart_bar_view_cart', { item_count: itemCount, subtotal }, posthog);
+            onReserveClick?.(event.currentTarget);
+          }}
           aria-label={`View cart (${itemCount} items)`}
           type="button"
         >

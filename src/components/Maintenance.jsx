@@ -1,9 +1,18 @@
+import { useRef } from 'react';
+import { usePostHog } from '@posthog/react';
 import { careSteps } from '../content.jsx';
 import LazyVideo from './LazyVideo.jsx';
+import { useSectionTracker } from '../analytics.js';
 
 export default function Maintenance() {
+  const sectionRef = useRef(null);
+  const posthog = usePostHog();
+
+  // Virtual page view: section 'maintenance' → path '/maintenance'
+  useSectionTracker('maintenance', sectionRef, posthog);
+
   return (
-    <section className="section section-maintenance" id="maintenance">
+    <section className="section section-maintenance" id="maintenance" ref={sectionRef}>
       <div className="container">
         <header className="section-head">
           <p className="eyebrow">Meticulous Care</p>

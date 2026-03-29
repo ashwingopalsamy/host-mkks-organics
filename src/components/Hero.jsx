@@ -1,15 +1,22 @@
 import { useRef } from 'react';
+import { usePostHog } from '@posthog/react';
 import { CalendarCheckIcon, ChevronDownIcon, PhoneIcon, WhatsAppIcon } from './icons.jsx';
 import { phoneNumber, whatsappReserveLink } from '../content.jsx';
+import { trackEvent, useSectionTracker } from '../analytics.js';
 
 export default function Hero({ onReserveClick }) {
   const sectionRef = useRef(null);
+  const posthog = usePostHog();
+
+  // Virtual page view: section 'home' → path '/'
+  useSectionTracker('home', sectionRef, posthog);
 
   const handleScrollDown = () => {
     const nextSection = document.getElementById('varieties');
     if (nextSection) {
       nextSection.scrollIntoView({ behavior: 'smooth' });
     }
+    trackEvent('hero_scroll_down', { from: 'hero_chevron' }, posthog);
   };
 
   return (
@@ -44,16 +51,34 @@ export default function Hero({ onReserveClick }) {
             </p>
 
             <div className="hero-cta">
-              <button className="btn btn-primary hero-cta-main" onClick={(event) => onReserveClick?.(event.currentTarget)}>
+              <button
+                className="btn btn-primary hero-cta-main"
+                onClick={(event) => {
+                  trackEvent('hero_cta_click', { cta: 'reserve_mangoes' }, posthog);
+                  onReserveClick?.(event.currentTarget);
+                }}
+              >
                 <span className="btn-icon" aria-hidden="true">
                   <CalendarCheckIcon />
                 </span>
                 <span className="btn-label">Reserve Mangoes</span>
               </button>
-              <a className="btn hero-cta-icon" href={`tel:${phoneNumber}`} aria-label="Call us">
+              <a
+                className="btn hero-cta-icon"
+                href={`tel:${phoneNumber}`}
+                aria-label="Call us"
+                onClick={() => trackEvent('hero_phone_click', { source: 'hero' }, posthog)}
+              >
                 <span className="btn-icon" aria-hidden="true"><PhoneIcon /></span>
               </a>
-              <a className="btn hero-cta-icon hero-cta-wa" href={whatsappReserveLink} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <a
+                className="btn hero-cta-icon hero-cta-wa"
+                href={whatsappReserveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                onClick={() => trackEvent('hero_whatsapp_click', { source: 'hero' }, posthog)}
+              >
                 <span className="btn-icon btn-icon-whatsapp" aria-hidden="true"><WhatsAppIcon /></span>
               </a>
             </div>

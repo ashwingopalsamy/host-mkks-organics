@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { WhatsAppIcon, PhoneIcon, InstagramIcon, MapPinIcon } from './icons.jsx';
 import {
   phoneNumber,
@@ -7,14 +8,18 @@ import {
   instagramHandle,
   mapsLink,
 } from '../content.jsx';
-
 import { usePostHog } from '@posthog/react';
+import { useSectionTracker } from '../analytics.js';
 
 export default function Contact() {
   const posthog = usePostHog();
-  
+  const sectionRef = useRef(null);
+
+  // Virtual page view: section 'contact' → path '/contact'
+  useSectionTracker('contact', sectionRef, posthog);
+
   return (
-    <section className="section section-contact" id="contact">
+    <section className="section section-contact" id="contact" ref={sectionRef}>
       <div className="container">
         <div className="contact-card">
 

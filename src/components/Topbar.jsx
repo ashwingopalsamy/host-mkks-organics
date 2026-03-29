@@ -1,11 +1,16 @@
 import { useCallback, useRef } from 'react';
+import { usePostHog } from '@posthog/react';
 import { ShoppingBagIcon, MapPinIcon } from './icons.jsx';
+import { trackEvent } from '../analytics.js';
 
 export default function Topbar({ onReserveClick, cartItemCount = 0 }) {
   const topbarRef = useRef(null);
+  const posthog = usePostHog();
 
   const handleOrderClick = useCallback(
     (e) => {
+      const action = cartItemCount > 0 ? 'open_cart' : 'scroll_to_varieties';
+      trackEvent('topbar_order_click', { action, cart_item_count: cartItemCount }, posthog);
       if (cartItemCount > 0) {
         onReserveClick?.(e.currentTarget);
       } else {
@@ -16,16 +21,17 @@ export default function Topbar({ onReserveClick, cartItemCount = 0 }) {
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     },
-    [cartItemCount, onReserveClick],
+    [cartItemCount, onReserveClick, posthog],
   );
 
   const handleContactClick = useCallback(() => {
+    trackEvent('topbar_contact_click', {}, posthog);
     const section = document.querySelector('#contact');
     if (!section) return;
     const offset = (topbarRef.current?.offsetHeight ?? 0) + 16;
     const y = section.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: y, behavior: 'smooth' });
-  }, []);
+  }, [posthog]);
 
   return (
     <header className="topbar-island" id="top" ref={topbarRef}>
