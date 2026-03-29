@@ -3055,3 +3055,146 @@ textarea.reserve-input { resize: vertical; }
   text-decoration-color: rgba(180,80,80,0.4);
   text-decoration-thickness: 1.5px;
 }
+
+/* ============================================================
+   PWA PROMPT (iOS 18 Island)
+   ============================================================ */
+@keyframes slideDownIsland {
+  from { transform: translateY(-120%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.pwa-prompt-container {
+  position: fixed;
+  top: calc(16px + env(safe-area-inset-top, 0px));
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.pwa-capsule {
+  pointer-events: auto;
+  background: rgba(26,26,23,0.88);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.06) inset;
+  border-radius: 20px;
+  padding: 12px 14px;
+  width: calc(100% - 32px);
+  max-width: 380px;
+  animation: slideDownIsland 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pwa-capsule-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pwa-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.pwa-text-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.pwa-title {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+
+.pwa-subtitle {
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.pwa-close-btn {
+  background: rgba(255,255,255,0.08);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.pwa-close-btn:active {
+  transform: scale(0.9);
+  background: rgba(255,255,255,0.15);
+}
+
+.pwa-capsule-action {
+  font-family: var(--font-body);
+}
+
+/* iOS instructions inline pill */
+.pwa-ios-instructions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.pwa-ios-text {
+  opacity: 0.9;
+}
+
+.pwa-inline-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+}
+
+.pwa-inline-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Android install button */
+.pwa-install-btn {
+  width: 100%;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding: 11px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(232,160,48,0.3);
+  transition: transform 0.2s;
+}
+
+.pwa-install-btn:active {
+  transform: scale(0.96);
+}

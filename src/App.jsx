@@ -10,6 +10,7 @@ import Footer from './components/Footer.jsx';
 import CartBar from './components/CartBar.jsx';
 import CombinedFAB from './components/CombinedFAB.jsx';
 import ReservationForm from './components/ReservationForm.jsx';
+import PWAPrompt from './components/PWAPrompt.jsx';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { getCartItemCount, getCartSubtotal } from './order.js';
@@ -87,6 +88,7 @@ export default function App() {
         onCartChange={setCart}
         onClearCart={handleClearCart}
       />
+      <PWAPrompt />
       <Analytics />
       <SpeedInsights />
     </>
