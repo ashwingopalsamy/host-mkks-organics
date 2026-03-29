@@ -22,4 +22,7 @@ export const siteConfig = {
       'imam-pasand': { originalPrice: 250, offerPrice: 200 },
     },
   },
+  featureFlags: {
+    ENABLE_MIN_QTY_PER_VARIETY: true,
+  },
 };

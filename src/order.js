@@ -135,3 +135,24 @@ export function buildWhatsAppMessage({ lines, productSubtotal, customer, brandNa
 export function buildWhatsAppUrl(message, phoneNumberE164) {
   return `https://wa.me/${phoneNumberE164.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
 }
+/**
+ * Centralized logic for variety-specific minimums.
+ */
+export function calculateNextQuantity(current, delta, variety, featureFlags) {
+  const minQty = featureFlags?.ENABLE_MIN_QTY_PER_VARIETY && variety?.minQty ? variety.minQty : 1;
+  const maxQty = 10;
+
+  let next;
+  if (current === 0 && delta > 0) {
+    // Adding for the first time: jump to min
+    next = minQty;
+  } else if (current <= minQty && delta < 0) {
+    // Reducing at or below min: remove completely
+    next = 0;
+  } else {
+    // Standard step
+    next = Math.max(0, Math.min(maxQty, current + delta));
+  }
+
+  return next;
+}

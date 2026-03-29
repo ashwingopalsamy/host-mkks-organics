@@ -15,6 +15,7 @@ import {
   getCartLines,
   getCartSubtotal,
   getDisabledReason,
+  calculateNextQuantity,
 } from '../order.js';
 import { WhatsAppIcon, BackArrowIcon, CloseIcon, PhoneIcon, CopyIcon, PackageIcon, TrashIcon } from './icons.jsx';
 import { triggerHaptic } from '../utils.js';
@@ -123,7 +124,9 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
     triggerHaptic();
     setCart((prev) => {
       const current = prev[varietyId] ?? 0;
-      const next = Math.max(0, Math.min(10, current + delta));
+      const variety = varieties.find(v => v.id === varietyId);
+      const next = calculateNextQuantity(current, delta, variety, siteConfig.featureFlags);
+
       if (next === 0) {
         if (!(varietyId in prev)) return prev;
         const nextCart = { ...prev };
@@ -336,6 +339,12 @@ export default function ReservationForm({ isOpen, onClose, cart: externalCart, o
                         </div>
                       ) : (
                         <div className="rf-variety-price">{formatCurrency(variety.pricePerKg)}/kg</div>
+                      )}
+                      {siteConfig.featureFlags?.ENABLE_MIN_QTY_PER_VARIETY && variety.minQty && kg === 0 && (
+                        <div className="rf-variety-min-sugg" style={{ fontSize: '10.5px', fontWeight: '650', color: 'var(--color-accent)', marginTop: '3px', display: 'flex', alignItems: 'center', gap: '3px', letterSpacing: '-0.01em', opacity: 0.9 }}>
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                          Starts at {variety.minQty} kg
+                        </div>
                       )}
                     </div>
                     {kg === 0 ? (

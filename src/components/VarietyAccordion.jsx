@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePostHog } from '@posthog/react';
 import { varieties, MIN_ORDER_VALUE, outOfStockVarieties, beyondMangoProducts } from '../content.jsx';
-import { formatCurrency, getCartSubtotal } from '../order.js';
+import { formatCurrency, getCartSubtotal, calculateNextQuantity } from '../order.js';
 import { siteConfig } from '../siteConfig.js';
 import { ChevronDownIcon } from './icons.jsx';
 import { triggerHaptic } from '../utils.js';
@@ -11,19 +11,24 @@ function VarietyItem({ variety, isExpanded, onToggle, cart, onUpdateQuantity }) 
   const kg = cart[variety.id] ?? 0;
   const posthog = usePostHog();
 
+  const overrideExpanded = siteConfig.featureFlags?.ENABLE_MIN_QTY_PER_VARIETY;
+  const forceExpanded = overrideExpanded ? true : isExpanded;
+
   const handleToggle = () => {
-    if (!isExpanded) {
+    if (overrideExpanded) return;
+    if (!forceExpanded) {
       posthog?.capture('view_item_details', { variety_id: variety.id, variety_name: variety.name });
     }
     onToggle();
   };
 
   return (
-    <div className={`accordion-item${isExpanded ? ' is-expanded' : ''}${kg > 0 ? ' in-cart' : ''}`}>
+    <div className={`accordion-item${forceExpanded ? ' is-expanded' : ''}${kg > 0 ? ' in-cart' : ''}`}>
       <button
         className="accordion-trigger"
         onClick={handleToggle}
-        aria-expanded={isExpanded}
+        aria-expanded={forceExpanded}
+        style={overrideExpanded ? { cursor: 'default' } : undefined}
         type="button"
       >
         <img
@@ -52,7 +57,7 @@ function VarietyItem({ variety, isExpanded, onToggle, cart, onUpdateQuantity }) 
           </div>
         </div>
         <div className="accordion-trigger-right">
-          {!isExpanded && (
+          {!forceExpanded && !overrideExpanded && (
             <span className="accordion-add-btn" aria-hidden="true">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M12 5v14M5 12h14" />
@@ -60,11 +65,11 @@ function VarietyItem({ variety, isExpanded, onToggle, cart, onUpdateQuantity }) 
               Add
             </span>
           )}
-          <ChevronDownIcon className="accordion-chevron" />
+          {!overrideExpanded && <ChevronDownIcon className="accordion-chevron" />}
         </div>
       </button>
 
-      <div className="accordion-panel" aria-hidden={!isExpanded}>
+      <div className="accordion-panel" aria-hidden={!forceExpanded}>
         <div className="accordion-panel-inner">
           <div className="accordion-media">
             <img
@@ -100,32 +105,55 @@ function VarietyItem({ variety, isExpanded, onToggle, cart, onUpdateQuantity }) 
                 </div>
               )}
             </div>
-            <div
-              className={`accordion-qty${kg > 0 ? ' in-cart' : ''}`}
-              aria-label={`${variety.name} quantity in kg`}
-            >
+            {kg === 0 ? (
               <button
-                className="qty-btn"
-                onClick={() => onUpdateQuantity(variety.id, -1)}
-                disabled={kg === 0}
-                aria-label={`Remove 1 kg of ${variety.name}`}
+                className="acc-premium-add"
                 type="button"
-              >
-                −
-              </button>
-              <span className="qty-value" aria-live="polite">
-                {kg === 0 ? '0' : `${kg} kg`}
-              </span>
-              <button
-                className="qty-btn"
                 onClick={() => onUpdateQuantity(variety.id, 1)}
-                disabled={kg >= 10}
-                aria-label={`Add 1 kg of ${variety.name}`}
-                type="button"
+                aria-label={`Add ${variety.name} to box`}
               >
-                +
+                <div className="acc-pa-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </div>
+                <div className="acc-pa-content">
+                  <span className="acc-pa-label">Add to Box</span>
+                  {overrideExpanded && variety.minQty && (
+                    <span className="acc-pa-sub">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                      {variety.minQty} kg minimum
+                    </span>
+                  )}
+                </div>
               </button>
-            </div>
+            ) : (
+              <div
+                className="accordion-qty in-cart"
+                aria-label={`${variety.name} quantity in kg`}
+              >
+                <button
+                  className="qty-btn"
+                  onClick={() => onUpdateQuantity(variety.id, -1)}
+                  aria-label={`Remove 1 kg of ${variety.name}`}
+                  type="button"
+                >
+                  −
+                </button>
+                <span className="qty-value" aria-live="polite">
+                  {kg} kg
+                </span>
+                <button
+                  className="qty-btn"
+                  onClick={() => onUpdateQuantity(variety.id, 1)}
+                  disabled={kg >= 10}
+                  aria-label={`Add 1 kg of ${variety.name}`}
+                  type="button"
+                >
+                  +
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -156,10 +184,7 @@ function OrderNote({ subtotal, onQuickAdd }) {
     onQuickAdd(varietyId, qty);
   };
 
-  const alpha = varieties.find(v => v.id === 'alphonso');
-  const banga = varieties.find(v => v.id === 'banganapalli');
-  const sendh = varieties.find(v => v.id === 'sendhooram');
-  const imam = varieties.find(v => v.id === 'imam-pasand');
+  const items = varieties.filter(v => ['alphonso', 'banganapalli', 'sendhooram', 'imam-pasand'].includes(v.id));
 
   return (
     <div className="order-note">
@@ -175,7 +200,7 @@ function OrderNote({ subtotal, onQuickAdd }) {
           <span className="order-note-trust-title">No surprises at checkout</span>
         </div>
         <p className="order-note-trust-body">
-          Minimum order from{' '}
+          Minimum order from {' '}
           <span className="order-note-min">&#8377;{MIN_ORDER_VALUE}</span>.{' '}
           Packing &amp; delivery{' '}
           <strong className="order-note-delivery">subject to your location</strong>
@@ -183,7 +208,7 @@ function OrderNote({ subtotal, onQuickAdd }) {
         </p>
       </div>
 
-      {/* Quick Starts: always visible, with inline minimum-met badge */}
+      {/* Quick Starts: dynamic based on varieties */}
       <div className="order-note-sugg is-entering">
         <div className="order-note-sugg-head">
           <span className="order-note-sugg-label">Quick Starts</span>
@@ -197,28 +222,30 @@ function OrderNote({ subtotal, onQuickAdd }) {
           )}
         </div>
 
-        {alpha && (
-          <div className="order-note-sugg-row sugg-row-1">
+        {items.map((v, idx) => (
+          <div key={v.id} className={`order-note-sugg-row sugg-row-${idx + 1}`}>
             <img
               className="order-note-s-thumb"
-              src={alpha.image}
-              alt={alpha.alt}
+              src={v.image}
+              alt={v.alt}
               loading="lazy"
               decoding="async"
             />
             <div className="order-note-s-info">
-              <div className="order-note-s-qty">2 kg Alphonso</div>
-              <div className="order-note-s-name">meets the minimum</div>
+              <div className="order-note-s-qty">{v.minQty} kg {v.name}</div>
+              <div className="order-note-s-name">
+                {v.pricePerKg * v.minQty >= MIN_ORDER_VALUE ? 'meets the minimum' : 'premium pick'}
+              </div>
             </div>
             <div className="order-note-s-right">
-              <span className="order-note-s-price">&#8377;260</span>
+              <span className="order-note-s-price">&#8377;{v.pricePerKg * v.minQty}</span>
               <button
                 className="order-note-s-cta"
                 type="button"
-                aria-label="Add 2 kg of Alphonso"
-                onClick={() => handleQuickAdd('alphonso', 2, '2 kg')}
+                aria-label={`Add ${v.minQty} kg of ${v.name}`}
+                onClick={() => handleQuickAdd(v.id, v.minQty, `${v.minQty} kg`)}
               >
-                {popInfo?.id === 'alphonso' && (
+                {popInfo?.id === v.id && (
                   <span key={popInfo.key} className="order-note-count-pop">{popInfo.label}</span>
                 )}
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -227,103 +254,7 @@ function OrderNote({ subtotal, onQuickAdd }) {
               </button>
             </div>
           </div>
-        )}
-
-        {banga && (
-          <div className="order-note-sugg-row sugg-row-2">
-            <img
-              className="order-note-s-thumb"
-              src={banga.image}
-              alt={banga.alt}
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="order-note-s-info">
-              <div className="order-note-s-qty">3 kg Banganapalli</div>
-              <div className="order-note-s-name">meets the minimum</div>
-            </div>
-            <div className="order-note-s-right">
-              <span className="order-note-s-price">&#8377;240</span>
-              <button
-                className="order-note-s-cta"
-                type="button"
-                aria-label="Add 3 kg of Banganapalli"
-                onClick={() => handleQuickAdd('banganapalli', 3, '3 kg')}
-              >
-                {popInfo?.id === 'banganapalli' && (
-                  <span key={popInfo.key} className="order-note-count-pop">{popInfo.label}</span>
-                )}
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {sendh && (
-          <div className="order-note-sugg-row sugg-row-3">
-            <img
-              className="order-note-s-thumb"
-              src={sendh.image}
-              alt={sendh.alt}
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="order-note-s-info">
-              <div className="order-note-s-qty">3 kg Sendhooram</div>
-              <div className="order-note-s-name">meets the minimum</div>
-            </div>
-            <div className="order-note-s-right">
-              <span className="order-note-s-price">&#8377;240</span>
-              <button
-                className="order-note-s-cta"
-                type="button"
-                aria-label="Add 3 kg of Sendhooram"
-                onClick={() => handleQuickAdd('sendhooram', 3, '3 kg')}
-              >
-                {popInfo?.id === 'sendhooram' && (
-                  <span key={popInfo.key} className="order-note-count-pop">{popInfo.label}</span>
-                )}
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {imam && (
-          <div className="order-note-sugg-row sugg-row-4">
-            <img
-              className="order-note-s-thumb"
-              src={imam.image}
-              alt={imam.alt}
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="order-note-s-info">
-              <div className="order-note-s-qty">2 kg Imam Pasand</div>
-              <div className="order-note-s-name">premium pick</div>
-            </div>
-            <div className="order-note-s-right">
-              <span className="order-note-s-price">&#8377;400</span>
-              <button
-                className="order-note-s-cta"
-                type="button"
-                aria-label="Add 2 kg of Imam Pasand"
-                onClick={() => handleQuickAdd('imam-pasand', 2, '2 kg')}
-              >
-                {popInfo?.id === 'imam-pasand' && (
-                  <span key={popInfo.key} className="order-note-count-pop">{popInfo.label}</span>
-                )}
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
+        ))}
       </div>
 
     </div>
@@ -347,8 +278,8 @@ export default function VarietyAccordion({ cart, onCartChange }) {
     triggerHaptic();
     onCartChange(prev => {
       const current = prev[varietyId] ?? 0;
-      const next = Math.max(0, Math.min(10, current + delta));
       const variety = varieties.find(v => v.id === varietyId);
+      const next = calculateNextQuantity(current, delta, variety, siteConfig.featureFlags);
       
       if (delta > 0 && next > current) {
         posthog?.capture('add_to_cart', {
@@ -416,7 +347,7 @@ export default function VarietyAccordion({ cart, onCartChange }) {
             <VarietyItem
               key={v.id}
               variety={v}
-              isExpanded={expandedId === v.id}
+              isExpanded={siteConfig.featureFlags?.ENABLE_MIN_QTY_PER_VARIETY ? true : expandedId === v.id}
               onToggle={() => handleToggle(v.id)}
               cart={cart}
               onUpdateQuantity={handleUpdateQuantity}
