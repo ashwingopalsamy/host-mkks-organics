@@ -23,6 +23,6 @@ export const siteConfig = {
     },
   },
   featureFlags: {
-    ENABLE_MIN_QTY_PER_VARIETY: true,
+    ENABLE_MIN_QTY_PER_VARIETY: false,
   },
 };
